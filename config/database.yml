@@ -47,13 +47,9 @@ test:
   encoding: unicode
   database: venturechallenge_test
   pool: 5
-  username: venturechallenge
-  password:
 
 production:
   adapter: postgresql
   encoding: unicode
   database: venturechallenge_production
   pool: 5
-  username: venturechallenge
-  password:
