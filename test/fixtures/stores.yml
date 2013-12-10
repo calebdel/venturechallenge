@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  myshopify_domain: MyString
+  access_token: MyString
+
+two:
+  myshopify_domain: MyString
+  access_token: MyString
