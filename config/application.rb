@@ -2,6 +2,16 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+unless Rails.env == 'production'
+    require 'yaml' # is this needed?
+    config = YAML.load_file("./config/env_vars.yml")
+    if config.key?(Rails.env) && config[Rails.env].is_a?(Hash)
+        config[Rails.env].each do |key,val|
+            ENV[key] = val.to_s
+        end
+    end
+end
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
