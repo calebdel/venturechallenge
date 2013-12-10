@@ -20,3 +20,5 @@
 
 ## Environment normalisation:
 /vendor/bundle
+
+/config/keys.yml

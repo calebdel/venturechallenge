@@ -10,8 +10,8 @@ module Venturechallenge
   class Application < Rails::Application
     
     # Shopify API connection credentials:
-    config.shopify.api_key = '065f8e60be33839f83f2492008ff3e44'
-    config.shopify.secret = '51ef045619ee00b914574992ed33719a'
+    config.shopify.api_key = ENV['API_KEY']
+    config.shopify.secret = ENV['SECRET']
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
