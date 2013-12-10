@@ -3,6 +3,7 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
+ *= require font-awesome
  *= require foundation_and_overrides
 */
 
@@ -13,4 +14,26 @@
 	border-radius:10px;
 	opacity: 0.8;
 	background-color:LightGray;
+}
+
+.panel {
+  height: 100vh;
+  width: 200px;
+  font-family: "Open Sans";
+  font-weight: 200;
+}
+
+#sidenavbar {
+  margin-right: 1.3em;
+  margin-left: -1em;
+}
+
+#sidenavbar a {
+  color: #333333;
+  margin: 10px 0;
+}
+
+.menu_a {
+  margin-left: 10px;
+  text-align: left;
 }
