@@ -24,19 +24,27 @@ class HomeController < ApplicationController
     current_store.save!
 
     # one-line temp session:
-
     # latest_orders = ShopifyAPI::Session.temp("yourshopname.myshopify.com", token) { ShopifyAPI::Order.find(:all) }
 
 
 
-    # mina magic
+    
+    @stores = Store.all
+    @stores.each do |s|
+    session = ShopifyAPI::Session.new(s.myshopify_domain, s.access_token)
+    ShopifyAPI::Base.activate_session(session)
+    
+      @orders  = ShopifyAPI::Order.find(:all, :params => {:order => "created_at DESC" }) 
 
-    # @stores = Store.all
-    # @stores.each do |s|
-    # # session = ShopifyAPI::Session.new(s.myshopify_domain, s.access_token)
-    # # ShopifyAPI::Base.activate_session(session)
-    # # orders = ShopifyAPI::Order.find(:all, :params => {:order => "created_at DESC" }) 
-    # end
+      ordersum = 0
+      @orders.each do |order|
+        ordersum += order.total_price.to_f
+      end
+
+      s.total_orders = ordersum
+      s.save!
+
+    end
 
   end
   
