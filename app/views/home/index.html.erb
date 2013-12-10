@@ -1,13 +1,17 @@
 <table>
   <tr>
-  <th>Store</th>
-  <th>Total Orders</th>
+    <th>Store</th>
+    <th>Total Orders</th>
+    <th>Number of Orders</th>
+    <th>Number of Customers</th>
   </tr>
 
   <% @stores.order("total_orders").reverse.each do |store| %>
   <tr>
     <td><%= store.myshopify_domain %></td>
     <td><%= store.total_orders %></td>
+    <td><%= store.order_count %></td>
+    <td><%= store.customer_count %></td>
   </tr>
   <% end %>
 
