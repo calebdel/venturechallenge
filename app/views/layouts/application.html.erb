@@ -39,6 +39,7 @@
           <ul class="dropdown">
             <li><%= link_to raw('<i class="icon-home"></i> Storefront'), "http://"+shop_session.url, :target => 'blank' %></li>
             <li><%= link_to raw('<i class="icon-cog"></i> Shopify Admin'), "http://"+shop_session.url+"/admin", :target => 'blank' %></li>
+            <li><%= link_to "Logout", logout_path, :target => 'blank' %></li>
           </ul>
         </li>
       </ul>

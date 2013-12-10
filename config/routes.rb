@@ -5,7 +5,7 @@ Venturechallenge::Application.routes.draw do
     get 'login' => :new
     post 'login' => :create
     get 'auth/shopify/callback' => :show
-    delete 'logout' => :destroy
+    get 'logout' => :destroy
   end
   root :to => 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
