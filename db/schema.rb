@@ -11,16 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209223703) do
+ActiveRecord::Schema.define(version: 20131210204408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "orders", force: true do |t|
+    t.integer  "store_id"
+    t.float    "total_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stores", force: true do |t|
     t.string   "myshopify_domain"
     t.string   "access_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "total_orders"
   end
 
   create_table "users", force: true do |t|

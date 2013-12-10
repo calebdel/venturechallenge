@@ -32,4 +32,5 @@ end
 
 group :development, :test do
   gem "therubyracer", platforms: :ruby
+  gem "pry"
 end
