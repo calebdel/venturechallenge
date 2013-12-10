@@ -13,16 +13,21 @@ class HomeController < ApplicationController
 
     # get latest 5 orders
     @orders  = ShopifyAPI::Order.find(:all, :params => {:limit => 5, :order => "created_at DESC" })
+  
+    @stores = Store.all
+    @stores.each do |s|
+    session = ShopifyAPI::Session.new(s.myshopify_domain, s.access_token)
+    ShopifyAPI::Base.activate_session(session)
+    orders = ShopifyAPI::Order.find(:all, :params => {:limit => 5, :order => "created_at DESC" })
+    p orders
+    end
   end
   
+  def stores
+
+  end
+
 end
 
 # Mina's Code
 
-# stores = Store.all
-# stores.each do |s|
-# session = ShopifyAPI::Session.new(s.myshopify_domain, s.access_token)
-# ShopifyAPI::Base.activate_session(session)
-# orders = ShopifyAPI::Order.find(:all, :params => {:limit => 5, :order => "created_at DESC" })
-# p orders
-# end
