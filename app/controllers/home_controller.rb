@@ -36,7 +36,8 @@ def refresh_store_data
       end
 
       s.total_orders = ordersum
-      s.save!
+      s.save! 
+
   end
 end
 
