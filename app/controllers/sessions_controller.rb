@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   def show
     if response = request.env['omniauth.auth']
       @response =  response # take this out
-      sess = ShopifyAPI::cd Session.new(params[:shop], response['credentials']['token'])
+      sess = ShopifyAPI::Session.new(params[:shop], response['credentials']['token'])
       User.find_or_create_by_name(response[''])
       Store.find_or_create_by_myshopify_domain(sess.url, access_token: sess.token)
       session[:shopify] = sess        
