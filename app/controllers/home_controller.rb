@@ -18,7 +18,7 @@ class HomeController < ApplicationController
   end
   
 
-def refresh_store_data
+def refresh_store_data 
   @stores = Store.all
     @stores.each do |s|
     session = ShopifyAPI::Session.new(s.myshopify_domain, s.access_token)
@@ -29,6 +29,10 @@ def refresh_store_data
       @customers  = ShopifyAPI::Customer.find(:all, :params => {:order => "created_at DESC" }) 
 
       s.order_count = @orders.count
+      # If stores order count is greater than 5 assign 500 sales points using goico change_points method
+        if s.order_count > 3
+          s.change_points({points:500, type:1, kind:1})
+        end 
       s.customer_count = @customers.count
       ordersum = 0
       @orders.each do |order|
