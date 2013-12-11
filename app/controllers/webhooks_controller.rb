@@ -17,7 +17,10 @@ class WebhooksController < ApplicationController
 
       @s = Store.find_by_myshopify_domain(shop_url)
 
-      @s.total_orders += data["total_price"].to_f
+      @p = data["total_price"].to_f
+
+      order_points(@p)
+      @s.total_orders += @p
 
       @s.save
 
@@ -32,18 +35,19 @@ class WebhooksController < ApplicationController
       # shop_url = ("http://" + shop_url)
 
       @s = Store.find_by_myshopify_domain(shop_url) #should be store?
-
       session = ShopifyAPI::Session.new(@s.myshopify_domain, @s.access_token)
       session.valid?
       ShopifyAPI::Base.activate_session(session)
 
     end
 
+    def order_points(total)
+      @s.change_points({points:total, type:1, kind:1})
+    end
+
+
+
     
-      
-
-
-
 
 
 end
