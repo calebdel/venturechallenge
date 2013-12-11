@@ -38,4 +38,12 @@ class WebhooksController < ApplicationController
       ShopifyAPI::Base.activate_session(session)
 
     end
+
+    
+      
+
+
+
+
+
 end
