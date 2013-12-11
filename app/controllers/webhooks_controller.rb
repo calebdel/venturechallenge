@@ -15,11 +15,14 @@ class WebhooksController < ApplicationController
 
       shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
 
+      @order = Order.new
+      @order.json = data
+
       @s = Store.find_by_myshopify_domain(shop_url)
 
-      @s.total_orders += data["total_price"].to_f
+      @order.store_id = @s.id
 
-      @s.save
+      @order.save
 
       head :ok
     end

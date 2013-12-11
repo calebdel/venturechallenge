@@ -1,7 +1,9 @@
 Venturechallenge::Application.routes.draw do
   get 'welcome' => 'home#welcome'
   get 'design' => 'home#design'
-  post 'new_order' => 'webhooks#order_new'
+
+  post 'webhooks/orders/create' => 'webhooks#order_new'
+  
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

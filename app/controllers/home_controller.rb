@@ -24,7 +24,8 @@ def refresh_store_data
     @stores.each do |s|
     session = ShopifyAPI::Session.new(s.myshopify_domain, s.access_token)
     ShopifyAPI::Base.activate_session(session)
-    
+
+
       @orders  = ShopifyAPI::Order.find(:all, :params => {:order => "created_at DESC" }) 
 
       @customers  = ShopifyAPI::Customer.find(:all, :params => {:order => "created_at DESC" }) 
