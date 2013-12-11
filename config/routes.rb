@@ -1,6 +1,7 @@
 Venturechallenge::Application.routes.draw do
   get 'welcome' => 'home#welcome'
   get 'design' => 'home#design'
+  post 'new_order' => 'webhooks#order_new'
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
@@ -8,6 +9,7 @@ Venturechallenge::Application.routes.draw do
     get 'logout' => :destroy
   end
   root :to => 'home#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

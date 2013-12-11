@@ -20,6 +20,7 @@ class HomeController < ApplicationController
 
 def refresh_store_data 
   @stores = Store.all
+  
     @stores.each do |s|
     session = ShopifyAPI::Session.new(s.myshopify_domain, s.access_token)
     ShopifyAPI::Base.activate_session(session)
