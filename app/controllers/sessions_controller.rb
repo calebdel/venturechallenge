@@ -6,16 +6,13 @@ class SessionsController < ApplicationController
 
   def create
     authenticate
-    @user = User.new
-    @user.shop = params[:shop].to_s.strip
-    @user.save
   end
   
   def show
     if response = request.env['omniauth.auth']
       @response =  response # take this out
-      sess = ShopifyAPI::Session.new(params[:shop], response['credentials']['token'])
-      # User.find_or_create_by_shop(params[:shop].to_s.strip)
+      sess = ShopifyAPI::cd Session.new(params[:shop], response['credentials']['token'])
+      User.find_or_create_by_name(response[''])
       Store.find_or_create_by_myshopify_domain(sess.url, access_token: sess.token)
       session[:shopify] = sess        
       flash[:notice] = "Logged in"
