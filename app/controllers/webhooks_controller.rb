@@ -18,7 +18,6 @@ class WebhooksController < ApplicationController
       @s = Store.find_by_myshopify_domain(shop_url)
 
       @p = data["total_price"].to_f
-
       order_points(@p)
       @s.total_orders += @p
 
