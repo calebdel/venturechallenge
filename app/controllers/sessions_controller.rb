@@ -12,12 +12,13 @@ class SessionsController < ApplicationController
     if response = request.env['omniauth.auth']
       sess = ShopifyAPI::Session.new(params[:shop], response['credentials']['token'])
       session[:shopify] = sess  
+      ShopifyAPI::Base.activate_session(sess)
       initialize_webhooks
-      Store.find_or_create_by_myshopify_domain(sess.url, access_token: sess.token)\
-      current_user = User.find_or_create_by_email(ShopifyAPI::Shop.current_store.email) #you get the idea
-      current_user.password?
+      Store.find_or_create_by_myshopify_domain(sess.url, access_token: sess.token)
+      # current_user = User.find_or_create_by_email(ShopifyAPI::Shop.current_store.email) #you get the idea
+      # current_user.password?
       #give him a password if he dont got one
-      binding.pry
+
       flash[:notice] = "Logged in"
       redirect_to return_address
     else
