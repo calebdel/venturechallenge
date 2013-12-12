@@ -50,15 +50,11 @@ ActiveRecord::Schema.define(version: 20131212050228) do
   end
 
   create_table "points", force: true do |t|
-    t.integer  "user_id"
     t.integer  "kind_id"
     t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
-=======
     t.integer  "store_id"
->>>>>>> 63ae8b675d52e77a680886664f0ae1cc0e3f8fb2
   end
 
   create_table "stores", force: true do |t|
