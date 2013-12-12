@@ -14,7 +14,8 @@ class HomeController < ApplicationController
 
     # latest_orders = ShopifyAPI::Session.temp("yourshopname.myshopify.com", token) { ShopifyAPI::Order.find(:all) }
 
-    refresh_store_data
+    # refresh_store_data
+    @stores = Store.all
   end
   
 
