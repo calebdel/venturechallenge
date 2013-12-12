@@ -4,6 +4,7 @@
     <th>Total Orders</th>
     <th>Number of Orders</th>
     <th>Number of Customers</th>
+    <th>Badges</th>
   </tr>
 
   <% @stores.order("total_orders").reverse.each do |store| %>
@@ -12,6 +13,10 @@
     <td><%= store.total_orders %></td>
     <td><%= store.order_count %></td>
     <td><%= store.customer_count %></td>
+    <td><% store.badges.each do |b| %>
+          <%= b.name %>
+          <% end %></td>
+
   </tr>
   <% end %>
 

@@ -1,0 +1,7 @@
+require "#{Rails.root}/db/gioco/create_badge_beginner_Sales.rb"
+require "#{Rails.root}/db/gioco/create_badge_Intermediate_Sales.rb"
+require "#{Rails.root}/db/gioco/create_badge_Expert_Sales.rb"
+require "#{Rails.root}/db/gioco/create_badge_Beginner_Sales.rb"
+require "#{Rails.root}/db/gioco/create_badge_Intermediate_Sales.rb"
+require "#{Rails.root}/db/gioco/create_badge_Expert_Sales.rb"
+require "#{Rails.root}/db/gioco/create_badge_Pro_Sales.rb"
