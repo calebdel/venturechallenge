@@ -14,26 +14,22 @@ class WebhooksController < ApplicationController
       data = ActiveSupport::JSON.decode(request.body.read)
 
       shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
-
-      @order = Order.new
-      @order.json = data
-
-      @s = Store.find_by_myshopify_domain(shop_url)
-
-    
-      @p = data["total_price"].to_f
-      order_points(@p)
-      @s.total_orders += @p
-
-      @order.save
-
-      head :ok
+      unless Order.find_by_shopify_id(data["id"].to_s)
+        @order = Order.new
+        @order.subtotal_price = data["subtotal_price"].to_f
+        @order.referring_site = data["referring_site"]
+        @order.total_discounts = data["total_discounts"].to_i
+        @order.store_id = @s.id
+        @order.save
+        head :ok
+        order_points(@order.subtotal_price)
+      end
+        head :ok
     end
 
     private
 
     def connect_to_store
-
       shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
       # shop_url = ("http://" + shop_url)
 
@@ -41,16 +37,9 @@ class WebhooksController < ApplicationController
       session = ShopifyAPI::Session.new(@s.myshopify_domain, @s.access_token)
       session.valid?
       ShopifyAPI::Base.activate_session(session)
-
     end
 
     def order_points(total)
       @s.change_points({points:total, type:1, kind:1})
     end
-
-
-
-    
-
-
 end

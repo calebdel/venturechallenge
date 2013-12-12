@@ -18,7 +18,6 @@ class SessionsController < ApplicationController
       # current_user = User.find_or_create_by_email(ShopifyAPI::Shop.current_store.email) #you get the idea
       # current_user.password?
       #give him a password if he dont got one
-
       flash[:notice] = "Logged in"
       redirect_to return_address
     else
@@ -40,7 +39,7 @@ class SessionsController < ApplicationController
     topics = ["orders/create"]
     topics.each do |topic|
       webhook = ShopifyAPI::Webhook.create(format: "json", topic: topic, address: "#{ENV['HOST_URL']}/webhooks/#{topic}")
-      raise "Webhook invalid: (#{topic}) #{webhook.errors}" unless webhook.valid?
+      # raise "Webhook invalid: (#{topic}) #{webhook.errors}" unless webhook.valid?
     end
   end
   

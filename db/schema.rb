@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211185310) do
+ActiveRecord::Schema.define(version: 20131212050228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,11 @@ ActiveRecord::Schema.define(version: 20131211185310) do
     t.integer  "store_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "json"
+    t.float    "subtotal_price"
+    t.string   "shopify_id"
+    t.string   "referring_site"
+    t.integer  "total_discounts"
+    t.float    "cost"
   end
 
   create_table "points", force: true do |t|
@@ -51,6 +55,10 @@ ActiveRecord::Schema.define(version: 20131211185310) do
     t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
+=======
+    t.integer  "store_id"
+>>>>>>> 63ae8b675d52e77a680886664f0ae1cc0e3f8fb2
   end
 
   create_table "stores", force: true do |t|
