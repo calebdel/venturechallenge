@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
   
   def new
-    authenticate if params[:shop].present?
+    authenticate_store if params[:shop].present?
   end
 
   def create
-    authenticate
+    authenticate_store
+    
   end
   
   def show
@@ -43,7 +44,7 @@ class SessionsController < ApplicationController
     end
   end
   
-  def authenticate
+  def authenticate_store
     if shop_name = sanitize_shop_param(params)
       redirect_to "/auth/shopify?shop=#{shop_name}"
     else
