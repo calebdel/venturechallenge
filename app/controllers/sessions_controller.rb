@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
     session[:shopify] = sess 
     ShopifyAPI::Base.activate_session(sess) # is this necessary?? we dunno
 
-    user = User.find_or_create_by_url(sess.url, token: sess.token, password:"0", password_confirmation:"0")
+    user = User.find_or_create_by_url(sess.url, token: sess.token, name:sess. password:"000000", password_confirmation:"000000")
 
     store = Store.find_or_create_by_user_id(user.id)
 

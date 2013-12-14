@@ -1,4 +1,9 @@
 Venturechallenge::Application.routes.draw do
+  get "leagues/new"
+  get "leagues/create"
+  get "leagues/update"
+  get "leagues/edit"
+  get "leagues/destroy"
   get "users/new"
   get "users/create"
   get 'welcome' => 'home#welcome'
