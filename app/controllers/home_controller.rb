@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  
-  around_filter :shopify_session, :except => 'welcome'
+
+  before_filter :ensure_logged_in
   
   def welcome
     current_host = "#{request.host}#{':' + request.port.to_s if request.port != 80}"
@@ -9,7 +9,7 @@ class HomeController < ApplicationController
   
   def index
     # get 10 products
-    @products = ShopifyAPI::Product.find(:all, :params => {:limit => 10})
+    @products = ShopifyAPI::Product.find(:all, :params => {:limit => 10}) if session[:shopify]
 
 
     # latest_orders = ShopifyAPI::Session.temp("yourshopname.myshopify.com", token) { ShopifyAPI::Order.find(:all) }
@@ -19,7 +19,7 @@ class HomeController < ApplicationController
   end
   
 
-def refresh_store_data 
+def refresh_store_data # probably not necessary
   @stores = Store.all
   
     @stores.each do |s|
