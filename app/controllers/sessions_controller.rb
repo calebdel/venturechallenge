@@ -38,8 +38,8 @@ class SessionsController < ApplicationController
     sess = ShopifyAPI::Session.new(params[:shop], omniauth_shit['credentials']['token']) #why is the shop url still in the params of the callback?
     session[:shopify] = sess 
     ShopifyAPI::Base.activate_session(sess) # is this necessary?? we dunno
-
-    user = User.find_or_create_by_url(sess.url, token: sess.token, name:sess.url, password:"000000", password_confirmation:"000000")
+    shop = ShopifyAPI::Shop.current
+    user = User.find_or_create_by_url(sess.url, token: sess.token, name:shop.name, email:shop.email, password:"000000", password_confirmation:"000000")
 
     store = Store.find_or_create_by_user_id(user.id)
 
