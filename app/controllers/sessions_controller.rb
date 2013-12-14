@@ -30,9 +30,9 @@ class SessionsController < ApplicationController
     session[:shopify] = sess 
     ShopifyAPI::Base.activate_session(sess) # is this necessary?? we dunno
 
-    user = User.find_or_create_by_url(sess.url, token: sess.token)
-
-    store = Store.find_or_create_by_user_id(user.id)
+    user = User.find_or_create_by(url: sess.url, token: sess.token)
+    Store.create(:user_id => user.id)
+  
 
     redirect_to root_url, :notice => "You got logged the FUCK in"
 
