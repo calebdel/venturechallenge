@@ -1,7 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  shop: MyString
+  name: MyString
+  email: MyString
+  password_digest: MyString
+  token: MyString
+  url: MyString
+  shop_id: 1
 
 two:
-  shop: MyString
+  name: MyString
+  email: MyString
+  password_digest: MyString
+  token: MyString
+  url: MyString
+  shop_id: 1

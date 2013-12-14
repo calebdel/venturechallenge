@@ -1,7 +1,7 @@
 <div style="width:340px; margin:0 auto;">
   <h1>Install</h1>
   <%= form_tag login_path, :class => 'form-search' do %>
-    <%= text_field_tag 'shop', nil, :placeholder => 'Shop URL', :class => 'btn-large' %>
+    <%= text_field_tag 'url', nil, :placeholder => 'Shop URL', :class => 'btn-large' %>
     <%= submit_tag 'Install', :class => 'btn btn-primary btn-large' %>
   <% end %>
 </div>
@@ -10,7 +10,12 @@
   <%= image_tag 'shopify.png' %>
 </p>
 
+
 <br/>
+
+<p align="center" class="muted">
+  <%= link_to "Admin Sign Up", users_new_path %> | <%= link_to "Admin Log in", admin_login_path %>
+</p>
 
 <p align="center" class="muted">
   Don't have a shop? <a href="https://app.shopify.com/services/partners/api_clients/test_shops">Create a Test Shop</a>

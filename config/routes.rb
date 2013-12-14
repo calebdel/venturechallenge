@@ -1,16 +1,21 @@
 Venturechallenge::Application.routes.draw do
+  get "users/new"
+  get "users/create"
   get 'welcome' => 'home#welcome'
-  get 'design' => 'home#design'
 
   post 'webhooks/orders/create' => 'webhooks#order_new'
   
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
-    get 'auth/shopify/callback' => :show
+    get 'auth/shopify/callback' => :authorize
     get 'logout' => :destroy
+    get 'admin_login' => :admin_new
+    post 'admin_login' => :admin_create
   end
   root :to => 'home#index'
+
+  resources :users, :only => [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

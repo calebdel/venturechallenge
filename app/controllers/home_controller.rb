@@ -45,11 +45,6 @@ def refresh_store_data
 end
 
 
-
-
-
-
-
 end
 
 # Mina's Code

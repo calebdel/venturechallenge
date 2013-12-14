@@ -16,12 +16,14 @@ gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
 gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
+# http://foundation.zurb.com/docs/rails.html
+# Run rails g foundation:install after bundle install to configure.
+
 gem 'shopify_app'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
 gem 'gioco'
-# http://foundation.zurb.com/docs/rails.html
-# Run rails g foundation:install after bundle install to configure.
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
