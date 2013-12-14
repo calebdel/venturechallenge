@@ -35,6 +35,7 @@ class SessionsController < ApplicationController
 
     store = Store.find_or_create_by_user_id(user.id)
 
+
     redirect_to root_url, :notice => "You got logged the FUCK in"
 
   end

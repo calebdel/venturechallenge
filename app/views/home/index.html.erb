@@ -7,17 +7,6 @@
     <th>Badges</th>
   </tr>
 
-  <% @stores.order("total_orders").reverse.each do |store| %>
-  <tr>
-    <td><%= store.myshopify_domain %></td>
-    <td><%= store.total_orders %></td>
-    <td><%= store.order_count %></td>
-    <td><%= store.customer_count %></td>
-    <td><% store.badges.each do |b| %>
-          <%= b.name %>
-          <% end %></td>
 
-  </tr>
-  <% end %>
 
 </table>
