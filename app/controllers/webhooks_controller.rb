@@ -24,7 +24,6 @@ class WebhooksController < ApplicationController
         @order.shopify_id = neworder.id
         @order.save
         order_points(neworder.subtotal_price.to_f)
-        binding.pry
       end
       head :ok
 
