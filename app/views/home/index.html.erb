@@ -3,10 +3,18 @@
     <th>Store</th>
     <th>Total Orders</th>
     <th>Number of Orders</th>
-    <th>Number of Customers</th>
+    <th>Points</th>
     <th>Badges</th>
   </tr>
-
+	<% @stores.each do |store| %>
+	<tr>
+    <td><%= User.find(store.user_id).name %></td>
+    <td><%= number_to_currency(Order.where("store_id = #{store.id}").sum(:subtotal_price)) %></td>
+    <td><%= Order.where("store_id = #{store.id}").count %></td>
+    <td><%= Point.where("store_id = #{store.id}").sum(:value) %></td>
+    <td><%= Badge.where("store_id = #{store.id}") %></td>
+	</tr>
+	<% end %>
 
 
 </table>
