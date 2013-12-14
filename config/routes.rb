@@ -1,9 +1,4 @@
 Venturechallenge::Application.routes.draw do
-  get "leagues/new"
-  get "leagues/create"
-  get "leagues/update"
-  get "leagues/edit"
-  get "leagues/destroy"
   get "users/new"
   get "users/create"
   get 'welcome' => 'home#welcome'
@@ -22,6 +17,7 @@ Venturechallenge::Application.routes.draw do
   root :to => 'home#index'
 
   resources :users, :only => [:new, :create]
+  resources :leagues
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

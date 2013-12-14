@@ -8,18 +8,17 @@ class HomeController < ApplicationController
   end
   
   def index
-    # get 10 products
-    @products = ShopifyAPI::Product.find(:all, :params => {:limit => 10}) if session[:shopify]
-
-
-    # latest_orders = ShopifyAPI::Session.temp("yourshopname.myshopify.com", token) { ShopifyAPI::Order.find(:all) }
-
-    # refresh_store_data
-    @stores = Store.all
+    if session[:shopify]
+      if curent_user
+      #if so, show stuff
+      #if not, display leagues to join
+    elsif session[:user_id]
+      redirect_to adminpanel_path
+    end
   end
 
   def admin
-    
+    @leagues = League.where("admin_id = '#{current_user.id}'")
   end
   
 

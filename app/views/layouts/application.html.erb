@@ -6,9 +6,9 @@
 
     <title>VChallenge</title>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= csrf_meta_tags %>
+    <%=  stylesheet_link_tag    "application" %>
+    <%=  javascript_include_tag "vendor/modernizr" %>
+    <%=  csrf_meta_tags %>
   </head>
 
   <body>
@@ -35,10 +35,8 @@
  
         <li class="divider"></li>
         <li class="has-dropdown">
-          <%= link_to raw(shop_session.url+' <b class="caret"></b>'), "https://#{shop_session.url}", :class => 'shop_name dropdown-toggle', :'data-toggle' => 'dropdown', :'data-target' => '#' %>
+          <%= link_to "Menu" %>
           <ul class="dropdown">
-            <li><%= link_to raw('<i class="icon-home"></i> Storefront'), "http://"+shop_session.url, :target => 'blank' %></li>
-            <li><%= link_to raw('<i class="icon-cog"></i> Shopify Admin'), "http://"+shop_session.url+"/admin", :target => 'blank' %></li>
             <li><%= link_to "Logout", logout_path, :target => 'blank' %></li>
           </ul>
         </li>
@@ -46,6 +44,8 @@
     </section>
   </nav>
     <!-- Navigation -->
+
+
 <div class="large-2 columns" id="sidenavbar">
   <div class="panel">
   <ul class="side-nav">
@@ -77,18 +77,14 @@
       </a>
     </li>
   </ul>
-</div>
+  </div>
 
-      </div>
-    </div>
+</div>
+    <div class = "row">
     <%= yield %>
     </div>
 
-    <!-- DEBUG BOX - BOTTOM RIGHT OF SCREEN - Add whatever you like to it, easy way to track vars etc -->
 
-    <div id = "debug">
-    </div>
-
-    <%= javascript_include_tag "application" %>
+    <%=  javascript_include_tag "application" %>
   </body>
 </html>         

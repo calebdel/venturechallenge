@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214002311) do
+ActiveRecord::Schema.define(version: 20131214171639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: true do |t|
+    t.string   "username",         null: false
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "badges", force: true do |t|
     t.string   "name"
@@ -27,6 +36,16 @@ ActiveRecord::Schema.define(version: 20131214002311) do
 
   create_table "kinds", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "leagues", force: true do |t|
+    t.string   "name"
+    t.integer  "admin_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "school"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,6 +83,7 @@ ActiveRecord::Schema.define(version: 20131214002311) do
     t.integer  "customer_count"
     t.integer  "order_count"
     t.integer  "user_id"
+    t.integer  "league_id"
   end
 
   create_table "users", force: true do |t|

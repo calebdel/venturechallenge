@@ -1,5 +1,6 @@
 class Store < ActiveRecord::Base
 belongs_to :user
+belongs_to :league
 has_many :points  
 has_many :badges , :through => :levels 
 has_many :levels  
