@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect_to adminpanel_url #but probably somewhere else
+        redirect_to adminpanel_path #but probably somewhere else
       else
         redirect_to "http://www.google.com"
       end
@@ -42,7 +42,6 @@ class SessionsController < ApplicationController
     user = User.find_or_create_by_url(sess.url, token: sess.token, password:"0", password_confirmation:"0")
 
     store = Store.find_or_create_by_user_id(user.id)
-
 
     redirect_to root_url, :notice => "You got logged the FUCK in"
 

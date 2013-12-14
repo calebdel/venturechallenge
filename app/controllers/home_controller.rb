@@ -17,10 +17,16 @@ class HomeController < ApplicationController
     # refresh_store_data
     @stores = Store.all
   end
+
+  def admin
+    
+  end
   
 
-def refresh_store_data # probably not necessary
-  @stores = Store.all
+  private
+
+  def refresh_store_data # probably not necessary
+    @stores = Store.all
   
     @stores.each do |s|
     session = ShopifyAPI::Session.new(s.myshopify_domain, s.access_token)
@@ -41,10 +47,8 @@ def refresh_store_data # probably not necessary
       s.total_orders = ordersum
       s.save! 
 
+    end
   end
-end
 
 
 end
-
-# Mina's Code

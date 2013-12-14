@@ -2,6 +2,7 @@ Venturechallenge::Application.routes.draw do
   get "users/new"
   get "users/create"
   get 'welcome' => 'home#welcome'
+  get 'adminpanel' => 'home#admin'
 
   post 'webhooks/orders/create' => 'webhooks#order_new'
   
