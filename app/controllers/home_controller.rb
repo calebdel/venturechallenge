@@ -9,9 +9,10 @@ class HomeController < ApplicationController
   
   def index
     if session[:shopify]
-      if curent_user
-      #if so, show stuff
-      #if not, display leagues to join
+      redirect_to leagues_path unless current_store.league_id
+
+      @stores = Store.where("league_id = current_store.league_id")
+
     elsif session[:user_id]
       redirect_to adminpanel_path
     end
@@ -19,6 +20,13 @@ class HomeController < ApplicationController
 
   def admin
     @leagues = League.where("admin_id = '#{current_user.id}'")
+  end
+
+  def assign_league
+    store = Store.find_by_user_id(current_user.id)
+    store.league_id = params[:league_id]
+    store.save
+    redirect_to root_path
   end
   
 

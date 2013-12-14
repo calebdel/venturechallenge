@@ -23,6 +23,12 @@ class ApplicationController < ActionController::Base
 
   end
 
+  def current_store
+
+    Store.find_by_user_id(current_user.id)
+
+  end
+
 
   def ensure_logged_in
     unless current_user #if no current user, nil is returned, triggering a redirect to the login screen
@@ -32,6 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+  helper_method :current_store
   helper_method :ensure_logged_in
 
 end
