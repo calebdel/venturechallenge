@@ -15,8 +15,8 @@ end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :linkedin, 
-            "75dfkubtuvkdu2", 
-            "DFfyeZpcjEf085oM",
+            ENV['LI_API'], 
+            ENV['LI_SECRET'],
 
             :scope => 'r_fullprofile r_emailaddress r_network',
             #:scope => 'r_basicprofile, r_fullprofile, r_emailaddress, r_network, r_contactinfo, rw_nus, rw_company_admin, rw_groups, w_messages',
