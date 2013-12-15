@@ -80,6 +80,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.2)
     multipart-post (1.2.0)
+    oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -89,6 +90,11 @@ GEM
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
+    omniauth-linkedin (0.1.0)
+      omniauth-oauth (~> 1.0)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
@@ -181,6 +187,7 @@ DEPENDENCIES
   gioco
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
+  omniauth-linkedin
   pg (= 0.15.1)
   pry
   rails (= 4.0.1)

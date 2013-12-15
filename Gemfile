@@ -20,6 +20,7 @@ gem 'jbuilder', '1.0.2'
 # Run rails g foundation:install after bundle install to configure.
 
 gem 'shopify_app'
+gem 'omniauth-linkedin'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
 gem 'gioco'

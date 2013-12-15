@@ -11,18 +11,19 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-     <!-- Navigation -->
 
-
-    
-    <!-- Navigation -->
 
 <div class="row">
+    </br>
+    </br>
+    <% if flash[:notice] %>
+      <p id="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:alert] %>
+      <p id="alert"><%= flash[:alert] %></p>
+    <% end %>
     <%= yield %>
     </div>
     <%= javascript_include_tag "application" %>
   </body>
 </html>      
-
-div.container#5>ul.list>li#${item$}*10

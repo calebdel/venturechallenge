@@ -35,7 +35,7 @@
  
         <li class="divider"></li>
         <li class="has-dropdown">
-          <%= link_to "Menu" %>
+          <%= link_to current_user.name, "#" %>
           <ul class="dropdown">
             <li><%= link_to "Logout", logout_path, :target => 'blank' %></li>
           </ul>

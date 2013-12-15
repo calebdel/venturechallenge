@@ -1,6 +1,12 @@
 class HomeController < ApplicationController
 
   before_filter :ensure_logged_in
+
+  rescue_from NoMethodError do |exception|
+    session[:shopify] = nil
+    session[:user_id] = nil
+    redirect_to root_path, :notice => "Failed because #{exception}"
+  end
   
   def welcome
     current_host = "#{request.host}#{':' + request.port.to_s if request.port != 80}"

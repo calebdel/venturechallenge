@@ -8,19 +8,10 @@ class SessionsController < ApplicationController
 
   def create
     if params[:url]
-
     shop_name = sanitize_shop_param(params)
     redirect_to "/auth/shopify?shop=#{shop_name}"
-
-    elsif params[:email]
-
-    user = User.find_by_email(params[:email])
-      if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
-        redirect_to adminpanel_path #but probably somewhere else
-      else
-        redirect_to "http://www.google.com"
-      end
+    else
+      redirect_to login_path, notice: "Invalid URL, please try again"
     end
   end
 
@@ -34,19 +25,28 @@ class SessionsController < ApplicationController
   end
 
   def authorize
-    omniauth_shit = request.env['omniauth.auth']
-    sess = ShopifyAPI::Session.new(params[:shop], omniauth_shit['credentials']['token']) #why is the shop url still in the params of the callback?
+    auth_info = request.env['omniauth.auth']
+    sess = ShopifyAPI::Session.new(params[:shop], auth_info['credentials']['token']) #why is the shop url still in the params of the callback?
     session[:shopify] = sess 
     ShopifyAPI::Base.activate_session(sess) # is this necessary?? we dunno
     shop = ShopifyAPI::Shop.current
-    user = User.find_or_create_by_url(sess.url, token: sess.token, name:shop.name, email:shop.email, password:"000000", password_confirmation:"000000")
+    user = User.find_or_create_by_url(sess.url, shopify_token: sess.token, name:shop.name, email:shop.email)
 
     store = Store.find_or_create_by_user_id(user.id)
 
     initialize_webhooks
 
-    redirect_to root_url, :notice => "You got logged the FUCK in"
+    redirect_to root_url, :notice => "Logged in as #{user.name}"
+  end
 
+  def admin_authorize
+    auth_info = request.env['omniauth.auth']
+    
+    session[:linkedin] = auth_info['credentials']['token']
+
+    user = User.find_or_create_by_linkedin_uid(auth_info['uid'], name:auth_info['info']['name'], phone:auth_info['info']['phone'], email:auth_info['info']['email'], linkedin_token:auth_info['credentials']['token'])
+    
+    redirect_to adminpanel_path, notice: "Logged in as #{user.name}"
   end
 
   private

@@ -1,5 +1,5 @@
 <div style="width:340px; margin:0 auto;">
-  <h1>Install</h1>
+  <h1>Students - Shopify URL</h1>
   <%= form_tag login_path, :class => 'form-search' do %>
     <%= text_field_tag 'url', nil, :placeholder => 'Shop URL', :class => 'btn-large' %>
     <%= submit_tag 'Install', :class => 'btn btn-primary btn-large' %>
@@ -12,6 +12,14 @@
 
 
 <br/>
+
+<div style="width:340px; margin:0 auto;">
+  <h1>Professors - Linkedin</h1>
+  <%= form_tag login_path, :class => 'form-search' do %>
+    <h2><%= link_to "Login With Linkedin", "/auth/linkedin/" %></h2>
+  <% end %>
+</div>
+
 
 <p align="center" class="muted">
   <%= link_to "Admin Sign Up", users_new_path %> | <%= link_to "Admin Log in", admin_login_path %>

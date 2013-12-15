@@ -13,6 +13,7 @@ Venturechallenge::Application.routes.draw do
     get 'login' => :new
     post 'login' => :create
     get 'auth/shopify/callback' => :authorize
+    get 'auth/linkedin/callback' => :admin_authorize
     get 'logout' => :destroy
     get 'admin_login' => :admin_new
     post 'admin_login' => :admin_create

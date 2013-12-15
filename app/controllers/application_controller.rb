@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   	@current_user ||= User.find_by_url(session[:shopify].url) if session[:shopify]
     
   	# if not, check to see if there is an admin user active:
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by_linkedin_token(session[:linkedin]) if session[:linkedin]
 
     #return current user if available, otherwise return nil
     return @current_user
