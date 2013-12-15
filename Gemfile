@@ -25,6 +25,8 @@ gem 'font-awesome-rails'
 gem 'gioco'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'pry'
+gem 'chart-js-rails'
+gem 'gon'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

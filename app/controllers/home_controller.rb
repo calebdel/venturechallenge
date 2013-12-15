@@ -12,7 +12,7 @@ class HomeController < ApplicationController
       redirect_to leagues_path unless current_store.league_id
 
       @stores = Store.where("league_id = #{current_store.league_id}")
-
+      gon.orders = Order.find_all_by_store_id(current_store.id).map(&:subtotal_price)
 
     elsif session[:user_id]
       redirect_to adminpanel_path
