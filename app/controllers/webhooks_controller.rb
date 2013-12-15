@@ -14,7 +14,7 @@ class WebhooksController < ApplicationController
       data = ActiveSupport::JSON.decode(request.body.read)
 
       shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
-      unless Order.find_by_shopify_id(data["id"].to_s) || league_dates_ok == true #comment out if you want to work with webhooks outside of a current league
+      unless Order.find_by_shopify_id(data["id"].to_s) || out_of_dates #comment out if you want to work with webhooks outside of a current league
         neworder = ShopifyAPI::Order.find(data["id"].to_s)
         @order = Order.new
         @order.subtotal_price = neworder.subtotal_price.to_f
@@ -31,7 +31,7 @@ class WebhooksController < ApplicationController
     def customers_new
       data = ActiveSupport::JSON.decode(request.body.read)
       shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
-      unless Customer.find_by_customer_id(data["id"].to_s) || league_dates_ok == true #comment out if you want to work with webhooks outside of a current league
+      unless Customer.find_by_customer_id(data["id"].to_s) || out_of_dates #comment out if you want to work with webhooks outside of a current league
         newcustomer = ShopifyAPI::Customer.find(data["id"].to_s)
         @customer = Customer.new
         # @customer.city = newcustomer[1].city
@@ -39,9 +39,7 @@ class WebhooksController < ApplicationController
         @customer.orders_count = newcustomer.orders_count
         @customer.total_spent = newcustomer.total_spent
         @customer.customer_id = @u.id
-
         @customer.save
-        head :ok
         customer_points(10)
       end
         head :ok
@@ -50,7 +48,7 @@ class WebhooksController < ApplicationController
 
     private
 
-    def league_dates_ok
+    def out_of_dates
       timenow = Time.now
       store = Store.find_by_user_id(@u.id)
       timenow < store.league.start_date || timenow > store.league.end_date
