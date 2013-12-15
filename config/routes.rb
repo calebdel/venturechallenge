@@ -6,7 +6,9 @@ Venturechallenge::Application.routes.draw do
   get 'assign_league/:league_id' => 'home#assign_league'
 
   post 'webhooks/orders/create' => 'webhooks#order_new'
-  
+  post 'webhooks/customers/create' => 'webhooks#customers_new'
+
+
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

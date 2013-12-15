@@ -62,7 +62,7 @@ class SessionsController < ApplicationController
   end
 
   def initialize_webhooks
-    topics = ["orders/create"]
+    topics = ["orders/create", "customers/create"]
     topics.each do |topic|
       webhook = ShopifyAPI::Webhook.create(format: "json", topic: topic, address: "#{ENV['HOST_URL']}/webhooks/#{topic}")
 

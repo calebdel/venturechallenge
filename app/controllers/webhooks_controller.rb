@@ -26,9 +26,27 @@ class WebhooksController < ApplicationController
         order_points(neworder.subtotal_price.to_f)
       end
       head :ok
-
-
     end
+
+    def customers_new
+      data = ActiveSupport::JSON.decode(request.body.read)
+      shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
+      unless Customer.find_by_customer_id(data["id"].to_s)
+        newcustomer = ShopifyAPI::Customer.find(data["id"].to_s)
+        @customer = Customer.new
+        # @customer.city = newcustomer[1].city
+        @customer.accepts_marketing = newcustomer.accepts_marketing
+        @customer.orders_count = newcustomer.orders_count
+        @customer.total_spent = newcustomer.total_spent
+        @customer.customer_id = @u.id
+
+        @customer.save
+        head :ok
+        customer_points(10)
+      end
+        head :ok
+     end
+
 
     private
 
@@ -44,6 +62,11 @@ class WebhooksController < ApplicationController
     end
 
     def order_points(total)
-      Store.find_by_user_id(@u.id).change_points({points:total, type:1, kind:1})
+      Store.find_by_user_id(@u.id).change_points({points:total, kind:2})
     end
+
+    def customer_points(pts)
+      Store.find_by_user_id(@u.id).change_points({points:pts, kind:1})
+    end
+
 end
