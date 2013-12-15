@@ -9,7 +9,7 @@
 		</tr>
 	<% @leagues.each do |league| %>
 		<tr>
-			<td><%= league.name %></td>
+			<td><%= link_to league.name, league_path(league.id) %></td>
 			<td><%= league.school %></td>
 			<td><%= league.start_date %></td>
 			<td><%= league.end_date %></td>
