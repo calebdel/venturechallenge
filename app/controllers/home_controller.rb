@@ -17,7 +17,8 @@ class HomeController < ApplicationController
     if session[:shopify]
       redirect_to leagues_path unless current_store.league_id
 
-      @stores = Store.where("league_id = current_store.league_id")
+      @stores = Store.where("league_id = #{current_store.league_id}")
+
 
     elsif session[:user_id]
       redirect_to adminpanel_path
