@@ -4,8 +4,8 @@ class HomeController < ApplicationController
 
   rescue_from NoMethodError do |exception|
     session[:shopify] = nil
-    session[:user_id] = nil
-    redirect_to root_path, :notice => "Failed because #{exception}"
+    session[:linkedin] = nil
+    redirect_to root_path, :notice => "Failed because #{exception}, cleared sessions"
   end
   
   def welcome
@@ -20,7 +20,7 @@ class HomeController < ApplicationController
       @stores = Store.where("league_id = #{current_store.league_id}")
 
 
-    elsif session[:user_id]
+    elsif session[:linkedin]
       redirect_to adminpanel_path
     end
   end

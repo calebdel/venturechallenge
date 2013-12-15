@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   # Ask shop to authorize app again if additional permissions are required
    rescue_from ActiveResource::ForbiddenAccess do
-     session[:shopify] = nil
+     clear_sessions
      flash[:notice] = "This app requires additional permissions, please log in and authorize it."
      redirect_to controller: :sessions, action: :create
    end
@@ -29,10 +29,16 @@ class ApplicationController < ActionController::Base
 
   end
 
+  def clear_sessions
+    session[:shopify] = nil
+    session[:linkedin] = nil
+  end
+
 
   def ensure_logged_in
     unless current_user #if no current user, nil is returned, triggering a redirect to the login screen
       flash[:alert] = "Please log in"
+      clear_sessions
       redirect_to login_path
     end
   end

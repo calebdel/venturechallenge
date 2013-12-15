@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:shopify] = nil
-    session[:user_id] = nil
+    session[:linkedin] = nil
     flash[:notice] = "Successfully logged out."
     redirect_to root_path
   end
