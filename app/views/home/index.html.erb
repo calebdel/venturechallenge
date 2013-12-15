@@ -12,7 +12,7 @@
     <td><%= number_to_currency(Order.where("store_id = #{store.id}").sum(:subtotal_price)) %></td>
     <td><%= Order.where("store_id = #{store.id}").count %></td>
     <td><%= Point.where("store_id = #{store.id}").sum(:value) %></td>
-    <td><%= Badge.where("store_id = #{store.id}") %></td>
+    <td><%= store.badges %></td>
 	</tr>
 	<% end %>
 
