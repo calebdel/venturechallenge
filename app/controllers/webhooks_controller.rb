@@ -14,7 +14,7 @@ class WebhooksController < ApplicationController
       data = ActiveSupport::JSON.decode(request.body.read)
 
       shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
-      unless Order.find_by_shopify_id(data["id"].to_s)
+      unless Order.find_by_shopify_id(data["id"].to_s) || league_dates_ok == true
         neworder = ShopifyAPI::Order.find(data["id"].to_s)
         @order = Order.new
         @order.subtotal_price = neworder.subtotal_price.to_f
@@ -31,7 +31,7 @@ class WebhooksController < ApplicationController
     def customers_new
       data = ActiveSupport::JSON.decode(request.body.read)
       shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
-      unless Customer.find_by_customer_id(data["id"].to_s)
+      unless Customer.find_by_customer_id(data["id"].to_s) || league_dates_ok == true
         newcustomer = ShopifyAPI::Customer.find(data["id"].to_s)
         @customer = Customer.new
         # @customer.city = newcustomer[1].city
@@ -49,6 +49,12 @@ class WebhooksController < ApplicationController
 
 
     private
+
+    def league_dates_ok
+      timenow = Time.now
+      store = Store.find_by_user_id(@u.id)
+      timenow < store.league.start_date || timenow > store.league.end_date
+    end
 
 
     def connect_to_store
