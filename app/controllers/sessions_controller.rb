@@ -72,7 +72,6 @@ class SessionsController < ApplicationController
        ShopifyAPI::Webhook.create(format: "json", topic: topic, address: "#{ENV['HOST_URL']}/webhooks/#{topic}")
       end
     end
-    binding.pry
   end
 
 end
