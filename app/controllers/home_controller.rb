@@ -2,11 +2,6 @@ class HomeController < ApplicationController
 
   before_filter :ensure_logged_in
 
-  rescue_from NoMethodError do |exception|
-    session[:shopify] = nil
-    session[:linkedin] = nil
-    redirect_to root_path, :notice => "Failed because #{exception}, cleared sessions"
-  end
   
   def welcome
     current_host = "#{request.host}#{':' + request.port.to_s if request.port != 80}"
@@ -14,21 +9,36 @@ class HomeController < ApplicationController
   end
   
   def index
-    if session[:shopify]
-      redirect_to leagues_path unless current_store.league_id
-
-      @stores = Store.where("league_id = #{current_store.league_id}")
-
-    elsif session[:linkedin]
-      redirect_to adminpanel_path
-    end
-
-    gon.orders = Order.find_all_by_store_id(current_store.id).map(&:subtotal_price)
-
+    redirect_to after_sign_in_path
   end
 
   def admin
     @leagues = League.where("admin_id = '#{current_user.id}'")
+  end
+
+  def leaderboards
+    @stores = Store.where("league_id = #{current_store.league_id}")
+
+    gon.numberofTeams = @stores.count
+
+    @stores.each do |store|
+      gon.col = "rgba(220,220,220,0.7)"
+      gon.color = []
+      gon.color << gon.col
+      gon.ord = Order.where("store_id = #{store.id}").map(&:subtotal_price)
+      gon.orders = []
+      gon.orders << gon.ord
+      binding.pry
+    end
+  end
+
+  def after_sign_in_path
+     if session[:shopify]
+       return leagues_path unless current_store.league_id
+       return leaderboards_path
+     elsif session[:linkedin]
+       return tasksadmins_path
+     end
   end
   
 

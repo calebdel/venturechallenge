@@ -1,6 +1,7 @@
 class LeaguesController < ApplicationController
   
   def index
+    binding.pry
     @leagues = League.all
   end
 

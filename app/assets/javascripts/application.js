@@ -18,24 +18,35 @@ $(function(){ $(document).foundation(); });
 
 var ctx = document.getElementById("myChart").getContext("2d");
 
+var dataArray = [];
+for (var i=0;i<gon.numberOfTeams;i++){
+  dataArray.push(
+    {
+        fillColor : gon.color[i],
+        strokeColor : "rgba(220,220,220,1)",
+        pointColor : "rgba(220,220,220,1)",
+        pointStrokeColor : "#fff",
+        data : gon.orders[i]
+      }
+  );
+}
+
 var data = {
   labels : ["Sale 1","Sale 2","Sale 3","Sale 4","Sale 5","Sale 6","Sale 7","Sale 8","Sale 9","Sale 10"],
-  datasets : [
-    {
-      fillColor : "rgba(220,220,220,0.5)",
-      strokeColor : "rgba(220,220,220,1)",
-      pointColor : "rgba(220,220,220,1)",
-      pointStrokeColor : "#fff",
-      data : gon.orders
-    },
-    // {
-    //   fillColor : "rgba(151,187,205,0.5)",
-    //   strokeColor : "rgba(151,187,205,1)",
-    //   pointColor : "rgba(151,187,205,1)",
-    //   pointStrokeColor : "#fff",
-    //   data : [28,48,40,19,96,27,100]
-    // }
-  ]
-}
+  datasets : dataArray
+};
+
+// var data = {
+//   labels : ["Sale 1","Sale 2","Sale 3","Sale 4","Sale 5","Sale 6","Sale 7","Sale 8","Sale 9","Sale 10"],
+//   datasets : [
+//       {
+//         fillColor : gon.color[i],
+//         strokeColor : "rgba(220,220,220,1)",
+//         pointColor : "rgba(220,220,220,1)",
+//         pointStrokeColor : "#fff",
+//         data : gon.orders[i]
+//       },
+//   ]
+// }
 
 var myNewChart = new Chart(ctx).Line(data);

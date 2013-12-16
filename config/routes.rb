@@ -1,8 +1,10 @@
 Venturechallenge::Application.routes.draw do
   get "users/new"
   get "users/create"
+  
   get 'welcome' => 'home#welcome'
   get 'adminpanel' => 'home#admin'
+  get 'leaderboards' => 'home#leaderboards'
 
   get 'logout' => 'sessions#destroy'
   post 'assign_league' => 'leagues#assign_league'
