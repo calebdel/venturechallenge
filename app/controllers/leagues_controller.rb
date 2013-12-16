@@ -2,6 +2,9 @@ class LeaguesController < ApplicationController
   
   def index
     @leagues = League.all
+
+    gon.orders = Order.find_all_by_store_id(current_store.id).map(&:subtotal_price)
+    binding.pry
   end
 
   def new
