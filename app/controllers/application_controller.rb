@@ -37,7 +37,6 @@ class ApplicationController < ActionController::Base
 
   def ensure_logged_in
     unless current_user #if no current user, nil is returned, triggering a redirect to the login screen
-      flash[:alert] = "Please log in"
       clear_sessions
       redirect_to login_path
     end
