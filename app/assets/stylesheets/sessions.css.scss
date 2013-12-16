@@ -1,0 +1,126 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require font-awesome
+*/
+
+body {
+  background-color: #6DAB4A;
+}
+
+#logo {
+  display: block;
+  text-align: center;
+  left: 0;
+  top: 0;
+  color: white;
+  font-size: 3em;
+  font-family: "Open Sans";
+  font-weight: 300;
+  margin: 0 0 -70px 0;
+}
+
+.bg {
+  background-color: #4D4E52;
+  width: 30em;
+  margin: 7em auto ;
+  padding: 10px;
+  font-family: "Open Sans";
+  font-weight: 200;
+  color: white;
+  -webkit-box-shadow: 6px 6px 50px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 6px 6px 50px 0px rgba(0,0,0,0.5);
+  box-shadow: 6px 6px 50px 0px rgba(0,0,0,0.5);
+}
+
+.bg a:hover {
+  color: #6DAB4A;
+}
+
+#stud {
+  width: 50%;
+  float: left;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#adm {
+  width: 50%;
+  float: left;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#tabbox a {
+  color: #333;
+  text-shadow: 0px 2px 5px #555;
+  margin: 10px;
+}
+
+#student {
+  padding: 0 auto;
+}
+
+.button {
+  font-family: "Open Sans";
+  font-weight: 200;
+  padding: 10px 45px 10px 45px;
+  margin: 0 0 10px 30px;
+}
+
+.button a:hover{
+  color: white;
+}
+
+#adminbox {
+  display: none;
+}
+
+#adminbox a {
+  color: white;
+  font-weight: 200;
+}
+
+#admina a:hover {
+  color: #6DAB4A;
+}
+
+#url.btn-large {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.btn-large {
+  border: none;
+  background-color: #6DAB4A;
+  color: white;
+  padding: 7px 35px 7px 35px;
+  font-size: 1em;
+  font-family: "Open Sans";
+  font-weight: 200;
+  margin: 0 auto;
+  display: block;
+  -webkit-transition: background-color 300ms ease-out;
+}
+
+.btn-primary:hover {
+  background-color: darken(#6DAB4A, 10%); 
+  -webkit-transition: background-color 300ms ease-out;
+}
+
+#spacer {
+  height: 170px;
+}
+
+.select {
+  color: white !important;
+  font-weight: 300 !important;
+}
+
+img {
+  margin-top: -3em;
+  z-index: -9999;
+  max-width: 100px;
+}
