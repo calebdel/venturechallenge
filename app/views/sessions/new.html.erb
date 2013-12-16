@@ -3,7 +3,7 @@
 <%= javascript_include_tag "sessions" %>
 
 <div id="logo"> 
-  VENTURE CHALLENGE 
+  VENTURE <strong>CHALLENGE</strong>
 </div>
 
 <div class="bg">
@@ -26,13 +26,10 @@
        <div style="width:340px; margin:0 auto;">
           <%= form_tag login_path, :class => 'form-search' do %>
           <%= text_field_tag 'url', nil, :placeholder => 'Shopify URL', :class => 'btn-large' %>
-              </br>
           <%= submit_tag 'Submit', :class => 'btn btn-primary btn-large' %>
         <% end %>
       </div>
-    </br>
     <hr>
-    </br>
       <p align="center" class="muted">
       Don't have a shop? <a href="https://app.shopify.com/services/partners/api_clients/test_shops">&nbsp; Get one at Shopify.com</a>
     </p>

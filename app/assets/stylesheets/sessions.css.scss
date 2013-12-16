@@ -18,7 +18,7 @@ body {
   color: white;
   font-size: 3em;
   font-family: "Open Sans";
-  font-weight: 900;
+  font-weight: 300;
   margin: 0 0 -70px 0;
 }
 
@@ -30,6 +30,9 @@ body {
   font-family: "Open Sans";
   font-weight: 200;
   color: white;
+  -webkit-box-shadow: 6px 6px 50px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 6px 6px 50px 0px rgba(0,0,0,0.5);
+  box-shadow: 6px 6px 50px 0px rgba(0,0,0,0.5);
 }
 
 .bg a:hover {
@@ -69,7 +72,7 @@ body {
   font-family: "Open Sans";
   font-weight: 200;
   padding: 10px 45px 10px 45px;
-  margin: 0 0 20px 30px;
+  margin: 0 0 10px 30px;
 }
 
 .button a:hover{
