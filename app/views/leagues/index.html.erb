@@ -10,10 +10,15 @@
 		</tr>
 	<% @leagues.each do |league| %>
 		<tr>
-			<td><%= link_to league.name, "assign_league/#{league.id}" %></td>
+			<td><%= league.id %></td>
 			<td><%= league.school %></td>
 			<td><%= league.start_date %></td>
 			<td><%= league.end_date %></td>
+			<td class = "pin"><%= form_tag '/assign_league', :class => '' do %>
+    										<%= number_field_tag :pin, nil, :placeholder => 'Enter PIN', :class => '' %>
+    										<%= hidden_field_tag :league_id, league.id %>
+    										<%= submit_tag 'Register', :class => 'btn btn-primary btn-large' %></td>
+  <% end %>
 		</tr>
 	<% end  %>
 	</table>

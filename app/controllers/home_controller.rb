@@ -27,13 +27,6 @@ class HomeController < ApplicationController
   def admin
     @leagues = League.where("admin_id = '#{current_user.id}'")
   end
-
-  def assign_league
-    store = Store.find_by_user_id(current_user.id)
-    store.league_id = params[:league_id]
-    store.save
-    redirect_to root_path
-  end
   
 
   private
