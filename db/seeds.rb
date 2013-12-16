@@ -11,7 +11,7 @@ admin = User.create(name: "admin", email: "joshlamb@gmail.com", linkedin_uid: "a
 
 league = League.create(name: "Test League", school: "Bitmaker", admin_id: admin.id, start_date: "2013-12-15 08:00:00", end_date:"2013-12-15 08:00:00")
 
-student1 = User.create(name: "Obvious Dummy Shop", url: "obvious-dummy-shop.myshopify.com", shopify_token: "03088df25073dfefef16f77eb8b2e17d", email: "joshlamb+ods@gmail.com")
+student1 = User.create(name: "Technically Labs", url: "technically-labs.myshopify.com", shopify_token: "cc8fe5464cdad6c01def9a4a4c143d82", email: "apoon373@gmail.com")
 
 store = Store.create(user_id: student1.id, league_id: league.id)
 
