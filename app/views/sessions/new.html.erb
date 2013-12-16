@@ -1,30 +1,60 @@
-<div style="width:340px; margin:0 auto;">
-  <h1>Students - Shopify URL</h1>
-  <%= form_tag login_path, :class => 'form-search' do %>
-    <%= text_field_tag 'url', nil, :placeholder => 'Shop URL', :class => 'btn-large' %>
-    <%= submit_tag 'Install', :class => 'btn btn-primary btn-large' %>
-  <% end %>
+<%= stylesheet_link_tag "sessions" %>
+<%= javascript_include_tag "application" %>
+<%= javascript_include_tag "sessions" %>
+
+<div id="logo"> 
+  VENTURE CHALLENGE 
+</div>
+
+<div class="bg">
+  <div id ="tabbox">
+    <div id="stud">
+    <a href="#" id="student" class="tab student select">  
+      <i class="fa fa-user fa-5x"></i></br></br>&nbsp;&nbsp;&nbsp;&nbsp;Student
+    </a>
+  </div>
+  <div id="adm">
+    <a href="#" id="admin" class="tab admin">
+      <i class="fa fa-cogs fa-5x"></i></br></br>&nbsp;&nbsp;&nbsp;Admin
+    </a>  
+  </div>
+  </div>
+
+  <div id="panel">
+    <div id="spacer"></div>
+      <div id="studentbox">
+       <div style="width:340px; margin:0 auto;">
+          <%= form_tag login_path, :class => 'form-search' do %>
+          <%= text_field_tag 'url', nil, :placeholder => 'Shopify URL', :class => 'btn-large' %>
+              </br>
+          <%= submit_tag 'Submit', :class => 'btn btn-primary btn-large' %>
+        <% end %>
+      </div>
+    </br>
+    <hr>
+    </br>
+      <p align="center" class="muted">
+      Don't have a shop? <a href="https://app.shopify.com/services/partners/api_clients/test_shops">&nbsp; Get one at Shopify.com</a>
+    </p>
+
+    </div>
+
+    <div id="adminbox">
+      <div style="width:340px; margin:0 auto;">
+        <%= form_tag login_path, :class => 'form-search' do %>
+          <a href = "/auth/linkedin/" class="button"> <i class="fa fa-linkedin fa-2x"></i> &nbsp;&nbsp;&nbsp;&nbsp;Login with LinkedIn</a>
+        <% end %>
+      </div>
+      <hr>
+        <div id="admina">
+        <p align="center" class="muted">
+          <%= link_to "Admin Sign Up", users_new_path %>  |  <%= link_to "Admin Log in", admin_login_path %>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <p align="center" style="margin-top:30px">
   <%= image_tag 'shopify.png' %>
-</p>
-
-
-<br/>
-
-<div style="width:340px; margin:0 auto;">
-  <h1>Professors - Linkedin</h1>
-  <%= form_tag login_path, :class => 'form-search' do %>
-    <h2><%= link_to "Login With Linkedin", "/auth/linkedin/" %></h2>
-  <% end %>
-</div>
-
-
-<p align="center" class="muted">
-  <%= link_to "Admin Sign Up", users_new_path %> | <%= link_to "Admin Log in", admin_login_path %>
-</p>
-
-<p align="center" class="muted">
-  Don't have a shop? <a href="https://app.shopify.com/services/partners/api_clients/test_shops">Create a Test Shop</a>
 </p>
