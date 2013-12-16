@@ -26,3 +26,4 @@ store2 = Store.create(user_id: student2.id, league_id: league.id)
 	order = Order.create(subtotal_price: Random.rand(200), store_id: store2.id, shopify_id: store2.id)      
 	store2.change_points({points:order.subtotal_price, type:1, kind:1})
 end
+

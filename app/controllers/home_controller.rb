@@ -21,14 +21,14 @@ class HomeController < ApplicationController
 
     gon.numberofTeams = @stores.count
 
-    @stores.each do |store|
-      gon.col = "rgba(220,220,220,0.7)"
-      gon.color = []
+    gon.color = []
+    gon.orders = []
+
+    @stores.each do |st|
+      gon.col = "rgba(200,200,200,0.3)"
       gon.color << gon.col
-      gon.ord = Order.where("store_id = #{store.id}").map(&:subtotal_price)
-      gon.orders = []
+      gon.ord = Order.where("store_id = #{st.id}").map(&:subtotal_price)
       gon.orders << gon.ord
-      binding.pry
     end
   end
 

@@ -18,13 +18,15 @@ $(function(){ $(document).foundation(); });
 
 var ctx = document.getElementById("myChart").getContext("2d");
 
+gon.numberofTeams
+
 var dataArray = [];
-for (var i=0;i<gon.numberOfTeams;i++){
+for (var i=0;i<2;i++){
   dataArray.push(
     {
-        fillColor : gon.color[i],
-        strokeColor : "rgba(220,220,220,1)",
-        pointColor : "rgba(220,220,220,1)",
+        fillColor : gon.color,
+        strokeColor : "rgba(151,187,205,0.5)",
+        pointColor : "rgba(151,187,205,0.5)",
         pointStrokeColor : "#fff",
         data : gon.orders[i]
       }
