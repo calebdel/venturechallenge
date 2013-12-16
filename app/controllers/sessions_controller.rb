@@ -63,12 +63,17 @@ class SessionsController < ApplicationController
   def initialize_webhooks
     topics = ["orders/create", "customers/create"]
     topics.each do |topic|
-      webhook = ShopifyAPI::Webhook.create(format: "json", topic: topic, address: "#{ENV['HOST_URL']}/webhooks/#{topic}")
-
-      # raise "Webhook invalid: (#{topic}) #{webhook.errors}" unless webhook.valid?
+      if webhook = ShopifyAPI::Webhook.where(topic: topic).first
+        unless webhook.address == "#{ENV['HOST_URL']}/webhooks/#{topic}"
+         #update it via a put
+        webhook.update_attributes(address: "#{ENV['HOST_URL']}/webhooks/#{topic}" )
+        end
+      else
+       ShopifyAPI::Webhook.create(format: "json", topic: topic, address: "#{ENV['HOST_URL']}/webhooks/#{topic}")
+      end
     end
+    binding.pry
   end
 
 end
-
   
