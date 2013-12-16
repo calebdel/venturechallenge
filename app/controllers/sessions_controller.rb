@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     session[:shopify] = nil
     session[:linkedin] = nil
     flash[:notice] = "Successfully logged out."
-    redirect_to root_path
+    redirect_to root_url
   end
 
   def authorize
@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
     store = Store.find_or_create_by_user_id(user.id)
 
     initialize_webhooks
-
+    binding.pry
     redirect_to root_url, :notice => "Logged in as #{user.name}"
   end
 

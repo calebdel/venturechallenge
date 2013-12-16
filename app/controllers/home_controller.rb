@@ -19,7 +19,6 @@ class HomeController < ApplicationController
 
       @stores = Store.where("league_id = #{current_store.league_id}")
 
-
     elsif session[:linkedin]
       redirect_to adminpanel_path
     end
