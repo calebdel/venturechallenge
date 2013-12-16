@@ -60,7 +60,7 @@ class WebhooksController < ApplicationController
       # shop_url = ("http://" + shop_url)
 
       @u = User.find_by_url(shop_url) #should be store?
-      session = ShopifyAPI::Session.new(@u.url, @u.token)
+      session = ShopifyAPI::Session.new(@u.url, @u.shopify_token)
       session.valid?
       ShopifyAPI::Base.activate_session(session)
     end
