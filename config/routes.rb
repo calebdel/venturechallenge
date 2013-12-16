@@ -3,10 +3,13 @@ Venturechallenge::Application.routes.draw do
   get "users/create"
   get 'welcome' => 'home#welcome'
   get 'adminpanel' => 'home#admin'
+
+  get 'logout' => 'sessions#destroy'
   post 'assign_league' => 'leagues#assign_league'
 
   post 'webhooks/orders/create' => 'webhooks#order_new'
   post 'webhooks/customers/create' => 'webhooks#customers_new'
+
 
 
   controller :sessions do
@@ -14,7 +17,6 @@ Venturechallenge::Application.routes.draw do
     post 'login' => :create
     get 'auth/shopify/callback' => :authorize
     get 'auth/linkedin/callback' => :admin_authorize
-    get 'logout' => :destroy
     get 'admin_login' => :admin_new
     post 'admin_login' => :admin_create
   end
