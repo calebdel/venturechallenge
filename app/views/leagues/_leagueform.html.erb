@@ -20,6 +20,9 @@
   <%= f.datetime_local_field :start_date %>
   <%= f.label :end_date %>
   <%= f.datetime_local_field :end_date %>
+  <%= f.label "PIN Code (4 Digits)" %>
+  <%= f.number_field :pin %>
+
 
   <%= f.submit %>
 <% end %>

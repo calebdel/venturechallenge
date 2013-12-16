@@ -31,6 +31,17 @@ class LeaguesController < ApplicationController
       render :edit
     end
   end
+
+  def assign_league
+    if params[:pin].to_i == League.find(params[:league_id]).pin
+    store = Store.find_by_user_id(current_user.id)
+    store.league_id = params[:league_id]
+    store.save
+    redirect_to root_path
+    else
+    redirect_to leagues_path, notice: "Invalid PIN"
+    end  
+  end
   
 
   def edit
@@ -46,7 +57,7 @@ class LeaguesController < ApplicationController
   private
 
   def league_params
-    params.require(:league).permit(:name, :school, :start_date, :end_date)
+    params.require(:league).permit(:name, :school, :start_date, :end_date, :pin)
   end
 
 
