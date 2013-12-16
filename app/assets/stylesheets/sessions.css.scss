@@ -6,7 +6,12 @@
  *= require font-awesome
 */
 
-body {
+#background {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  left: 0;
+  top: 0;
   background-color: #6DAB4A;
 }
 
