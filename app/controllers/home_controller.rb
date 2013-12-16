@@ -22,6 +22,9 @@ class HomeController < ApplicationController
     elsif session[:linkedin]
       redirect_to adminpanel_path
     end
+
+    gon.orders = Order.find_all_by_store_id(current_store.id).map(&:subtotal_price)
+
   end
 
   def admin
