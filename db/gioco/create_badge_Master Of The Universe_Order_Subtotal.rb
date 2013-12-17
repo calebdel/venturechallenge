@@ -3,6 +3,7 @@ badge = Badge.create({
                       :name => 'Master Of The Universe', 
                       :points => '1000000',
                       :kind_id  => kind.id,
-                      :default => 'false'
+                      :default => 'false',
+                      :imgurl => 'trophy1.png'
                     })
 puts '> Badge successfully created'

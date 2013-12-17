@@ -62,6 +62,8 @@ class HomeController < ApplicationController
     #initialize array data
     gon.data = []
 
+    opac = 1/(@stores.count).to_f
+
     @stores.each do |store|
       #create array of aggregate points within the time chunk
       aggregatepoints = [0]
@@ -72,7 +74,7 @@ class HomeController < ApplicationController
         i += 1
       end
       #generate random color and push into color array
-      storecolor = "rgba(#{rand(255)},#{rand(255)},#{rand(255)},0.4)"
+      storecolor = "rgba(#{rand(255)},#{rand(255)},#{rand(255)},#{opac})"
       gon.data << { 
         "name" => "#{User.find(store.user_id).name}", 
         "color" => storecolor, 

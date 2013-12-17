@@ -36,4 +36,18 @@ Point.all.each do |point|
 	point.update_attributes(created_at: createddate)
 end
 
+student3 = User.create(name: "Interesting Shop", url: "interesting-shop.myshopify.com", shopify_token: "81af415d7f333cde48e497088c3ba869", email: "joshlamb+is@gmail.com")
+store3 = Store.create(user_id: student3.id, league_id: league.id)
+
+10.times do
+	createddate = Time.now-rand(1200000)
+	order = Order.create(subtotal_price: Random.rand(200), store_id: store3.id, shopify_id: store3.id)  
+	order.update_attributes(created_at: createddate)       
+	store3.change_points({points:order.subtotal_price, type:1, kind:1})
+end
+
+Point.all.each do |point|
+	createddate = Time.now-rand(1200000)
+	point.update_attributes(created_at: createddate)
+end
 

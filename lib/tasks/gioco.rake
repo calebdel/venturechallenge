@@ -3,11 +3,11 @@ namespace :gioco do
   
   desc "Used to add a new badge at Gioco scheme"
   
-  task :add_badge, [:name, :points, :kind, :default] => :environment do |t, args|
+  task :add_badge, [:name, :points, :kind, :default, :imgurl] => :environment do |t, args|
     arg_default = ( args.default ) ? eval(args.default) : false
 
 
-    if !args.name || !args.points || !args.kind
+    if !args.name || !args.points || !args.kind || !args.imgurl
       raise "There are missing some arguments"
     else
       badge_string = "kind = Kind.find_or_create_by(name: '#{args.kind}')\n"
@@ -17,6 +17,7 @@ namespace :gioco do
                       :points => '#{args.points}',
                       :kind_id  => kind.id,
                       :default => '#{arg_default}'
+                      :imgurl => '#{args.imgurl}'
                     })
 "
 
