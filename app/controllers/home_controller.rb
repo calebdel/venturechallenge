@@ -25,7 +25,7 @@ class HomeController < ApplicationController
     gon.orders = []
 
     @stores.each do |st|
-      gon.col = "rgba(200,200,200,0.3)"
+      gon.col = "rgba(#{rand(255)},#{rand(255)},#{rand(255)},0.3)"
       gon.color << gon.col
       gon.ord = Order.where("store_id = #{st.id}").map(&:subtotal_price)
       gon.orders << gon.ord
