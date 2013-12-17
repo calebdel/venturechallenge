@@ -32,31 +32,59 @@
       <ul class="off-canvas-list">
         <li class="name"><label><i class="fa fa-smile-o fa-5x"></i><%= link_to current_user.name, "#" %></label></li>
         <li id="logout"><%= link_to "Logout", logout_path, :target => '_self' %></li>
-        <li><label class="vc-title">Venture Challenge</label></li>
-        <li class="active">
-          <a href="/leaderboards">
-              <i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;&nbsp;
-              <span class="menu_a"> Leaderboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="/teamstats">
-              <i class="fa fa-users fa-lg"></i>&nbsp;&nbsp;
-              <span class="menu_a"> Team View</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fa fa-bookmark fa-lg"></i>&nbsp;&nbsp;&nbsp;
-            <span class="menu_a"> Challenges</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fa fa-book fa-lg"></i>&nbsp;&nbsp;
-            <span class="menu_a"> Resources</span>
-          </a>
-        </li>
+        <% if session[:shopify] %>
+        <li><label class="vc-title">Venture Challenge - Student</label></li>
+          <li class="active">
+            <a href="/leaderboards">
+                <i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;&nbsp;
+                <span class="menu_a"> Leaderboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="/teamstats">
+                <i class="fa fa-users fa-lg"></i>&nbsp;&nbsp;
+                <span class="menu_a"> Team View</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-bookmark fa-lg"></i>&nbsp;&nbsp;&nbsp;
+              <span class="menu_a"> Challenges</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-book fa-lg"></i>&nbsp;&nbsp;
+              <span class="menu_a"> Resources</span>
+            </a>
+          </li>
+        <% else %>
+        <li><label class="vc-title">Venture Challenge - Admin</label></li>
+            <li class="active">
+            <a href="/adminpanel">
+                <i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;&nbsp;
+                <span class="menu_a"> Admin Panel</span>
+            </a>
+          </li>
+          <li>
+            <a href="/teamstats">
+                <i class="fa fa-users fa-lg"></i>&nbsp;&nbsp;
+                <span class="menu_a"> League View</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-bookmark fa-lg"></i>&nbsp;&nbsp;&nbsp;
+              <span class="menu_a"> + Add Challenges</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-book fa-lg"></i>&nbsp;&nbsp;
+              <span class="menu_a"> + Add Resources</span>
+            </a>
+          </li>
+        <% end %>
       </ul>
     </aside>
 
