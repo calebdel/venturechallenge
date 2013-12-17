@@ -3,10 +3,6 @@ class HomeController < ApplicationController
   before_filter :ensure_logged_in
 
   
-  def welcome
-    current_host = "#{request.host}#{':' + request.port.to_s if request.port != 80}"
-    @callback_url = "http://#{current_host}/login"
-  end
   
   def index
     redirect_to after_sign_in_path
