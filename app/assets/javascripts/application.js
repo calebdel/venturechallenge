@@ -16,26 +16,12 @@
 //= require_tree .
 $(function(){ $(document).foundation(); });
 
-var ctx = document.getElementById("myChart").getContext("2d");
-
-// default
-// var data = {
-//   labels : ["Sale 1","Sale 2","Sale 3","Sale 4","Sale 5","Sale 6","Sale 7","Sale 8","Sale 9","Sale 10"],
-//   datasets : [
-//       {
-//         fillColor : gon.color[i],
-//         strokeColor : "rgba(220,220,220,1)",
-//         pointColor : "rgba(220,220,220,1)",
-//         pointStrokeColor : "#fff",
-//         data : gon.orders[i]
-//       },
-//   ]
-// }
+var ctx = document.getElementById("LineChart").getContext("2d");
 
 // push each store's data (as an array) into the data array for all stores.
-var dataArray = [];
+var lineData = [];
 for (var i=0;i<gon.numberofTeams;i++){
-  dataArray.push(
+  lineData.push(
       {
         fillColor : gon.data[i].color,
         strokeColor : gon.data[i].color,
@@ -50,8 +36,39 @@ for (var i=0;i<gon.numberofTeams;i++){
 
 var pointsChart = {
   labels : gon.labels,
-  datasets : dataArray
+  datasets : lineData
 };
 
 var myNewChart = new Chart(ctx).Line(pointsChart);
 
+var ctx = document.getElementById("BarChart").getContext("2d");
+
+// push each store's data (as an array) into the data array for all stores.
+
+var labels = [];
+var colors = [];
+var pts = [];
+
+for (var i=0;i<gon.numberofTeams;i++){
+  labels.push(gon.data[i].name);
+  colors.push(gon.data[i].color);
+  pts.push(gon.data[i].totalpts);
+}
+
+  num1 = Math.floor(Math.random() * (254))
+  num2 = Math.floor(Math.random() * (254))
+  num3 = Math.floor(Math.random() * (254))
+  var colorRandom = "rgba("+num1+","+num2+","+num3+",0.5)" 
+
+var barChart = {
+  labels : labels,
+  datasets : [
+    {
+      fillColor : colorRandom,
+      strokeColor : colorRandom,
+      data : pts
+    }
+  ]
+}
+
+var myNewChart = new Chart(ctx).Bar(barChart);

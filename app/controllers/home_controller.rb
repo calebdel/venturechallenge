@@ -73,12 +73,29 @@ class HomeController < ApplicationController
       end
       #generate random color and push into color array
       storecolor = "rgba(#{rand(255)},#{rand(255)},#{rand(255)},0.4)"
-      gon.data << { "name" => "#{User.find(store.user_id).name}", "color" => storecolor, "points" => aggregatepoints, "ident" => "store#{store.id}" }
+      gon.data << { 
+        "name" => "#{User.find(store.user_id).name}", 
+        "color" => storecolor, 
+        "points" => aggregatepoints, 
+        "ident" => "store#{store.id}", 
+        "totalpts" => Point.where("store_id = #{store.id}").sum(:value)
+        }
     end
 
     #format label array and pass to .gon
     chartlabelarray.map!{|x| x.strftime("%m / %d") }
     gon.labels = chartlabelarray
+
+  end
+
+  def initialize_barchart
+    
+    #initialize array data
+    gon.bardata = []
+
+    gon.bardata << gon.data.pluck("name")
+
+
 
   end
 
