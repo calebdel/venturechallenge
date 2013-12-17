@@ -8,6 +8,10 @@
  *= require_tree .
 */
 
+body {
+  height: 100vh;
+}
+
 #debug {
 	position: fixed;
 	bottom: 10px;
@@ -18,10 +22,74 @@
 	padding: 5px;
 }
 
+.off-canvas-wrap {
+  font-family: "Open Sans";
+}
+
+#off-can {
+  overflow: visible;
+}
+
 #menutitle {
   text-align: center !important;
 }
 
-.left-off-canvas-menu {
-  min-height: 
+#menutitle a {
+  font-weight: 100;
+  font-size: 1.5em;
+  color: white;
+}
+
+.inner-wrap .left-off-canvas-menu {
+  height: 100vh;
+  min-height: 100vh;
+  background-color: #333 !important;
+  font-weight: 100;
+}
+
+#slideout {
+  box-shadow: none;
+}
+
+#logout{
+  text-align: center;
+}
+
+.name {
+  text-align: center;
+}
+
+.fa-smile-o {
+  padding-top: 10px;
+  color: #55BD5D;
+}
+
+.name a {
+  font-weight: 700;
+  font-size: 1.3em;
+  border-bottom: none !important;
+}
+
+.name label a {
+  color: #55BD5D ;
+}
+
+.left-small {
+  font-weight: 100;
+}
+
+#menubar {
+  background-color: #3C3C40;
+}
+
+.active {
+  background-color: #55BD5D;
+}
+
+.vc-title {
+  text-align: center;
+}
+
+.off-canvas-list li a:hover {
+  opacity: 0.5;
 }

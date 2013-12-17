@@ -16,44 +16,44 @@
 
   <!-- Navigation -->
 
-<div class="off-canvas-wrap">
+<div class="off-canvas-wrap" id="off-can">
   <div class="inner-wrap">
-    <nav class="tab-bar">
+    <nav class="tab-bar" id="menubar">
       <section class="left-small" style= width:110px >
         <a class="left-off-canvas-toggle menu-icon"> <span>Menu</span></a>
       </section>
 
       <section class="middle tab-bar-section" id="menutitle">
-          <h1><a href="#"> Venture Challenge</a></h1>
+          <h1><a href="#"> VENTURE <strong>CHALLENGE</strong></a></h1>
       </section>
     </nav>
 
     <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-        <li><label><%= link_to current_user.name, "#" %></label></li>
-        <li><%= link_to "Logout", logout_path, :target => '_self' %></li>
-        <li><label>Venture Challenge</label></li>
-        <li>
+        <li class="name"><label><i class="fa fa-smile-o fa-5x"></i><%= link_to current_user.name, "#" %></label></li>
+        <li id="logout"><%= link_to "Logout", logout_path, :target => '_self' %></li>
+        <li><label class="vc-title">Venture Challenge</label></li>
+        <li class="active">
           <a href="#">
-              <i class="fa fa-bar-chart-o fa-2x"></i>&nbsp;
+              <i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;&nbsp;
               <span class="menu_a"> Leaderboard</span>
           </a>
         </li>
         <li>
           <a href="#">
-              <i class="fa fa-users fa-2x"></i>&nbsp;
+              <i class="fa fa-users fa-lg"></i>&nbsp;&nbsp;
               <span class="menu_a"> Team View</span>
           </a>
         </li>
         <li>
           <a href="#">
-            <i class="fa fa-bookmark fa-2x"></i>&nbsp; &nbsp;
+            <i class="fa fa-bookmark fa-lg"></i>&nbsp;&nbsp;&nbsp;
             <span class="menu_a"> Challenges</span>
           </a>
         </li>
         <li>
           <a href="#">
-            <i class="fa fa-book fa-2x"></i>&nbsp;
+            <i class="fa fa-book fa-lg"></i>&nbsp;&nbsp;
             <span class="menu_a"> Resources</span>
           </a>
         </li>
@@ -74,7 +74,7 @@
           </div>
     </section>
 
-  <a class="exit-off-canvas"></a>
+  <a class="exit-off-canvas" id="slideout"></a>
 
   </div>
 </div>
