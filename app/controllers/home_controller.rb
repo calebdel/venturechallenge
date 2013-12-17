@@ -31,7 +31,7 @@ class HomeController < ApplicationController
        return leagues_path unless current_store.league_id
        return leaderboards_path
      elsif session[:linkedin]
-       return tasksadmins_path
+       return adminpanel_path
      end
   end
   
