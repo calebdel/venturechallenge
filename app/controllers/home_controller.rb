@@ -2,11 +2,10 @@ class HomeController < ApplicationController
 
   before_filter :ensure_logged_in
 
-  
-  
+
   def index
-    redirect_to after_sign_in_path
-  end
+    redirect_to after_sign_in_path 
+   end
 
   def admin
     @leagues = League.where("admin_id = '#{current_user.id}'")
@@ -17,6 +16,10 @@ class HomeController < ApplicationController
     # get all stores in current league
     @league = League.find(current_store.league_id)
     @stores = Store.where("league_id = #{@league.id}")
+    @stores.each do |store|
+      store.total_orders = Order.where("store_id = #{store.id}").sum(:subtotal_price)
+    end
+    @stores.sort!{ |a,b| a.total_orders <=> b.total_orders }.reverse!
     @orders = @league.orders
     @points = Point.all
 
