@@ -13,85 +13,71 @@
   </head>
 
   <body>
-     <!-- Navigation -->
 
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <!-- Title Area -->
-      <li class="name">
-        <h1>
+  <!-- Navigation -->
+
+<div class="off-canvas-wrap">
+  <div class="inner-wrap">
+    <nav class="tab-bar">
+      <section class="left-small" style= width:110px >
+        <a class="left-off-canvas-toggle menu-icon"> <span>Menu</span></a>
+      </section>
+
+      <section class="middle tab-bar-section" id="menutitle">
+          <h1><a href="#"> Venture Challenge</a></h1>
+      </section>
+    </nav>
+
+    <aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li><label><%= link_to current_user.name, "#" %></label></li>
+        <li><%= link_to "Logout", logout_path, :target => '_self' %></li>
+        <li><label>Venture Challenge</label></li>
+        <li>
           <a href="#">
-            Venture Challenge
+              <i class="fa fa-bar-chart-o fa-2x"></i>&nbsp;
+              <span class="menu_a"> Leaderboard</span>
           </a>
-        </h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
-
-    <section class="top-bar-section">
-
-      <!-- Right Nav Section -->
-      
-      <ul class="right">
- 
-        <li class="divider"></li>
-        <li class="has-dropdown">
-          <%= link_to current_user.name, "#" %>
-          <ul class="dropdown">
-            <li><%= link_to "Logout", logout_path, :target => '_self' %></li>
-          </ul>
+        </li>
+        <li>
+          <a href="#">
+              <i class="fa fa-users fa-2x"></i>&nbsp;
+              <span class="menu_a"> Team View</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-bookmark fa-2x"></i>&nbsp; &nbsp;
+            <span class="menu_a"> Challenges</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-book fa-2x"></i>&nbsp;
+            <span class="menu_a"> Resources</span>
+          </a>
         </li>
       </ul>
+    </aside>
+
+    <section class="main-section">
+          <div class = "row">
+          </br>
+          </br>
+          <% if flash[:notice] %>
+            <p id="notice"><%= flash[:notice] %></p>
+          <% end %>
+          <% if flash[:alert] %>
+            <p id="alert"><%= flash[:alert] %></p>
+          <% end %>
+          <%= yield %>
+          </div>
     </section>
-  </nav>
-    <!-- Navigation -->
 
+  <a class="exit-off-canvas"></a>
 
-<div class="large-2 columns" id="sidenavbar">
-  <div class="panel">
-  <ul class="side-nav">
-    <li>
-      <a href="#">
-        <i class="fa fa-bar-chart-o fa-2x"></i>&nbsp;
-          <span class="menu_a"> Leaderboard</span>
-      </a>
-    </li>
-      <li class="divider"></li>
-    <li>
-      <a href="#">
-        <i class="fa fa-users fa-2x"></i>&nbsp;
-          <span class="menu_a"> Team View</span>
-      </a>
-    </li>
-      <li class="divider"></li>
-    <li>
-      <a href="#">
-        <i class="fa fa-bookmark fa-2x"></i>&nbsp; &nbsp;
-          <span class="menu_a"> Challenges</span>
-      </a>
-    </li>
-      <li class="divider"></li>
-    <li>
-      <a href="#">
-        <i class="fa fa-book fa-2x"></i>&nbsp;
-          <span class="menu_a"> Resources</span>
-      </a>
-    </li>
-  </ul>
   </div>
-
 </div>
-    <div class = "row">
-    </br>
-    </br>
-    <% if flash[:notice] %>
-      <p id="notice"><%= flash[:notice] %></p>
-    <% end %>
-    <% if flash[:alert] %>
-      <p id="alert"><%= flash[:alert] %></p>
-    <% end %>
-    <%= yield %>
-    </div>
 
 
     <%=  javascript_include_tag "application" %>

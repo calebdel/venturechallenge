@@ -18,23 +18,10 @@
 	padding: 5px;
 }
 
-.panel {
-  height: 100vh;
-  width: 200px;
-  font-family: "Open Sans";
-  font-weight: 200;
+#menutitle {
+  text-align: center !important;
 }
 
-#sidenavbar {
-  margin-right: 1.3em;
-  margin-left: -1em;
-}
-
-#sidenavbar a {
-  color: #333333;
-  margin: 10px 0;
-}
-
-.menu_a {
-  margin-left: 10px;
+.left-off-canvas-menu {
+  min-height: 
 }
