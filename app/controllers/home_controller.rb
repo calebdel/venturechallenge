@@ -2,11 +2,10 @@ class HomeController < ApplicationController
 
   before_filter :ensure_logged_in
 
-  
-  
+
   def index
-    redirect_to after_sign_in_path
-  end
+    redirect_to after_sign_in_path 
+   end
 
   def admin
     @leagues = League.where("admin_id = '#{current_user.id}'")
@@ -17,6 +16,10 @@ class HomeController < ApplicationController
     # get all stores in current league
     @league = League.find(current_store.league_id)
     @stores = Store.where("league_id = #{@league.id}")
+    @stores.each do |store|
+      store.total_orders = Order.where("store_id = #{store.id}").sum(:subtotal_price)
+    end
+    @stores.sort!{ |a,b| a.total_orders <=> b.total_orders }.reverse!
     @orders = @league.orders
     @points = Point.all
 
@@ -31,7 +34,7 @@ class HomeController < ApplicationController
        return leagues_path unless current_store.league_id
        return leaderboards_path
      elsif session[:linkedin]
-       return tasksadmins_path
+       return adminpanel_path
      end
   end
   
@@ -62,6 +65,8 @@ class HomeController < ApplicationController
     #initialize array data
     gon.data = []
 
+    opac = 1/(@stores.count).to_f
+
     @stores.each do |store|
       #create array of aggregate points within the time chunk
       aggregatepoints = [0]
@@ -72,7 +77,7 @@ class HomeController < ApplicationController
         i += 1
       end
       #generate random color and push into color array
-      storecolor = "rgba(#{rand(255)},#{rand(255)},#{rand(255)},0.4)"
+      storecolor = "rgba(#{rand(255)},#{rand(255)},#{rand(255)},#{opac})"
       gon.data << { 
         "name" => "#{User.find(store.user_id).name}", 
         "color" => storecolor, 

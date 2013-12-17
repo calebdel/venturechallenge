@@ -49,7 +49,7 @@ class LeaguesController < ApplicationController
   end
 
   def destroy
-       @league = League.find(params[:id])
+    @league = League.find(params[:id])
     @league.destroy
     redirect_to adminpanel_path
   end
