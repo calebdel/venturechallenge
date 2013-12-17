@@ -9,7 +9,6 @@
     </br>
         <% @store.badges.each do |b| %>
         <li><%= image_tag("#{b.imgurl}") %><h6><%=b.name %></br><%=b.points %> Points</h6></li>
-  
         <% end %>
       </ul>
     </div>
