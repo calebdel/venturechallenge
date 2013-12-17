@@ -2,11 +2,6 @@ class HomeController < ApplicationController
 
   before_filter :ensure_logged_in
 
-  rescue_from NoMethodError do |exception|
-    session[:shopify] = nil
-    session[:linkedin] = nil
-    redirect_to root_path, :notice => "Failed because #{exception}, cleared sessions"
-  end
   
   def welcome
     current_host = "#{request.host}#{':' + request.port.to_s if request.port != 80}"
@@ -14,21 +9,70 @@ class HomeController < ApplicationController
   end
   
   def index
-    if session[:shopify]
-      redirect_to leagues_path unless current_store.league_id
-
-      @stores = Store.where("league_id = #{current_store.league_id}")
-
-    elsif session[:linkedin]
-      redirect_to adminpanel_path
-    end
-
-    gon.orders = Order.find_all_by_store_id(current_store.id).map(&:subtotal_price)
-
+    redirect_to after_sign_in_path
   end
 
   def admin
     @leagues = League.where("admin_id = '#{current_user.id}'")
+  end
+
+  def leaderboards
+
+    # get all stores in current league
+    @league = League.find(current_store.league_id)
+    @stores = Store.where("league_id = #{@league.id}")
+    @orders = @league.orders
+    @points = Point.all
+
+    gon.numberofTeams = @stores.count
+    gon.color = [] # array for colors
+
+    #set number of time chunks
+    timechunks = 10
+
+    # setup time range 
+    oldestordertime = @orders.maximum("created_at")
+    timerange = oldestordertime - @league.start_date
+    timeinterval = timerange / timechunks
+    chartlabelarray = [@league.start_date]
+    
+    #setup label array
+    i = 1
+    (timechunks-1).times do
+      chartlabelarray << (@league.start_date+(timeinterval * i))
+      i += 1
+    end
+
+    gon.points = []
+
+    @stores.each do |store|
+      #generate random color and push into color array
+      storecolor = "rgba(#{rand(255)},#{rand(255)},#{rand(255)},0.4)"
+      gon.color << storecolor
+      
+      #create array of aggregate points
+      aggregatepoints = [0]
+      i = 1
+      (timechunks-1).times do 
+        timechunkpoints = store.points.select { |p| p.created_at.between?(chartlabelarray[0],chartlabelarray[i]) }
+        aggregatepoints << timechunkpoints.map(&:value).sum
+        i += 1
+      end
+      gon.points << aggregatepoints
+    end
+
+    #format label array and pass to .gon
+    chartlabelarray.map!{|x| x.strftime("%m / %d") }
+    gon.labels = chartlabelarray
+  end
+
+  def after_sign_in_path
+     if session[:shopify]
+       return leagues_path unless current_store.league_id
+       return leaderboards_path
+     elsif session[:linkedin]
+       return tasksadmins_path
+     end
   end
   
 

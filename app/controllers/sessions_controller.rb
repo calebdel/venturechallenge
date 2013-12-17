@@ -15,8 +15,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  
-
   def destroy
     session[:shopify] = nil
     session[:linkedin] = nil
@@ -25,10 +23,11 @@ class SessionsController < ApplicationController
   end
 
   def authorize
+
     auth_info = request.env['omniauth.auth']
-    sess = ShopifyAPI::Session.new(params[:shop], auth_info['credentials']['token']) #why is the shop url still in the params of the callback?
+    sess = ShopifyAPI::Session.new(params[:shop], auth_info['credentials']['token'])
     session[:shopify] = sess 
-    ShopifyAPI::Base.activate_session(sess) # is this necessary?? we dunno
+    ShopifyAPI::Base.activate_session(sess)
     shop = ShopifyAPI::Shop.current
     user = User.find_or_create_by_url(sess.url, shopify_token: sess.token, name:shop.name, email:shop.email)
 
