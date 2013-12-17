@@ -1,6 +1,7 @@
 class League < ActiveRecord::Base
 	belongs_to :user
 	has_many :stores
+	has_many :orders, :through => :stores
 
 	validates :name, :school, :start_date, :end_date, presence: true
 

@@ -18,7 +18,7 @@ $(function(){ $(document).foundation(); });
 
 var ctx = document.getElementById("myChart").getContext("2d");
 
-
+// push each store's data (as an array) into the data array for all stores.
 var dataArray = [];
 for (var i=0;i<gon.numberofTeams;i++){
   dataArray.push(
@@ -27,13 +27,13 @@ for (var i=0;i<gon.numberofTeams;i++){
         strokeColor : gon.color[i],
         pointColor : gon.color[i],
         pointStrokeColor : gon.color[i],
-        data : gon.orders[i]
+        data : gon.points[i]
       }
   );
 }
 
 var data = {
-  labels : ["Sale 1","Sale 2","Sale 3","Sale 4","Sale 5","Sale 6","Sale 7","Sale 8","Sale 9","Sale 10"],
+  labels : gon.labels,
   datasets : dataArray
 };
 
@@ -51,3 +51,7 @@ var data = {
 // }
 
 var myNewChart = new Chart(ctx).Line(data);
+
+$('.legend')
+.append("INSERTED")
+.css('color', gon.color[0]);

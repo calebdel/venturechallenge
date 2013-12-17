@@ -21,3 +21,13 @@
 </table>
 
 <canvas id="myChart" width="800" height="400"></canvas>
+<table class = "legend">
+    
+<% @league.stores.each do |store| %>
+	<tr>
+    <td><%= User.find(store.user_id).name %> </td>
+    <td><%=  %></td>
+    </tr>
+<% end %>
+
+</table>

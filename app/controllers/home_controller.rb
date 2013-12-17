@@ -17,19 +17,53 @@ class HomeController < ApplicationController
   end
 
   def leaderboards
-    @stores = Store.where("league_id = #{current_store.league_id}")
+
+    # get all stores in current league
+    @league = League.find(current_store.league_id)
+    @stores = Store.where("league_id = #{@league.id}")
+    @orders = @league.orders
+    @points = Point.all
 
     gon.numberofTeams = @stores.count
+    gon.color = [] # array for colors
 
-    gon.color = []
-    gon.orders = []
+    #set number of time chunks
+    timechunks = 10
 
-    @stores.each do |st|
-      gon.col = "rgba(#{rand(255)},#{rand(255)},#{rand(255)},0.3)"
-      gon.color << gon.col
-      gon.ord = Order.where("store_id = #{st.id}").map(&:subtotal_price)
-      gon.orders << gon.ord
+    # setup time range 
+    oldestordertime = @orders.maximum("created_at")
+    timerange = oldestordertime - @league.start_date
+    timeinterval = timerange / timechunks
+    chartlabelarray = [@league.start_date]
+    
+    #setup label array
+    i = 1
+    (timechunks-1).times do
+      chartlabelarray << (@league.start_date+(timeinterval * i))
+      i += 1
     end
+
+    gon.points = []
+
+    @stores.each do |store|
+      #generate random color and push into color array
+      storecolor = "rgba(#{rand(255)},#{rand(255)},#{rand(255)},0.4)"
+      gon.color << storecolor
+      
+      #create array of aggregate points
+      aggregatepoints = [0]
+      i = 1
+      (timechunks-1).times do 
+        timechunkpoints = store.points.select { |p| p.created_at.between?(chartlabelarray[0],chartlabelarray[i]) }
+        aggregatepoints << timechunkpoints.map(&:value).sum
+        i += 1
+      end
+      gon.points << aggregatepoints
+    end
+
+    #format label array and pass to .gon
+    chartlabelarray.map!{|x| x.strftime("%m / %d") }
+    gon.labels = chartlabelarray
   end
 
   def after_sign_in_path

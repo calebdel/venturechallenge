@@ -3,7 +3,8 @@ belongs_to :user
 belongs_to :league
 has_many :points  
 has_many :badges , :through => :levels 
-has_many :levels  
+has_many :levels 
+has_many :orders 
 
 def change_points(options)
   if Gioco::Core::KINDS
