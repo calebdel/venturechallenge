@@ -19,7 +19,8 @@ class WebhooksController < ApplicationController
         @order.subtotal_price = neworder.subtotal_price.to_f
         @order.referring_site = neworder.referring_site
         @order.total_discounts = neworder.total_discounts.to_i
-        @order.store_id = @u.id
+      
+        @order.store_id = Store.find_by_user_id(@u.id).id
         @order.shopify_id = neworder.id
         @order.save
         order_points(neworder.subtotal_price.to_f)

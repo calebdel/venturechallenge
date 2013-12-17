@@ -36,3 +36,4 @@ Point.all.each do |point|
 	point.update_attributes(created_at: createddate)
 end
 
+
