@@ -1,0 +1,38 @@
+<div class="row">
+<div class="large-6 columns">
+      <div class="panel">
+      <ul class="small-block-grid-3">
+        <h3><strong>Trophy Case</strong></h3>
+        <% @store.badges.each do |b| %>
+        <li><h6><%=b.name %></br><%=b.points %> Points</h6></li>
+  
+        <% end %>
+      </ul>
+      </div>
+    </div>
+<div class="large-4 columns">
+  <div class="panel">
+    <h3><strong>Current Points</strong></h3>
+    <strong>Sales Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 2").sum(:value) %></br>
+    <div class="progress small-9 success round">
+    <span class="meter" style="width:<%= @store.next_badge?(2)[:percentage] %>%"></span>
+    </div>
+
+    <strong>Customer Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 1").sum(:value) %></br>
+    <div class="progress small-9 success round">
+    <span class="meter" style="width:<%= @store.next_badge?(1)[:percentage] %>%"></span>
+    </div>
+  </div>
+</div>
+
+      
+    </div>
+    <h3>Current Points</h3>
+    <h6>Sales Points</h6>
+    <h2><strong><%= Point.where("store_id = #{@store.id} AND kind_id = 2").sum(:value) %></strong></h2>
+    <h3><%= @store.next_badge?(2) %></h3>
+  </div>
+</div>
+
+
+
