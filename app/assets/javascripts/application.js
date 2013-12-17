@@ -18,25 +18,7 @@ $(function(){ $(document).foundation(); });
 
 var ctx = document.getElementById("myChart").getContext("2d");
 
-// push each store's data (as an array) into the data array for all stores.
-var dataArray = [];
-for (var i=0;i<gon.numberofTeams;i++){
-  dataArray.push(
-    {
-        fillColor : gon.color[i],
-        strokeColor : gon.color[i],
-        pointColor : gon.color[i],
-        pointStrokeColor : gon.color[i],
-        data : gon.points[i]
-      }
-  );
-}
-
-var data = {
-  labels : gon.labels,
-  datasets : dataArray
-};
-
+// default
 // var data = {
 //   labels : ["Sale 1","Sale 2","Sale 3","Sale 4","Sale 5","Sale 6","Sale 7","Sale 8","Sale 9","Sale 10"],
 //   datasets : [
@@ -50,8 +32,26 @@ var data = {
 //   ]
 // }
 
-var myNewChart = new Chart(ctx).Line(data);
+// push each store's data (as an array) into the data array for all stores.
+var dataArray = [];
+for (var i=0;i<gon.numberofTeams;i++){
+  dataArray.push(
+      {
+        fillColor : gon.data[i].color,
+        strokeColor : gon.data[i].color,
+        pointColor : gon.data[i].color,
+        pointStrokeColor : gon.data[i].color,
+        data : gon.data[i].points
+      }
+  );
+  $('.'+gon.data[i].ident)
+  .css('background-color', gon.data[i].color);
+}
 
-$('.legend')
-.append("INSERTED")
-.css('color', gon.color[0]);
+var pointsChart = {
+  labels : gon.labels,
+  datasets : dataArray
+};
+
+var myNewChart = new Chart(ctx).Line(pointsChart);
+
