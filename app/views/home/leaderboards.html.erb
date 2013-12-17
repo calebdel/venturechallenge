@@ -15,7 +15,9 @@
         <td><%= number_to_currency(Order.where("store_id = #{store.id}").sum(:subtotal_price)) %></td>
         <td><%= Order.where("store_id = #{store.id}").count %></td>
         <td><%= Point.where("store_id = #{store.id}").sum(:value) %></td>
-        <td><%= store.badges.pluck(:name) %></td>
+        <td><% store.badges.reverse[0..4].each do |badge| %>
+            <%= image_tag badge.imgurl, size: "30x30" %>
+            <% end %></td>
         </tr>
 	<% end %>
 </table>
@@ -25,3 +27,4 @@
 
 <h4> Total Points Per Store </h4>
 <canvas id="BarChart" width="800" height="300"></canvas>
+

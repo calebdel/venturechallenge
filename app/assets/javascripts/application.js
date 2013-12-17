@@ -55,10 +55,10 @@ for (var i=0;i<gon.numberofTeams;i++){
   pts.push(gon.data[i].totalpts);
 }
 
-  num1 = Math.floor(Math.random() * (254))
-  num2 = Math.floor(Math.random() * (254))
-  num3 = Math.floor(Math.random() * (254))
-  var colorRandom = "rgba("+num1+","+num2+","+num3+",0.5)" 
+  num1 = Math.floor(Math.random() * (254));
+  num2 = Math.floor(Math.random() * (254));
+  num3 = Math.floor(Math.random() * (254));
+  var colorRandom = "rgba("+num1+","+num2+","+num3+",0.5)";
 
 var barChart = {
   labels : labels,
@@ -69,6 +69,13 @@ var barChart = {
       data : pts
     }
   ]
+};
+
+var barOptions = {
+  scaleOverride:true, 
+  scaleSteps:12, 
+  scaleStepWidth:1000, 
+  scaleStartValue:0
 }
 
 var myNewChart = new Chart(ctx).Bar(barChart);

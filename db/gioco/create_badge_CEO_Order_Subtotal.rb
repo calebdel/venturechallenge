@@ -3,6 +3,7 @@ badge = Badge.create({
                       :name => 'CEO', 
                       :points => '1000',
                       :kind_id  => kind.id,
-                      :default => 'false'
+                      :default => 'false',
+                      :imgurl => 'trophy1.png'
                     })
 puts '> Badge successfully created'
