@@ -36,6 +36,8 @@
     <h2><strong><%= Point.where("store_id = #{@store.id} AND kind_id = 2").sum(:value) %></strong></h2>
     <h3><%= @store.next_badge?(2) %></h3>
      <h3><%= @store.next_badge?(1) %></h3>
+     x
+
   </div>
 
 </div>
