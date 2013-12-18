@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     if (x == 'admin') {
       $("#student").removeClass('select');
-      $("#admin").addClass('select')
+      $("#admin").addClass('select');
       $("#studentbox").slideUp();
       $("#adminbox").slideDown();
     } else {
@@ -17,4 +17,7 @@ $(document).ready(function() {
     }
   });
 
+  if($('#shopifyurl').val() ===  ""){
+   $('#urlsubmit').prop('disabled', true);
+  }
 });

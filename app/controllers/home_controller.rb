@@ -14,7 +14,11 @@ class HomeController < ApplicationController
   def leaderboards
 
     # get all stores in current league
-    @league = League.find(current_store.league_id)
+    if session[:shopify]
+      @league = League.find(current_store.league_id)
+    elsif session[:linkedin]
+      @league = League.find_by(admin_id: current_user.id)
+    end
     @stores = Store.where("league_id = #{@league.id}")
     @stores.each do |store|
       store.total_orders = Order.where("store_id = #{store.id}").sum(:subtotal_price)
@@ -78,10 +82,15 @@ class HomeController < ApplicationController
         i += 1
       end
       #generate random color and push into color array
-      storecolor = "rgba(#{rand(255)},#{rand(255)},#{rand(255)},#{opac})"
+      r = rand(255)
+      g = rand(255)
+      b = rand(255)
+      linecolor = "rgba(#{r},#{g},#{b},1)"
+      fillcolor = "rgba(#{r},#{g},#{b},#{opac})"
       gon.data << { 
         "name" => "#{User.find(store.user_id).name}", 
-        "color" => storecolor, 
+        "linecolor" => linecolor, 
+        "fillcolor" => fillcolor,
         "points" => aggregatepoints, 
         "ident" => "store#{store.id}", 
         "totalpts" => Point.where("store_id = #{store.id}").sum(:value)

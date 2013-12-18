@@ -25,8 +25,8 @@
       <div id="studentbox">
        <div style="width:340px; margin:0 auto;">
           <%= form_tag login_path, :class => 'form-search' do %>
-          <%= text_field_tag 'url', nil, :placeholder => 'Shopify URL', :class => 'btn-large' %>
-          <%= submit_tag 'Submit', :class => 'btn btn-primary btn-large' %>
+          <%= text_field_tag 'url', nil, :placeholder => 'Shopify URL', :class => 'btn-large', :id => 'shopifyurl' %>
+          <%= submit_tag 'Submit', :class => 'btn btn-primary btn-large', :id => 'urlsubmit' %>
         <% end %>
       </div>
     <hr>

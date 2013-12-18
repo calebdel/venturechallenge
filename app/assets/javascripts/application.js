@@ -23,15 +23,15 @@ var lineData = [];
 for (var i=0;i<gon.numberofTeams;i++){
   lineData.push(
       {
-        fillColor : gon.data[i].color,
-        strokeColor : gon.data[i].color,
-        pointColor : gon.data[i].color,
-        pointStrokeColor : gon.data[i].color,
+        fillColor : gon.data[i].fillcolor,
+        strokeColor : gon.data[i].linecolor,
+        pointColor : gon.data[i].linecolor,
+        pointStrokeColor : gon.data[i].linecolor,
         data : gon.data[i].points
       }
   );
   $('.'+gon.data[i].ident)
-  .css('background-color', gon.data[i].color);
+  .css('background-color', gon.data[i].fillcolor);
 }
 
 var pointsChart = {
@@ -72,10 +72,10 @@ var barChart = {
 };
 
 var barOptions = {
-  scaleOverride:true, 
-  scaleSteps:12, 
-  scaleStepWidth:1000, 
+  scaleOverride:true,
+  scaleSteps:12,
+  scaleStepWidth:1000,
   scaleStartValue:0
-}
+};
 
 var myNewChart = new Chart(ctx).Bar(barChart);
