@@ -21,7 +21,7 @@
   left: 0;
   top: 0;
   color: white;
-  font-size: 3em;
+  font-size: 2.9em;
   font-family: "Open Sans";
   font-weight: 300;
   margin: 40px 0 -70px 0;
@@ -131,4 +131,36 @@
 #shopifylogo img {
   margin-top: -50px;
   max-width: 130px;
+}
+
+#alert1 {
+  background-color: lighten(#0F778F, 10%);
+  border: none;
+  max-width: 350px;
+  max-height: 60px;
+  text-align: center;
+  padding: 2px;
+  font-weight: 200;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+}
+
+#notice1 {
+  background-color: lighten(#0F778F, 10%);
+  border: none;
+  max-width: 350px;
+  max-height: 60px;
+  text-align: center;
+  padding: 2px;
+  font-weight: 200;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+}
+
+#shopifyurl {
+  margin: 0;
+}
+
+#urlsubmit {
+  margin-top: 1rem;
 }
