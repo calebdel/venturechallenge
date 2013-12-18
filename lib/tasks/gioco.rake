@@ -16,7 +16,7 @@ namespace :gioco do
                       :name => '#{args.name}', 
                       :points => '#{args.points}',
                       :kind_id  => kind.id,
-                      :default => '#{arg_default}'
+                      :default => '#{arg_default}',
                       :imgurl => '#{args.imgurl}'
                     })
 "
