@@ -31,7 +31,8 @@ for (var i=0;i<gon.numberofTeams;i++){
       }
   );
   $('.'+gon.data[i].ident)
-  .css('background-color', gon.data[i].fillcolor);
+  //.css('background-color', gon.data[i].fillcolor);
+  .css('background-image', '-webkit-gradient(linear, right top, left bottom, color-stop(0, '+gon.data[i].fillcolor+'), color-stop(1, '+gon.data[i].linecolor+')');
 }
 
 var pointsChart = {
@@ -58,7 +59,7 @@ for (var i=0;i<gon.numberofTeams;i++){
   num1 = Math.floor(Math.random() * (254));
   num2 = Math.floor(Math.random() * (254));
   num3 = Math.floor(Math.random() * (254));
-  var colorRandom = "rgba("+num1+","+num2+","+num3+",0.5)";
+  var colorRandom = "rgba("+num1+","+num2+","+num3+",0.6)";
 
 var barChart = {
   labels : labels,

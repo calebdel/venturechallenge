@@ -1,30 +1,35 @@
-<h3> Current Standings </h3>
-<table>
-  <tr>
-    <th>Color</th>
-    <th>Store</th>
-    <th>Total Orders</th>
-    <th>Number of Orders</th>
-    <th>Points</th>
-    <th>Badges</th>
-  </tr>
-    <% @stores.each do |store| %>
-    	<tr>
-        <td class = "store<%= store.id %>"></td>
-        <td><%= User.find(store.user_id).name %></td>
-        <td><%= number_to_currency(Order.where("store_id = #{store.id}").sum(:subtotal_price)) %></td>
-        <td><%= Order.where("store_id = #{store.id}").count %></td>
-        <td><%= Point.where("store_id = #{store.id}").sum(:value) %></td>
-        <td><% store.badges.reverse[0..4].each do |badge| %>
-            <%= image_tag badge.imgurl, size: "30x30" %>
-            <% end %></td>
-        </tr>
-	<% end %>
-</table>
+<div class = "leaderboard">
+    <h3> Current Standings </h3>
+    <table>
+      <tr>
+        <th>Color</th>
+        <th>Store</th>
+        <th>Total Orders</th>
+        <th>Number of Orders</th>
+        <th>Points</th>
+        <th>Badges</th>
+      </tr>
+        <% @stores.each do |store| %>
+            <tr>
+            <td class = "store<%= store.id %>"></td>
+            <td><%= User.find(store.user_id).name %></td>
+            <td><%= number_to_currency(Order.where("store_id = #{store.id}").sum(:subtotal_price)) %></td>
+            <td><%= Order.where("store_id = #{store.id}").count %></td>
+            <td><%= Point.where("store_id = #{store.id}").sum(:value) %></td>
+            <td><% store.badges.reverse[0..4].each do |badge| %>
+                <%= image_tag badge.imgurl, size: "30x30" %>
+                <% end %></td>
+            </tr>
+        <% end %>
+    </table>
+</div>
 
-<h4> Points Over Time</h4>
-<canvas id="LineChart" width="800" height="300"></canvas>
+<div class = "linechart">
+    <h4> Points Over Time</h4>
+    <canvas id="LineChart" width="800" height="300"></canvas>
+</div>
 
-<h4> Total Points Per Store </h4>
-<canvas id="BarChart" width="800" height="600"></canvas>
-
+<div class = "barchart">
+    <h4> Total Points Per Store </h4>
+    <canvas id="BarChart" width="800" height="600"></canvas>
+</div>
