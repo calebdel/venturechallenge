@@ -101,15 +101,15 @@
            </div> 
           <% end %>
           
-          <div class = "row flash">
-          </br>
+          <div class = "row">
           </br>
           <% if flash[:notice] %>
-            <p id="notice"><%= flash[:notice] %></p>
+            <p id="notice" class="alert-box radius"><%= flash[:notice] %></p>
           <% end %>
           <% if flash[:alert] %>
-            <p id="alert"><%= flash[:alert] %></p>
+            <p id="alert" class="alert-box warning radius"><%= flash[:alert] %></p>
           <% end %>
+          </br>
           <%= yield %>
           </div>
     </section>
