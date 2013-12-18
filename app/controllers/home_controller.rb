@@ -19,17 +19,20 @@ class HomeController < ApplicationController
       @league = League.find_by(admin_id: current_user.id)
     end
 
-    league_countdown
+    
 
     @stores = Store.where("league_id = #{@league.id}")
     @stores.each do |store|
       store.total_orders = Order.where("store_id = #{store.id}").sum(:subtotal_price)
     end
     @stores.sort!{ |a,b| a.total_orders <=> b.total_orders }.reverse!
+    
     @orders = @league.orders
     @points = Point.all
 
     gon.numberofTeams = @stores.count
+
+    league_countdown 
 
     initialize_pointschart unless @orders.count == 0 
   end
@@ -44,12 +47,16 @@ class HomeController < ApplicationController
   end
 
   def league_countdown
+
+    return @countdown = "Game Over!" if Time.now > @league.end_date
+
     t = @league.end_date - Time.now
 
     mm, ss = t.divmod(60)
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
-    return @countdown = "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
+    @countdown = "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
+  
   end
   
   private
