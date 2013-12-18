@@ -16,6 +16,26 @@
 //= require_tree .
 $(function(){ $(document).foundation(); });
 
+  switch(document.URL) {
+    case "http://localhost:3000/leaderboards":
+      $('.active').removeClass('active');
+      $("#1").addClass('active');
+      $("#5").addClass('active');
+      break;
+    case "http://localhost:3000/teamstats":
+      $('.active').removeClass('active'); 
+      $("#2").addClass('active');
+      break;
+    case "http://localhost:3000/adminpanel":
+      $('.active').removeClass('active');
+      $("#5").addClass('active');
+      break;
+    case "http://localhost:3000/leaderboards":
+      $('.active').removeClass('active');
+      $("#6").addClass('active');
+      break;
+  }
+
 var ctx = document.getElementById("LineChart").getContext("2d");
 
 // push each store's data (as an array) into the data array for all stores.
