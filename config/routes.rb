@@ -8,6 +8,7 @@ Venturechallenge::Application.routes.draw do
 
   get 'logout' => 'sessions#destroy'
   post 'assign_league' => 'leagues#assign_league'
+  get 'quit_league' => 'leagues#quit_league'
 
   post 'webhooks/orders/create' => 'webhooks#order_new'
   post 'webhooks/customers/create' => 'webhooks#customers_new'

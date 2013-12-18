@@ -2,7 +2,6 @@ class HomeController < ApplicationController
 
   before_filter :ensure_logged_in
 
-
   def index
     redirect_to after_sign_in_path 
    end
@@ -12,9 +11,9 @@ class HomeController < ApplicationController
   end
 
   def leaderboards
-
     # get all stores in current league
     if session[:shopify]
+      redirect_to leagues_path unless current_store.league_id
       @league = League.find(current_store.league_id)
     elsif session[:linkedin]
       @league = League.find_by(admin_id: current_user.id)
@@ -32,9 +31,7 @@ class HomeController < ApplicationController
 
     gon.numberofTeams = @stores.count
 
-
-    initialize_pointschart unless @orders.count == 0
-    
+    initialize_pointschart unless @orders.count == 0 
   end
 
   def after_sign_in_path
@@ -114,16 +111,10 @@ class HomeController < ApplicationController
 
   end
 
-  def initialize_barchart
-    
+  def initialize_barchart 
     #initialize array data
     gon.bardata = []
-
     gon.bardata << gon.data.pluck("name")
-
-
-
   end
-
 
 end

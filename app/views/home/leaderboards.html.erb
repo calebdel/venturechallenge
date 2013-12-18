@@ -31,6 +31,7 @@
     Countdown: <%= @countdown %></br>
     Start: <%= @league.start_date.to_s(:long) %></br>
     End: <%= @league.end_date.to_s(:long) %></br>
+    <%= link_to "Leave league", quit_league_path %>
 </div>
 
 <div class = "linechart">

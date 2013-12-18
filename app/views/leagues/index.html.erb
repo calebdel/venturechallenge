@@ -1,4 +1,7 @@
-<h1> All Leagues </h1>
+<h1> Join a League </h1>
+
+<h4>Welcome to Venture Challenge!<h4>
+	<p> Please select your league. If you do not know your PIN, contact your Professor</p>
 
 <% if @leagues %>
 	<table>
@@ -10,10 +13,16 @@
 		</tr>
 	<% @leagues.each do |league| %>
 		<tr>
-			<td><%= league.id %></td>
+			<td><%= league.name %></td>
 			<td><%= league.school %></td>
-			<td><%= league.start_date %></td>
-			<td><%= league.end_date %></td>
+			<td>
+				<%= league.start_date.strftime("%B %d") %><br/>
+				<%= league.start_date.strftime("%I:%M %p") %>
+			</td>
+			<td>
+				<%= league.end_date.strftime("%B %d") %><br/>
+				<%= league.end_date.strftime("%I:%M %p") %>
+			</td>
 			<td class = "pin">
 				<%= form_tag '/assign_league', :class => '' do %>
 				<%= number_field_tag :pin, nil, :placeholder => 'Enter PIN', :class => '' %>

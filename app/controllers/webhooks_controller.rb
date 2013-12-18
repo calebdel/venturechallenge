@@ -54,7 +54,6 @@ class WebhooksController < ApplicationController
         head :ok
     end
 
-
     private
 
     def out_of_dates

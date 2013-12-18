@@ -65,13 +65,19 @@ class SessionsController < ApplicationController
   def initialize_webhooks
     topics = ["orders/create", "customers/create"]
     topics.each do |topic|
+      # check if webhook already exists
       if webhook = ShopifyAPI::Webhook.where(topic: topic).first
+        # check if existing webhook address matches the current address
+        flash[:alert] = "all webhooks ok"
         unless webhook.address == "#{ENV['HOST_URL']}/webhooks/#{topic}"
-         #update it via a put
+         #update it via a put if not
         webhook.update_attributes(address: "#{ENV['HOST_URL']}/webhooks/#{topic}" )
+        flash[:alert] = "updated webhook id##{webhook.id}"
         end
       else
-       ShopifyAPI::Webhook.create(format: "json", topic: topic, address: "#{ENV['HOST_URL']}/webhooks/#{topic}")
+        # create the webhook if it does not exist
+       webhook = ShopifyAPI::Webhook.create(format: "json", topic: topic, address: "#{ENV['HOST_URL']}/webhooks/#{topic}")
+       flash[:alert] = "Created webhook for #{webhook.topic}, id:#{webhook.id}"
       end
     end
   end

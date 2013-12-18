@@ -42,6 +42,15 @@ class LeaguesController < ApplicationController
     redirect_to leagues_path, notice: "Invalid PIN"
     end  
   end
+
+  def quit_league
+    store = Store.find_by_user_id(current_user.id)
+    league = League.find(store.league_id)
+    store.league_id = nil
+    store.save
+    flash[:notice] = "#{current_user.name} left #{league.name}"
+    redirect_to root_path
+  end
   
 
   def edit
@@ -59,6 +68,7 @@ class LeaguesController < ApplicationController
   def league_params
     params.require(:league).permit(:name, :school, :start_date, :end_date, :pin)
   end
+
 
 
 end

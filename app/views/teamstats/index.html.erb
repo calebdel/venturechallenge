@@ -1,19 +1,16 @@
 <div class="row">
-<div class="large-6 columns">
-      <div class="panel">
-      
-      
+  <div class="large-6 columns">
+    <div class="panel">
       <ul class="small-block-grid-3" style="text-align:center">
       <h3><strong>Trophy Case</strong></h3>
-    </br>
-    </br>
-        <% @store.badges.each do |b| %>
+      </br>
+      </br>
+      <% @store.badges.each do |b| %>
         <li><%= image_tag("#{b.imgurl}") %><h6><%=b.name %></br><%=b.points %> Points</h6></li>
-        <% end %>
+      <% end %>
       </ul>
-    </div>
-    
-    </div>
+    </div>  
+  </div>
 <div class="large-4 columns">
   <div class="panel">
     <h3><strong>Current Points</strong></h3>
