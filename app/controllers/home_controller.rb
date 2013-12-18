@@ -19,6 +19,9 @@ class HomeController < ApplicationController
     elsif session[:linkedin]
       @league = League.find_by(admin_id: current_user.id)
     end
+
+    league_countdown
+
     @stores = Store.where("league_id = #{@league.id}")
     @stores.each do |store|
       store.total_orders = Order.where("store_id = #{store.id}").sum(:subtotal_price)
@@ -42,8 +45,16 @@ class HomeController < ApplicationController
        return adminpanel_path
      end
   end
-  
 
+  def league_countdown
+    t = @league.end_date - Time.now
+
+    mm, ss = t.divmod(60)
+    hh, mm = mm.divmod(60)
+    dd, hh = hh.divmod(24)
+    return @countdown = "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
+  end
+  
   private
 
   def initialize_pointschart
