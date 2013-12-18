@@ -33,6 +33,8 @@ class SessionsController < ApplicationController
 
     store = Store.find_or_create_by_user_id(user.id)
 
+    store.save
+
     initialize_webhooks
     redirect_to root_url, :notice => "Logged in as #{user.name}"
   end

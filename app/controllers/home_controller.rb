@@ -25,7 +25,8 @@ class HomeController < ApplicationController
 
     gon.numberofTeams = @stores.count
 
-    initialize_pointschart
+
+    initialize_pointschart unless @orders.count == 0
     
   end
 
@@ -52,12 +53,12 @@ class HomeController < ApplicationController
     # setup time range 
     oldestordertime = @orders.maximum("created_at")
     timerange = oldestordertime - @league.start_date
-    timeinterval = timerange / timechunks
+    timeinterval = (timerange / timechunks) + 60
     chartlabelarray = [@league.start_date]
     
     #setup label array
     i = 1
-    (timechunks-1).times do
+    timechunks.times do
       chartlabelarray << (@league.start_date+(timeinterval * i))
       i += 1
     end
@@ -68,10 +69,10 @@ class HomeController < ApplicationController
     opac = 1/(@stores.count).to_f
 
     @stores.each do |store|
-      #create array of aggregate points within the time chunk
       aggregatepoints = [0]
       i = 1
-      (timechunks-1).times do 
+      (timechunks).times do 
+        puts 
         timechunkpoints = store.points.select { |p| p.created_at.between?(chartlabelarray[0],chartlabelarray[i]) }
         aggregatepoints << timechunkpoints.map(&:value).sum
         i += 1

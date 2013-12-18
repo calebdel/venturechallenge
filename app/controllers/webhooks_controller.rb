@@ -11,10 +11,19 @@ class WebhooksController < ApplicationController
     end
 
     def order_new
+
+      #save webhook object as data
       data = ActiveSupport::JSON.decode(request.body.read)
+
       # shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
+
+      # check if the order already exists and if it is within time range of league
+
+
       unless Order.find_by_shopify_id(data["id"].to_s) || out_of_dates #comment out if you want to work with webhooks outside of a current league
+        
         neworder = ShopifyAPI::Order.find(data["id"].to_s)
+
         @order = Order.new
         @order.subtotal_price = neworder.subtotal_price.to_f
         @order.referring_site = neworder.referring_site
