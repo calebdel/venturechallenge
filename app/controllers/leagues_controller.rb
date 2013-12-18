@@ -39,7 +39,8 @@ class LeaguesController < ApplicationController
     store.save
     redirect_to root_path
     else
-    redirect_to leagues_path, notice: "Invalid PIN"
+    flash[:alert] = "Invalid PIN"
+    redirect_to leagues_path
     end  
   end
 

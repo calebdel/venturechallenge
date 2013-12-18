@@ -1,71 +1,71 @@
 class WebhooksController < ApplicationController
   before_filter :connect_to_store
   
-    def product_new
-      data = ActiveSupport::JSON.decode(request.body.read)
-      shopify_id = data["id"]
+    # def product_new
+    #   data = ActiveSupport::JSON.decode(request.body.read)
+    #   shopify_id = data["id"]
 
-      Product.new_from_shopify(@s, shopify_id)
+    #   Product.new_from_shopify(@s, shopify_id)
 
-      head :ok
-    end
+    #   head :ok
+    # end
 
     def order_new
 
       #save webhook object as data
       data = ActiveSupport::JSON.decode(request.body.read)
-
-      # shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
-
       # check if the order already exists and if it is within time range of league
-
-
-      unless Order.find_by_shopify_id(data["id"].to_s) || out_of_dates #comment out if you want to work with webhooks outside of a current league
-        
-        neworder = ShopifyAPI::Order.find(data["id"].to_s)
-
+      neworder = ShopifyAPI::Order.find(data["id"].to_s)
+      unless Order.find_by_shopify_id(data["id"].to_s) || out_of_dates  
         @order = Order.new
         @order.subtotal_price = neworder.subtotal_price.to_f
         @order.referring_site = neworder.referring_site
         @order.total_discounts = neworder.total_discounts.to_i
-      
-        @order.store_id = Store.find_by_user_id(@u.id).id
+        @order.store_id = @s.id
+        @order.league_id = @s.league_id
         @order.shopify_id = neworder.id
         @order.save
         order_points(neworder.subtotal_price.to_f)
       end
+      customer = Customer.find_or_create_by_email(data["email"].to_s, league_id: @s.league_id, orders_count: 0, total_spent: 0)
+      customer.orders_count += 1
+      customer.total_spent += neworder.subtotal_price.to_f
+      customer.save
       head :ok
     end
 
     def customers_new
       data = ActiveSupport::JSON.decode(request.body.read)
-      # shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
-      unless Customer.find_by_customer_id(data["id"].to_s) || out_of_dates #comment out if you want to work with webhooks outside of a current league
+      unless out_of_dates 
         newcustomer = ShopifyAPI::Customer.find(data["id"].to_s)
-        @customer = Customer.new
-        # @customer.city = newcustomer[1].city
-        @customer.accepts_marketing = newcustomer.accepts_marketing
-        @customer.orders_count = newcustomer.orders_count
-        @customer.total_spent = newcustomer.total_spent
-        @customer.customer_id = @u.id
-        @customer.save
-        customer_points(10)
+        if @customer = Customer.find_by_email(data["email"].to_s)
+          @customer.orders_count = newcustomer.orders_count
+          @customer.total_spent = newcustomer.total_spent
+        else
+          @customer = Customer.new
+          @customer.city = newcustomer.address.city
+          @customer.accepts_marketing = newcustomer.accepts_marketing
+          @customer.customer_id = @u.id
+          @customer.save
+          customer_points(10)
+        end
       end
-        head :ok
+      head :ok
     end
 
     private
 
     def out_of_dates
+      return true unless @s.league #if the store is not assigned to a league return true
       timenow = Time.now
-      store = Store.find_by_user_id(@u.id)
-      timenow < store.league.start_date || timenow > store.league.end_date
+      timenow < @s.league.start_date || timenow > @s.league.end_date
     end
 
 
     def connect_to_store
       shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
       @u = User.find_by_url(shop_url)
+      @s = Store.find_by_user_id(@u.id)
       session = ShopifyAPI::Session.new(@u.url, @u.shopify_token)
       session.valid?
       ShopifyAPI::Base.activate_session(session)

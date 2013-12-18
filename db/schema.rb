@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217194717) do
+ActiveRecord::Schema.define(version: 20131218211803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20131217194717) do
     t.integer  "total_spent"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "league_id"
+    t.string   "email"
+    t.integer  "store_id"
   end
 
   create_table "kinds", force: true do |t|
@@ -69,6 +72,7 @@ ActiveRecord::Schema.define(version: 20131217194717) do
     t.string   "referring_site"
     t.integer  "total_discounts"
     t.float    "cost"
+    t.integer  "league_id"
   end
 
   create_table "points", force: true do |t|
