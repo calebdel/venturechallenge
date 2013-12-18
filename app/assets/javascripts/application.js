@@ -31,7 +31,7 @@ for (var i=0;i<gon.numberofTeams;i++){
       }
   );
   $('.'+gon.data[i].ident)
-  //.css('background-color', gon.data[i].fillcolor);
+  // this css transform will only work webkit- safari/chrome 10
   .css('background-image', '-webkit-gradient(linear, right top, left bottom, color-stop(0, '+gon.data[i].fillcolor+'), color-stop(1, '+gon.data[i].linecolor+')');
 }
 

@@ -17,7 +17,4 @@ $(document).ready(function() {
     }
   });
 
-  if($('#shopifyurl').val() ===  ""){
-   $('#urlsubmit').prop('disabled', true);
-  }
 });
