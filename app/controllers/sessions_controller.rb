@@ -1,17 +1,19 @@
 class SessionsController < ApplicationController
 
+  rescue_from URI::InvalidURIError do |exception|
+    flash[:alert] = "Invalid URL, please try again"
+    render :new
+  end
+
   def new
   end
 
-  def admin_new
-  end
-
   def create
-    if params[:url]
-    shop_name = sanitize_shop_param(params)
-    redirect_to "/auth/shopify?shop=#{shop_name}"
+    if shop_name = sanitize_shop_param(params)
+      redirect_to "/auth/shopify?shop=#{shop_name}"
     else
-      redirect_to login_path, notice: "Invalid URL, please try again"
+      flash[:alert] = "Invalid URL, please try again"
+      render :new
     end
   end
 
@@ -55,8 +57,7 @@ class SessionsController < ApplicationController
     return unless params[:url].present?
     name = params[:url].to_s.strip
     name += '.myshopify.com' if !name.include?("myshopify.com") && !name.include?(".")
-    name.sub('https://', '').sub('http://', '')
-
+    name = name.sub('https://', '').sub('http://', '')
     u = URI("http://#{name}")
     u.host.ends_with?("myshopify.com") ? u.host : nil
   end
