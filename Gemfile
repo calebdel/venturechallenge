@@ -6,6 +6,7 @@ gem 'rails', '4.0.1'
 
 group :development do
   gem 'pg', '0.15.1'
+  gem 'rspec'
   # only use if you install postgres.app and configure a postgres database
 end
 

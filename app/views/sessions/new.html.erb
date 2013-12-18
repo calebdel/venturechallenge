@@ -26,6 +26,12 @@
        <div style="width:340px; margin:0 auto;">
           <%= form_tag login_path, :class => 'form-search' do %>
           <%= text_field_tag 'url', nil, :placeholder => 'Shopify URL', :class => 'btn-large', :id => 'shopifyurl' %>
+          <% if flash[:notice] %>
+            <p id="notice1" class="alert-box radius"><%= flash[:notice] %></p>
+          <% end %>
+          <% if flash[:alert] %>
+            <p id="alert1" class="alert-box warning radius"><%= flash[:alert] %></p>
+          <% end %>
           <%= submit_tag 'Submit', :class => 'btn btn-primary btn-large', :id => 'urlsubmit' %>
         <% end %>
       </div>
@@ -55,4 +61,10 @@
 <p align="center" id="shopifylogo">
   <%= image_tag 'shopify.png' %>
 </p>
+</div>
+
+<div class = "row">
+  </br>
+  
+  </br>
 </div>

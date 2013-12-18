@@ -18,7 +18,7 @@
             <td><%= Order.where("store_id = #{store.id}").count %></td>
             <td><%= Point.where("store_id = #{store.id}").sum(:value) %></td>
             <td><% store.badges.reverse[0..4].each do |badge| %>
-                <%= image_tag badge.imgurl, size: "30x30" %>
+                <%= image_tag Asset.where("badge_id = #{badge.id}").pluck(:url).join, size: "30x30" %>
                 <% end %>
             </td>
             </tr>
