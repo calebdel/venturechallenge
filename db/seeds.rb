@@ -36,4 +36,12 @@ require "#{Rails.root}/db/gioco/db.rb"
 # 	point.update_attributes(created_at: createddate)
 # end
 
+Asset.create(url: 'nosales.png', description: "Go sell some stuff", badge_id: 7)
+Asset.create(url: 'nocustomer.png', description: "Go find some customers!", badge_id: 1)
+Asset.create(url: 'salesintern.png', description: "Keep up the hustle!", badge_id: 10)
+Asset.create(url: 'salesmanager.png', description: "You're making money, now make more!", badge_id: 11)
+Asset.create(url: 'vpofsales.png', description: "Executive status... Keep up the hustle!", badge_id: 12)
+Asset.create(url: 'ceo.png', description: "You've achieved the corner office! Congratulations.", badge_id: 13)
+Asset.create(url: 'sunny.png', description: "Take to the Skies!", badge_id:14)
+Asset.create(url: 'ceo.png', description: "Skyscraper Time!", badge_id:15)
 

@@ -3,11 +3,13 @@
     <div class="panel">
       <ul class="small-block-grid-3" style="text-align:center">
       <h3><strong>Trophy Case</strong></h3>
-      </br>
-      </br>
-      <% @store.badges.each do |b| %>
-        <li><%= image_tag("#{b.imgurl}") %><h6><%=b.name %></br><%=b.points %> Points</h6></li>
-      <% end %>
+
+    </br>
+    </br>
+        <% @store.badges.each do |b| %>
+        <li><%= image_tag(Asset.where("badge_id = #{b.id}").pluck(:url).join) %><h6><%=b.name %></br><%=b.points %> Points</h6></li>
+        <% end %>
+
       </ul>
     </div>  
   </div>
@@ -33,6 +35,8 @@
     <h2><strong><%= Point.where("store_id = #{@store.id} AND kind_id = 2").sum(:value) %></strong></h2>
     <h3><%= @store.next_badge?(2) %></h3>
      <h3><%= @store.next_badge?(1) %></h3>
+     x
+
   </div>
 
 </div>
