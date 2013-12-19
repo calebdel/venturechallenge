@@ -20,8 +20,8 @@
             <td><%= Customer.where("store_id = #{store.id}").count %></td>
             <td><%= Point.where("store_id = #{store.id}").sum(:value) %></td>
             <td><% store.badges.reverse[0..4].each do |badge| %>
-                    <% if badge.badgeasset %>
-                        <%= image_tag badge.badgeasset.url, size: "30x30" %>
+                    <% if badge.badge_asset %>
+                        <%= image_tag badge.badge_asset.url, size: "30x30" %>
                     <% end %>
                 <% end %>
             </td>
