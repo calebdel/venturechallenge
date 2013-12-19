@@ -20,7 +20,7 @@ $(function(){ $(document).foundation(); });
     case "http://localhost:3000/leaderboards":
       $('.active').removeClass('active');
       $("#1").addClass('active');
-      $("#5").addClass('active');
+      $("#6").addClass('active');
       break;
     case "http://localhost:3000/teamstats":
       $('.active').removeClass('active');
@@ -30,9 +30,14 @@ $(function(){ $(document).foundation(); });
       $('.active').removeClass('active');
       $("#5").addClass('active');
       break;
-    case "http://localhost:3000/leaderboards":
+    case "http://localhost:3000/posts":
       $('.active').removeClass('active');
-      $("#6").addClass('active');
+      $("#4").addClass('active');
+      $("#8").addClass('active');
+      break;
+    case "http://localhost:3000/posts/new":
+      $('.active').removeClass('active');
+      $("#9").addClass('active');
       break;
   }
 

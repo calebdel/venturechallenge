@@ -1,0 +1,14 @@
+<%= link_to "< Back to Resources", posts_url %> 
+
+<% if session[:linkedin] %>
+  | <%= link_to "Edit", edit_post_path(@post) %> | 
+  <%= link_to "Delete", @post, method: :delete, data: {confirm: 'Are you sure?'} %>
+<% end %>
+
+<h1><%= @post.title %></h1>
+<hr>
+<%= @post.content %>
+</br>
+<hr>
+League: <%= League.find(@post.league_id).name %></br>
+Created At: <%= @post.created_at.to_s(:long) %>

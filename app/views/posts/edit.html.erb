@@ -1,0 +1,14 @@
+<%= link_to "< Back to Resources", posts_url %>
+
+
+<h1>Edit Post</h1>
+
+<%= form_for @post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <%= f.select(:league_id, options_for_select(League.all.map{|f| [f.name, f.id]})) %>
+
+  <%= f.submit %>
+<% end %>
