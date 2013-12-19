@@ -1,7 +1,7 @@
 kind = Kind.find_or_create_by(name: 'Customer')
 badge = Badge.create({ 
                       :name => 'No Customers', 
-                      :points => '1',
+                      :points => '0',
                       :kind_id  => kind.id,
                       :default => 'false'
                     })

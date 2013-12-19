@@ -37,10 +37,6 @@ class LeaguesController < ApplicationController
     store = Store.find_by_user_id(current_user.id)
     store.league_id = params[:league_id]
     store.save
-      if store.save
-        league_order_points
-        league_customer_points
-      end
     redirect_to root_path
     else
     flash[:alert] = "Invalid PIN"
@@ -70,14 +66,7 @@ class LeaguesController < ApplicationController
 
   private
 
-    def league_order_points
-      Store.find_by_user_id(current_user.id).change_points({points:1, kind:2})
-    end
-
-    def league_customer_points
-      Store.find_by_user_id(current_user.id).change_points({points:1, kind:1})
-    end
-
+   
   def league_params
     params.require(:league).permit(:name, :school, :start_date, :end_date, :pin)
   end

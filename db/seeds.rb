@@ -36,12 +36,14 @@ require "#{Rails.root}/db/gioco/db.rb"
 # 	point.update_attributes(created_at: createddate)
 # end
 
-BadgeAsset.create(url: 'nosales.png', description: "Go sell some stuff", badge_id: 7)
-BadgeAsset.create(url: 'nocustomer.png', description: "Go find some customers!", badge_id: 1)
-BadgeAsset.create(url: 'salesintern.png', description: "Keep up the hustle!", badge_id: 10)
-BadgeAsset.create(url: 'salesmanager.png', description: "You're making money, now make more!", badge_id: 11)
-BadgeAsset.create(url: 'vpofsales.png', description: "Executive status... Keep up the hustle!", badge_id: 12)
-BadgeAsset.create(url: 'ceo.png', description: "You've achieved the corner office! Congratulations.", badge_id: 13)
-BadgeAsset.create(url: 'sunny.png', description: "Take to the Skies!", badge_id:14)
-BadgeAsset.create(url: 'ceo.png', description: "Skyscraper Time!", badge_id:15)
-
+BadgeAsset.create(url: 'salesintern.png', description: "Keep up the hustle!", badge_id: 6)
+BadgeAsset.create(url: 'salesmanager.png', description: "You're making money, now make more!", badge_id: 7)
+BadgeAsset.create(url: 'vpofsales.png', description: "Executive status... Keep up the hustle!", badge_id: 8)
+BadgeAsset.create(url: 'ceo.png', description: "You've achieved the corner office! Congratulations.", badge_id: 9)
+BadgeAsset.create(url: 'sunny.png', description: "Take to the Skies!", badge_id:10)
+BadgeAsset.create(url: 'newoffice.png', description: "Skyscraper Time!", badge_id:11)
+BadgeAsset.create(url: 'fivecustomers.png', description: "Skyscraper Time!", badge_id:2)
+BadgeAsset.create(url: 'tencustomers.png', description: "Skyscraper Time!", badge_id:3)
+BadgeAsset.create(url: 'fifteencustomers.png', description: "Skyscraper Time!", badge_id:4)
+BadgeAsset.create(url: 'firstcustomer.png', description: "Skyscraper Time!", badge_id:1)
+BadgeAsset.create(url: 'firstsale.png', description: "Skyscraper Time!", badge_id:5)

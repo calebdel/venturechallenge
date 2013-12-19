@@ -7,7 +7,7 @@
     </br>
     </br>
         <% @store.badges.each do |b| %>
-        <li><%= image_tag(BadgAsset.where("badge_id = #{b.id}").pluck(:url).join) %><h6><%=b.name %></br><%=b.points %> Points</h6></li>
+        <li><%= image_tag(BadgeAsset.where("badge_id = #{b.id}").pluck(:url).join) %><h6><%=b.name %></br><%=b.points %> Points</h6></li>
         <% end %>
 
       </ul>
@@ -21,9 +21,9 @@
   </div>
 
   <div class="panel">
-    <h3><strong>Current Points</strong></h3>
-    <strong>Total Sales: $</strong> <%= Order.where("store_id = #{@store.id}").pluck(:subtotal_price).sum(:value) %></br>
-    <strong>Customer Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 1").sum(:value) %></br>
+    <h3><strong>Store Sats</strong></h3>
+    <strong>Total Sales: $</strong> <%= Order.where("store_id = #{@store.id}").pluck(:subtotal_price).sum(:value)  %>
+    <strong>Total Customers:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 1").sum(:value) %></br>
   </div>
 </div>
       
