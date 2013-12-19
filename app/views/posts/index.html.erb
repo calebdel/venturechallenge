@@ -1,0 +1,21 @@
+<h2>All Resources</h2>
+
+<% if session[:linkedin] %>
+  <%= link_to "Add a New Resource", new_post_path %>
+<% end %>
+
+<% @posts.each do |post| %>
+  <hr>
+  <h4><%= link_to post.title, post_path(post.id) %></h4>
+  <%= post.content[0..100] %>...
+  <%= post.created_at.to_s(:long) %>
+  </br>
+  </br>
+
+  <% if session[:linkedin] %>  
+    <%= link_to "Edit", edit_post_path(post.id) %> | 
+    <%= link_to "Delete", @posts.find(post.id), method: :delete, data: {confirm: 'Are you sure?'} %>
+  <% end %>
+
+<% end %>
+<hr>
