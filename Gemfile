@@ -29,6 +29,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'pry'
 gem 'chart-js-rails'
 gem 'gon'
+gem 'tinymce-rails'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

@@ -1,3 +1,5 @@
+<%= tinymce_assets %>
+
 <%= link_to "< Back to Resources", posts_url %>
 
 <h1>New Post</h1>
@@ -6,8 +8,12 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.label :content %>
-  <%= f.text_field :content %>
+  <%= f.text_area :content, :class => "tinymce", :id => "message_area" %>
+  </br>
+  <%= f.label "League" %>
   <%= f.select(:league_id, options_for_select(League.all.map{|f| [f.name, f.id]})) %>
 
   <%= f.submit %>
 <% end %>
+
+<%= tinymce %>

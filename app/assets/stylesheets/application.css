@@ -114,3 +114,7 @@ body {
   height:300px;
   width:200px;
 }
+
+#message_area {
+  min-height: 500px;
+}
