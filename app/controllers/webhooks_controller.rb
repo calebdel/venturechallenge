@@ -26,6 +26,7 @@ class WebhooksController < ApplicationController
         @order.shopify_id = neworder.id
         @order.save
         order_points(neworder.subtotal_price.to_f)
+        referral_challenge
         customer = Customer.find_or_create_by_email(data["email"].to_s, league_id: @s.league_id, orders_count: 0, total_spent: 0)
         customer.orders_count += 1
         customer.total_spent += neworder.subtotal_price.to_f
@@ -49,7 +50,6 @@ class WebhooksController < ApplicationController
           @customer.save
           customer_points(10)
         end
-      end
       head :ok
     end
 
@@ -71,12 +71,22 @@ class WebhooksController < ApplicationController
       ShopifyAPI::Base.activate_session(session)
     end
 
+    # Adds "Order" points equal to subtotal_price to store when new_order webhook is created 
     def order_points(total)
       Store.find_by_user_id(@u.id).change_points({points:total, kind:2})
     end
 
+    # Adds 10 "Customer" points to store when new_customer webhook is created 
     def customer_points(pts)
       Store.find_by_user_id(@u.id).change_points({points:pts, kind:1})
     end
+
+    # Adds 2 "Facebook" points to store when new_order referring_site is equal to facebook 
+    def referral_challenge
+      if @order.referring_site.include? "facebook"
+      Store.find_by_user_id(@u.id).change_points({points:10, kind:3})
+      end
+    end
+
 
 end
