@@ -9,7 +9,6 @@
         <% @store.badges.each do |b| %>
         <li><%= image_tag(BadgeAsset.where("badge_id = #{b.id}").pluck(:url).join) %><h6><%=b.name %></br><%=b.points %> Points</h6></li>
         <% end %>
-
       </ul>
     </div>  
   </div>
