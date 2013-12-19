@@ -26,11 +26,11 @@ class WebhooksController < ApplicationController
         @order.shopify_id = neworder.id
         @order.save
         order_points(neworder.subtotal_price.to_f)
-      end
       customer = Customer.find_or_create_by_email(data["email"].to_s, league_id: @s.league_id, orders_count: 0, total_spent: 0)
       customer.orders_count += 1
       customer.total_spent += neworder.subtotal_price.to_f
       customer.save
+      
       head :ok
     end
 
