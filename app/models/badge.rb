@@ -3,7 +3,7 @@ belongs_to :kind
 has_many :stores , :through => :levels 
 has_many :levels  , :dependent => :destroy
 validates :name, :presence => true
-has_one :asset
+has_one :badgeasset
 
 def add(resource_id)
   resource = Gioco::Core.get_resource(resource_id)

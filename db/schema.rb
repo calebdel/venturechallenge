@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218215120) do
+ActiveRecord::Schema.define(version: 20131219002125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "assets", force: true do |t|
+  create_table "badgeassets", force: true do |t|
     t.string   "url"
     t.string   "description"
     t.datetime "created_at"
