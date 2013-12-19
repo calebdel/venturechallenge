@@ -95,12 +95,6 @@ body {
   opacity: 0.5;
 }
 
-.small-block-grid-3 > li {
-  margin-bottom: 40px;
-
-
-  opacity: 0.7;
-}
 
 #hamburger {
   z-index: 9999;
