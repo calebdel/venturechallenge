@@ -7,7 +7,7 @@
 
 <h1><%= @post.title %></h1>
 <hr>
-<%= @post.content %>
+<%=raw @post.content %>
 </br>
 <hr>
 League: <%= League.find(@post.league_id).name %></br>
