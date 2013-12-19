@@ -123,10 +123,4 @@ class HomeController < ApplicationController
 
   end
 
-  def initialize_barchart 
-    #initialize array data
-    gon.bardata = []
-    gon.bardata << gon.data.pluck("name")
-  end
-
 end

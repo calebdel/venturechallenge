@@ -1,9 +1,10 @@
+
 <div class = "leaderboard">
     <% if session[:linkedin] %>
         <% if @admin_leagues.count > 1 %>
         <!-- admin-view league select -->
             <%= form_tag do %>
-                <%= select_tag(:league, options_for_select(@admin_leagues.collect {|a| [a.name, a.id]},params[:league])) %>
+                <%= select_tag(:league, options_for_select(@admin_leagues.collect {|a| [a.name, a.id]},params[:leage])) %>
                 <%= submit_tag %>
             <% end %>
         <% end  %>
@@ -46,7 +47,7 @@
     End: <%= @league.end_date.to_s(:long) %></br>
     <%= link_to "Leave league", quit_league_path %>
 </div>
-
+<% if @orders.count > 0  %>
 <div class = "linechart">
     <h4> Points Over Time</h4>
     <canvas id="LineChart" width="800" height="300"></canvas>
@@ -56,4 +57,10 @@
     <h4> Total Points Per Store </h4>
     <canvas id="BarChart" width="800" height="600"></canvas>
 </div>
+<% else %>
+<br/>
+<br/>
+<br/>
+<h4>Not enough data for Charting</h4>
+<% end†ind %>
 
