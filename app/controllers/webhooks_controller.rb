@@ -37,16 +37,15 @@ class WebhooksController < ApplicationController
 
     def customers_new
       data = ActiveSupport::JSON.decode(request.body.read)
-      unless out_of_dates 
-        newcustomer = ShopifyAPI::Customer.find(data["id"].to_s)
-        if @customer = Customer.find_by_email(data["email"].to_s)
+      newcustomer = ShopifyAPI::Customer.find(data["id"].to_s)
+      unless Customer.find_by_email(data["email"].to_s) || out_of_dates 
+        @customer = Customer.new
           @customer.orders_count = newcustomer.orders_count
           @customer.total_spent = newcustomer.total_spent
-        else
-          @customer = Customer.new
-          @customer.city = newcustomer.address.city
+          @customer.city = newcustomer.default_address.city
           @customer.accepts_marketing = newcustomer.accepts_marketing
-          @customer.customer_id = @u.id
+          @customer.customer_id = newcustomer.id
+          @customer.store_id = @s.id
           @customer.save
           customer_points(10)
         end
