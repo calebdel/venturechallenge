@@ -5,6 +5,7 @@ Venturechallenge::Application.routes.draw do
   get 'welcome' => 'home#welcome'
   get 'adminpanel' => 'home#admin'
   get 'leaderboards' => 'home#leaderboards'
+  post 'leaderboards' => 'home#leaderboards'
 
   get 'logout' => 'sessions#destroy'
   post 'assign_league' => 'leagues#assign_league'

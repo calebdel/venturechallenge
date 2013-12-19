@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def index
     redirect_to after_sign_in_path 
-   end
+  end
 
   def admin
     @leagues = League.where("admin_id = '#{current_user.id}'")
@@ -16,7 +16,12 @@ class HomeController < ApplicationController
       redirect_to leagues_path unless current_store.league_id
       @league = League.find(current_store.league_id)
     elsif session[:linkedin]
-      @league = League.find_by(admin_id: current_user.id)
+      @admin_leagues = League.where("admin_id = #{current_user.id}")
+      if params[:league]
+        @league = League.find(params[:league])
+      else  
+        @league = League.find_by(admin_id: current_user.id)
+      end
     end
 
     
