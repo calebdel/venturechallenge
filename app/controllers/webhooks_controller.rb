@@ -84,7 +84,13 @@ class WebhooksController < ApplicationController
     # Adds 2 "Facebook" points to store when new_order referring_site is equal to facebook 
     def referral_challenge
       if @order.referring_site.include? "facebook"
-      Store.find_by_user_id(@u.id).change_points({points:10, kind:3})
+      Store.find_by_user_id(@u.id).change_points({points:2, kind:3})
+      elsif @order.referring_site.include? "twitter"
+        Store.find_by_user_id(@u.id).change_points({points:2, kind:4})
+      elsif @order.referring_site.include? "pinterest"
+        Store.find_by_user_id(@u.id).change_points({points:2, kind:5})
+      else
+        return nil
       end
     end
 
