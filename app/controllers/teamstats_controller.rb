@@ -18,16 +18,23 @@ class TeamstatsController < ApplicationController
 
 def rankings
 
-  p = Point.where("store_id = #{@store.id}").pluck(:value).sum(:value)
+    if Point.pluck(:value) == []
+      @rank === 0
+    else
+    p = Point.where("store_id = #{@store.id}").pluck(:value).sum(:value)
 
-  array = []
-  Store.all.each do |s|
-    array << Point.where("store_id = #{s.id}").pluck(:value).sum(:value)
-  end
+    array = []
+      Store.all.each do |s|
+        points = Point.where("store_id = #{s.id}").pluck(:value).sum(:value)
+        array << points 
+        end
+      
+    
+    r = Hash[array.map.with_index.to_a]
+    @rank = "#{r[p] + 1} out of #{Store.count}"
+    end
   
-  r = Hash[array.map.with_index.to_a]
-  @rank = r[p] + 1 
+  end
 
-end
 
 end
