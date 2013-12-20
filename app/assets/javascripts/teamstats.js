@@ -1,4 +1,4 @@
-var ctx = document.getElementById("DonutChart").getContext("2d");
+var ctxOne = document.getElementById("DonutChart").getContext("2d");
 
 
 var donutData = [
@@ -29,6 +29,6 @@ var donutData = [
 
 ];
 
-var myNewChart = new Chart(ctx).Doughnut(donutData);
+var myNewChart = new Chart(ctxOne).Doughnut(donutData);
 
 

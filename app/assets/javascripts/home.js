@@ -68,7 +68,7 @@ var pointsChart = {
 
 var myNewChart = new Chart(ctx).Line(pointsChart);
 
-var ctx = document.getElementById("BarChart").getContext("2d");
+var ctxTwo = document.getElementById("BarChart").getContext("2d");
 
 // push each store's data (as an array) into the data array for all stores.
 
@@ -105,5 +105,5 @@ var barOptions = {
   scaleStartValue:0
 };
 
-var myNewChart = new Chart(ctx).Bar(barChart);
+var myNewChart = new Chart(ctxTwo).Bar(barChart);
 
