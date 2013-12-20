@@ -1,7 +1,5 @@
 <h1> Your Leagues </h1>
 
-<%= link_to "Add League", new_league_path, { :class=>"button" } %>
-
 <% if @leagues %>
 	<table>
 		<tr>
@@ -23,9 +21,9 @@
 						Complete
 					<% end  %>
 			<td><%= link_to "Edit", edit_league_path(league.id) %></td>
-
 		</tr>
 	<% end  %>
+		<td></td>
 	</table>
 <% end  %>
 

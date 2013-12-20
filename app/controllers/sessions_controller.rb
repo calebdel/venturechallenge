@@ -20,7 +20,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:shopify] = nil
     session[:linkedin] = nil
-    flash[:notice] = "Successfully logged out."
     redirect_to root_url
   end
 
@@ -59,6 +58,7 @@ class SessionsController < ApplicationController
     name += '.myshopify.com' if !name.include?("myshopify.com") && !name.include?(".")
     name = name.sub('https://', '').sub('http://', '')
     u = URI("http://#{name}")
+    return false if u.host == nil
     u.host.ends_with?("myshopify.com") ? u.host : nil
   end
 
