@@ -40,7 +40,7 @@ class HomeController < ApplicationController
         @yesterdaypointswinner = User.find(store.user_id).name
       end
 
-      ptswk = store.points.where(created_at: (Time.now.midnight - 7.day)..Time.now.midnight).map(&:value).sum
+      ptswk = store.points.where(created_at: (Time.now - 7.day)..Time.now).map(&:value).sum
       if ptswk > @pointsthisweek
         @pointsthisweek = ptswk
         @thisweekpointswinner = User.find(store.user_id).name
