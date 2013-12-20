@@ -106,3 +106,4 @@ var barOptions = {
 };
 
 var myNewChart = new Chart(ctx).Bar(barChart);
+

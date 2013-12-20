@@ -1,17 +1,28 @@
 class HomeController < ApplicationController
 
+  # at all points inside the app, ensure the user is logged in
+  # redirect to the login screen if not
+
   before_filter :ensure_logged_in
+
+  #index is a triage that sends user to either the admin or student section depending on session params
 
   def index
     redirect_to after_sign_in_path 
   end
 
+  #admin is the admin control panel, which lists all leagues owned by the admin user
+
   def admin
     @leagues = League.where("admin_id = '#{current_user.id}'")
   end
 
+  #leaderboards is the default view for students
+  # in admin view, user can select which league to view via dropdown
+
   def leaderboards
-    # get all stores in current league
+    # first determine if user is admin or student
+    # populate @league and @amind_leagues as necessary
     if session[:shopify]
       redirect_to leagues_path unless current_store.league_id
       @league = League.find(current_store.league_id)
@@ -24,13 +35,20 @@ class HomeController < ApplicationController
       end
     end
     
+    # populate array of stores(teams) in current league
 
     @stores = Store.where("league_id = #{@league.id}")
     @stores.sort!{ |a,b| Point.where("store_id = #{a.id}").sum(:value) <=> Point.where("store_id = #{b.id}").sum(:value) }.reverse!
     
+
+    # the gon. variables are used to pass data to javascript for charts
+    gon.numberofTeams = @stores.count
+
+    # populate array of orders for the current league
+
     @orders = @league.orders
 
-    #figure out daily and weekly winners, this should probably be a delay job
+    #figure out daily and weekly winners, [this should probably be a delay job]
     @pointsyesterday = 0
     @pointsthisweek = 0
     @stores.each do |store|
@@ -45,16 +63,17 @@ class HomeController < ApplicationController
         @pointsthisweek = ptswk
         @thisweekpointswinner = User.find(store.user_id).name
       end
-      
     end
 
-
-    gon.numberofTeams = @stores.count
-
+    #returns a string with the amount of time remaining in the league
     league_countdown 
 
+
+    # draws charts as long as there is adequate data to do so
     initialize_pointschart unless @orders.count == 0 
   end
+
+  #triages users to the appropriate login
 
   def after_sign_in_path
      if session[:shopify]
@@ -65,8 +84,9 @@ class HomeController < ApplicationController
      end
   end
 
-  def league_countdown
+  #creates a string with the time remainnig in the league, or returns game over
 
+  def league_countdown
     return @countdown = "Game Over!" if Time.now > @league.end_date
 
     t = @league.end_date - Time.now
@@ -77,6 +97,8 @@ class HomeController < ApplicationController
     @countdown = "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
   end
 
+  #used for testing badge alerts
+
   def fakebadges
     flash[:badges] = [1,2,3,4,5,6,7,8,10,11]
     redirect_to leaderboards_path
@@ -84,6 +106,8 @@ class HomeController < ApplicationController
 
   
   private
+
+  # sets up data for charts and assigns .gon variables to be passed to js
 
   def initialize_pointschart
 
@@ -101,8 +125,8 @@ class HomeController < ApplicationController
       timechunks = timerange / 86400
       timechunks = timechunks.to_i
     end
-    # setup time range 
     
+    # setup time range 
     timeinterval = (timerange / timechunks) + 60
     chartlabelarray = [@league.start_date]
     
@@ -116,8 +140,10 @@ class HomeController < ApplicationController
     #initialize array data
     gon.data = []
 
+    #scales the opacity of the colored fills depending on the number of players
     opac = 1/(@stores.count).to_f
 
+    #
     @stores.each do |store|
       aggregatepoints = [0]
       i = 1

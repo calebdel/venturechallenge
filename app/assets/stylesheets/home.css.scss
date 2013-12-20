@@ -1,46 +1,7 @@
-/* Leaderboard Top */
-
-.leaderboard {
-	margin-bottom: 3em;
-}
-
-#leaderline {
-  margin-bottom: 0;
-}
-
-#standings td {
-	line-height: 35px; 
-  text-align: center;
-}
-
-#standings td:first-child {
-  line-height: 35px;
-  width: 35px; 
-}
-
-.leaguestats {
-	margin-bottom: 3em;
-}
-
-.linechart {
-	margin-bottom: 3em;
-}
-
-.barchart {
-	text-align:center;
-	margin-bottom: 3em;
-}
+/* Global Leaderboard Page Styling */
 
 .row {
   padding: 20px;
-}
-
-#leaderboard {
-  margin-top: -20px;
-}
-
-#leaderboard h1 {
-  margin-bottom: -20px;
 }
 
 .row .row {
@@ -53,27 +14,116 @@
   margin: 0 auto;
 }
 
-#table_title {
+
+/* Leaderboard Top */
+
+.leaderboard {
+  display: block;
+	margin: 0 auto 3em auto;
+}
+
+#leaderline {
   margin-bottom: 0;
-  width: 1200px;
+}
+
+#leaderboard {
+  margin-top: -20px;
+}
+
+#leaderboard h1 {
+  margin-bottom: -20px;
+}
+
+/* Standings Table */
+
+#standings td {
+	line-height: 35px; 
+  text-align: center;
+}
+
+#standings td:first-child {
+  line-height: 35px;
+  width: 35px; 
+}
+
+#standings {
+  border: 3px solid #C3453C;
+  border-top: none;
+  margin: 0 auto;
+}
+
+.leaguestats {
+	margin-bottom: 3em;
+}
+
+#table_title {
+  margin: 0 auto;
+  padding: 2px 0 2px 0;
+  width: 1150px;
   color: white;
   background-color: lighten(#C3453C, 10%);
   text-align: center;
+  font-weight: 600;
 }
+
+/* Charts */ 
+
+.linechart {
+	margin-bottom: 3em;
+}
+
+.barchart {
+	text-align:center;
+	margin-bottom: 3em;
+}
+
+.linetitle {
+  margin: 0 auto;
+  padding: 2px 0 2px 0;
+  width: 1150px;
+  color: white;
+  background-color: lighten(#555, 10%);
+  text-align: center;
+  font-weight: 600;
+}
+
+#LineChart {
+  border: 2px solid #555;
+  border-top: none;
+  padding: 5px;
+}
+
+.bartitle {
+  margin: 0 auto;
+  padding: 2px 0 2px 0;
+  width: 800px;
+  color: white;
+  background-color: lighten(#EFA029, 10%);
+  text-align: center;
+  font-weight: 600;
+}
+
+#BarChart {
+  border: 2px solid #EFA029;
+  border-top: none;
+}
+
+/* League Info Box */
 
 #leagueinfo {
   position: relative;
   background-color: lighten(#2298DA, 20%);
+  margin-bottom: 10px;
 }
 
 #leagueinfo h2, h6 {
-  padding-left: 20px;
+  padding-left: 25px;
 }
 
 #leagueinfo h2 {
   color: white;
-  font-weight: 100;
-  padding-top: 10px;
+  font-weight: 600;
+  padding-top: 15px;
 }
 
 #leagueinfo h6 {
@@ -81,13 +131,18 @@
 }
 
 #infobutton {
-  font-family: "Open Sans";
   margin: 10px 0 0 0;
   padding: 10px 0 10px 0;
 }
 
 #infobutton a {
   font-weight: 100;
+  -webkit-transition: background-color 300ms ease-out;
+}
+
+#infobutton:hover {
+  background-color: darken(#2298DA, 10%); 
+  -webkit-transition: background-color 300ms ease-out;
 }
 
 #leagueinfo a {
@@ -103,4 +158,39 @@
   color: white;
   top: 6%;
   right: 5%;
+}
+
+/* League Stats */
+
+.leaguestats table {
+  border: none;
+}
+
+.leaguestats tr:first-child h1 {
+  text-align: center;
+  margin-bottom: 6px !important;
+  color: white;
+  font-weight: 600;
+
+}
+
+.leaguestats tr:first-child {
+  background-color: lighten(#52BD4F, 25%);
+}
+
+.leaguestats tr:nth-child(2) {
+  background-color: #43B446;
+  color: white;
+  position: relative;
+}
+
+.leaguestats tr:nth-child(2) td, h5 {
+  color: white;
+}
+
+.leaguestats i {
+  position: absolute;
+  margin-left: 50px;
+  margin-top: -35px;
+  opacity: 0.7;
 }

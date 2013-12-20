@@ -1,22 +1,20 @@
 class WebhooksController < ApplicationController
+  #initialize an API connection before recieving webhook
   before_filter :connect_to_store
-  
-    # def product_new
-    #   data = ActiveSupport::JSON.decode(request.body.read)
-    #   shopify_id = data["id"]
 
-    #   Product.new_from_shopify(@s, shopify_id)
-
-    #   head :ok
-    # end
-
+    #new orders
     def order_new
 
-      #save webhook object as data
+      #f irst, save webhook object as data
       data = ActiveSupport::JSON.decode(request.body.read)
       # check if the order already exists and if it is within time range of league
-      neworder = ShopifyAPI::Order.find(data["id"].to_s)
       unless Order.find_by_shopify_id(data["id"].to_s) || out_of_dates  
+        
+        #if the webhook is new and within the league dates, retrieve it from the shopify API
+        #this is done to ensure nothing has changed between the webhook event and the event itself
+        neworder = ShopifyAPI::Order.find(data["id"].to_s) 
+
+        # then save the order
         @order = Order.new
         @order.subtotal_price = neworder.subtotal_price.to_f
         @order.referring_site = neworder.referring_site
@@ -25,9 +23,17 @@ class WebhooksController < ApplicationController
         @order.league_id = @s.league_id
         @order.shopify_id = neworder.id
         @order.save
+
+        #gioco method assigns points to the store
         order_points(neworder.subtotal_price.to_f)
+
+        #checks to see if bonus points are due from challenge
         referral_challenge
+
+        #creates the customer if they are new (for customers without shopify accounts)
         customer = Customer.find_or_create_by_email(data["email"].to_s, league_id: @s.league_id, orders_count: 0, total_spent: 0)
+        
+        #increases the total amount and order counters 
         customer.orders_count += 1
         customer.total_spent += neworder.subtotal_price.to_f
         customer.save
@@ -36,6 +42,7 @@ class WebhooksController < ApplicationController
       head :ok
     end
 
+    #webhook for customers which do register shopify accounts
     def customers_new
       data = ActiveSupport::JSON.decode(request.body.read)
       newcustomer = ShopifyAPI::Customer.find(data["id"].to_s)
@@ -57,8 +64,7 @@ class WebhooksController < ApplicationController
 
     def out_of_dates
       return true unless @s.league #if the store is not assigned to a league return true
-      timenow = Time.now
-      timenow < @s.league.start_date || timenow > @s.league.end_date
+      Time.now < @s.league.start_date || Time.now > @s.league.end_date
     end
 
 
