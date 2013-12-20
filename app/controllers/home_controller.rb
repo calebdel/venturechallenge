@@ -23,14 +23,10 @@ class HomeController < ApplicationController
         @league = League.find_by(admin_id: current_user.id)
       end
     end
-
     
 
     @stores = Store.where("league_id = #{@league.id}")
-    @stores.each do |store|
-      store.total_orders = Order.where("store_id = #{store.id}").sum(:subtotal_price)
-    end
-    @stores.sort!{ |a,b| a.total_orders <=> b.total_orders }.reverse!
+    @stores.sort!{ |a,b| Point.where("store_id = #{a.id}").sum(:value) <=> Point.where("store_id = #{b.id}").sum(:value) }.reverse!
     
     @orders = @league.orders
     @points = Point.all
@@ -71,12 +67,19 @@ class HomeController < ApplicationController
     # array for colors
     gon.color = [] 
 
-    #set number of time chunks
-    timechunks = 10
-
-    # setup time range 
+    # determine time range of game
     oldestordertime = @orders.maximum("created_at")
     timerange = oldestordertime - @league.start_date
+
+    #set number of time chunks
+    if timerange > (864000*13)
+      timechunks = 13
+    else
+      timechunks = timerange / 86400
+      timechunks = timechunks.to_i
+    end
+    # setup time range 
+    
     timeinterval = (timerange / timechunks) + 60
     chartlabelarray = [@league.start_date]
     
