@@ -30,7 +30,7 @@
 
   <div class="panel">
     <h3><strong>Store Stats</strong></h3>
-    <strong>Total Sales: $</strong> <%= Order.where("store_id = #{@store.id}").pluck(:subtotal_price).sum(:value) %>
+    <strong>Total Sales: $</strong> <%= Order.where("store_id = #{@store.id}").pluck(:subtotal_price).sum(:value) %></br>
     <strong>Total Customers:</strong> <%= Customer.where("store_id = #{@store.id}").count %></br>
 
   </div>

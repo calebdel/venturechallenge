@@ -26,7 +26,7 @@ def rankings
   end
   
   r = Hash[array.map.with_index.to_a]
-  @rank = r[p] + 1 unless r.all
+  @rank = r[p] + 1 
 
 end
 
