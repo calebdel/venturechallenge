@@ -63,7 +63,6 @@ class TeamstatsController < ApplicationController
     array.sort! { |x,y| y <=> x }
     r = Hash[array.each_with_index.map { |value, index| [index, value] }]
     @rank = "#{r.index(p) + 1} out of #{Store.count}"
-    binding.pry
     end
   end
 
