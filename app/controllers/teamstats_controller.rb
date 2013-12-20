@@ -46,11 +46,10 @@ class TeamstatsController < ApplicationController
     league = League.find(current_store.league_id)
     stores = Store.where("league_id = #{league.id}")
 
-    if Point.pluck(:value) == []
-      @rank === 0
+    if Point.pluck(:value).inject{|sum,x| sum + x } == 0
+      @rank = 0
     else
     p = Point.where("store_id = #{@store.id}" ).pluck(:value).sum(:value)
-     # setup alert
  
     array = []
       stores.all.each do |s|
