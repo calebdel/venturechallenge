@@ -5,8 +5,18 @@
                 <% if @admin_leagues.count > 1 %>
                 <!-- admin-view league select -->
                     <%= form_tag do %>
-                        <%= select_tag(:league, options_for_select(@admin_leagues.collect {|a| [a.name, a.id]},params[:league])) %>
-                        <%= submit_tag %>
+                    <div class = "row">
+                    <div class = "large-7 large-centered columns">
+                        <div class="row collapse">
+                            <div class="small-10 columns">
+                                <%= select_tag(:league, options_for_select(@admin_leagues.collect {|a| [a.name, a.id]},params[:league])) %>
+                            </div>
+                            <div class="small-2 columns">
+                                <%= submit_tag "Go", {class: "button postfix"} %>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                     <% end %>
                 <% end  %>
             <% end %>

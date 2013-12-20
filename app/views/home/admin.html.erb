@@ -1,30 +1,45 @@
-<h1> Your Leagues </h1>
+<div class = "large-9 large-centered small-12 columns">
+	<h1> Your Leagues </h1>
 
-<% if @leagues %>
-	<table>
-		<tr>
-			<td>Name</td>
-			<td>School</td>
-			<td>Start</td>
-			<td>End</td>
-			<td>Status</td>
-		</tr>
-	<% @leagues.each do |league| %>
-		<tr>
-			<td><%= link_to league.name, "/leaderboards?league=#{league.id}" %></td>
-			<td><%= league.school %></td>
-			<td><%= time_tag league.start_date %></td>
-			<td><%= time_tag league.end_date %></td>
-			<td><% if Time.now < league.end_date %>
-						<%= distance_of_time_in_words(Time.now, league.end_date) %> Remaining
-					<% else %>
-						Complete
-					<% end  %>
-			<td><%= link_to "Edit", edit_league_path(league.id) %></td>
-		</tr>
+	<h6>Create, Edit or Delete your leagues</h6>
+	<br/>
+
+	<% if @leagues %>
+		<table>
+			<tr>
+				<td></td>
+				<td>Name</td>
+				<td>School</td>
+				<td>Start</td>
+				<td>End</td>
+				<td>Status</td>
+				<td>Teams</td>
+			</tr>
+		<% @leagues.each do |league| %>
+			<tr>
+				<td><%= link_to "Edit", edit_league_path(league.id) %></td>
+				<td><%= link_to league.name, "/leaderboards?league=#{league.id}" %></td>
+				<td><%= league.school %></td>
+				<td><%= time_tag league.start_date %></td>
+				<td><%= time_tag league.end_date %></td>
+				<td><% if Time.now < league.end_date %>
+							<%= distance_of_time_in_words(Time.now, league.end_date) %> Remaining
+						<% else %>
+							Complete
+						<% end  %></td>
+				<td align="center"><%= Store.where("league_id = #{league.id}").count %></td>
+			</tr>
+		<% end  %>
+			<td align="center"><a href="<%= new_league_path %>">
+	        <i class="fa fa-plus-square-o fa-lg"></i>
+	        </a>
+	    </td>
+			<td><a href="<%= new_league_path %>">
+	        <span class="menu_a"> Add New League</span>
+	        </a>
+	     </td>
+		</table>
 	<% end  %>
-		<td></td>
-	</table>
-<% end  %>
+</div>
 
 
