@@ -1,4 +1,7 @@
-<h1> Admin panel </h1>
+<h1> Your Leagues </h1>
+
+<%= link_to "Add League", new_league_path, { :class=>"button" } %>
+
 <% if @leagues %>
 	<table>
 		<tr>
@@ -6,15 +9,24 @@
 			<td>School</td>
 			<td>Start</td>
 			<td>End</td>
+			<td>Status</td>
 		</tr>
 	<% @leagues.each do |league| %>
 		<tr>
-			<td><%= link_to league.name, league_path(league.id) %></td>
+			<td><%= link_to league.name, "/leaderboards?league=#{league.id}" %></td>
 			<td><%= league.school %></td>
-			<td><%= league.start_date %></td>
-			<td><%= league.end_date %></td>
+			<td><%= time_tag league.start_date %></td>
+			<td><%= time_tag league.end_date %></td>
+			<td><% if Time.now < league.end_date %>
+						<%= distance_of_time_in_words(Time.now, league.end_date) %> Remaining
+					<% else %>
+						Complete
+					<% end  %>
+			<td><%= link_to "Edit", edit_league_path(league.id) %></td>
+
 		</tr>
 	<% end  %>
 	</table>
 <% end  %>
-<%= link_to "Add League", new_league_path %>
+
+
