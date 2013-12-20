@@ -1,51 +1,84 @@
-<div class = "leaderboard">
-    <% if session[:linkedin] %>
-        <% if @admin_leagues.count > 1 %>
-        <!-- admin-view league select -->
-            <%= form_tag do %>
-                <%= select_tag(:league, options_for_select(@admin_leagues.collect {|a| [a.name, a.id]},params[:league])) %>
-                <%= submit_tag %>
-            <% end %>
-        <% end  %>
-    <% end %>
-
-    <h3> Current Standings </h3>
-    <table>
-      <tr>
-        <th>Color</th>
-        <th>Store</th>
-        <th>Total Orders</th>
-        <th>Number of Orders</th>
-        <th>Number of Customers</th>
-        <th>Points</th>
-        <th>Badges</th>
-      </tr>
-        <% @stores.each do |store| %>
-        	<tr>
-            <td class = "store<%= store.id %>"></td>
-            <td><%= User.find(store.user_id).name %></td>
-            <td><%= number_to_currency(Order.where("store_id = #{store.id}").sum(:subtotal_price)) %></td>
-            <td><%= Order.where("store_id = #{store.id}").count %></td>
-            <td><%= Customer.where("store_id = #{store.id}").count %></td>
-            <td><%= Point.where("store_id = #{store.id}").sum(:value) %></td>
-            <td><% store.badges.reverse[0..4].each do |badge| %>
-                    <% if badge.badge_asset %>
-                        <%= image_tag badge.badge_asset.url, size: "30x30" %>
+<div class ="row">
+    <div  class = "large-12 large-centered columns">
+        <div class = "leaderboard">
+            <% if session[:linkedin] %>
+                <% if @admin_leagues.count > 1 %>
+                <!-- admin-view league select -->
+                    <%= form_tag do %>
+                        <%= select_tag(:league, options_for_select(@admin_leagues.collect {|a| [a.name, a.id]},params[:leage])) %>
+                        <%= submit_tag %>
                     <% end %>
+                <% end  %>
+            <% end %>
+
+            <h2> Current Standings </h2>
+            <table width="1200px">
+              <tr>
+                <th>Color</th>
+                <th>Store</th>
+                <th>Total Orders</th>
+                <th>Number of Orders</th>
+                <th>Number of Customers</th>
+                <th>Points</th>
+                <th>Badges</th>
+              </tr>
+                <% @stores.each do |store| %>
+                	<tr>
+                    <td class = "store<%= store.id %>"></td>
+                    <td><%= User.find(store.user_id).name %></td>
+                    <td><%= number_to_currency(Order.where("store_id = #{store.id}").sum(:subtotal_price)) %></td>
+                    <td><%= Order.where("store_id = #{store.id}").count %></td>
+                    <td><%= Customer.where("store_id = #{store.id}").count %></td>
+                    <td><%= Point.where("store_id = #{store.id}").sum(:value) %></td>
+                    <td><% store.badges.reverse[0..4].each do |badge| %>
+                            <% if badge.badge_asset %>
+                                <%= image_tag badge.badge_asset.url, size: "30x30" %>
+                            <% end %>
+                        <% end %>
+                    </td>
+                    </tr>
                 <% end %>
-            </td>
-            </tr>
-        <% end %>
-    </table>
+            </table>
+        </div>
+    </div>
+</div>
+<div class = "row">
+    <div class = "large-6 columns">
+        <div class="leaguestats">
+            <h2><%= @league.name %> VChallenge League</h2>
+            <h6><%= @countdown %> Remaining.</h6>
+            <h6>Start: <%= @league.start_date.to_s(:long) %></h6>
+            <h6>End: <%= @league.end_date.to_s(:long) %></h6>
+            <h6><%= link_to "Leave league", quit_league_path %></h6>
+        </div>
+    </div>
+    <div class = "large-6 columns">
+        <div class="leaguestats">
+            <table width = "530px" >
+                <tr>
+                    <td>
+                        <h1><%= @pointsyesterday %></h1>
+                    </td>
+                    <td>
+                        <h1>3,875</h1>
+                    </td>
+                </tr>
+                    <td>
+                        <h4><%= @yesterdaypointswinner %></h4>
+                        Most Points Yesterday
+                    </td>
+                    <td>
+                        <h5>Tipsy McStagger's Good-Time Emporium</h5>
+                        Most Points This week
+                    </td>
+                </tr>
+            </table>            
+        </div>
+    </div>
 </div>
 
-<div class="leaguestats">
-    <h4><%= @league.name %></h4>
-    Countdown: <%= @countdown %></br>
-    Start: <%= @league.start_date.to_s(:long) %></br>
-    End: <%= @league.end_date.to_s(:long) %></br>
-    <%= link_to "Leave league", quit_league_path %>
-</div>
+
+
 <% if @orders.count > 0  %>
     <div class = "linechart">
         <h4> Points Over Time</h4>

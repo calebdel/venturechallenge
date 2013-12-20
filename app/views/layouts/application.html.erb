@@ -29,7 +29,7 @@
 
     <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-        <li class="name"><label><i class="fa fa-smile-o fa-5x"></i><%= link_to current_user.name, "#" %></label></li>
+        <li class="name"><label> <%= image_tag Badge.find(Random.rand(10)+1).badge_asset.url, size: "80x38" %><%= link_to current_user.name, teamstats_path %></label></li>
         <li id="logout"><%= link_to "Logout", logout_path, :target => '_self' %></li>
         <% if session[:shopify] %>
         <li><label class="vc-title">Venture Challenge - Student</label></li>
@@ -125,22 +125,21 @@
           <% end %>
           
           <div class = "row">
-          </br>
-          <% if flash[:notice] %>
-            <p data-alert id="notice" class="alert-box radius">
-              <%= flash[:notice] %>
-              <a href="#" class="close">&times;</a>
+            </br>
+            <% if flash[:notice] %>
+              <p data-alert id="notice" class="alert-box radius">
+                <%= flash[:notice] %>
+                <a href="#" class="close">&times;</a>
+              </p>
+            <% end %>
+            <% if flash[:alert] %>
+              <p data-alert id="alert" class="alert-box warning radius">
+                <%= flash[:alert] %>
+                <a href="#" class="close">&times;</a>
             </p>
-          <% end %>
-          <% if flash[:alert] %>
-            <p data-alert id="alert" class="alert-box warning radius">
-              <%= flash[:alert] %>
-              <a href="#" class="close">&times;</a>
-          </p>
-          <% end %>
-          </br>
-          <%= yield %>
-          </div>
+            <% end %>
+            </br>
+            <%= yield %>
     </section>
 
   <a class="exit-off-canvas" id="slideout"></a>
