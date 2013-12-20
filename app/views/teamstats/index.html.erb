@@ -15,10 +15,17 @@
   </div>
 <div class="large-4 columns">
   <div class="panel">
+    <h3><strong>Current Ranking</strong></h3>
+     <h2><strong><%= @rank %></strong> out of <strong><%= Store.count %></strong></h2>
+   </div>
+
+  <div class="panel">
     <h3><strong>Current Points</strong></h3>
      <strong>Total Points:</strong><%= Point.where("store_id = #{@store.id}").pluck(:value).sum(:value) %></br>
     <strong>Sales Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 2").sum(:value) %></br>
     <strong>Customer Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 1").sum(:value) %></br>
+    
+
   </div>
 
   <div class="panel">

@@ -30,6 +30,7 @@ gem 'pry'
 gem 'chart-js-rails'
 gem 'gon'
 gem 'tinymce-rails'
+gem 'postgres_ext'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
