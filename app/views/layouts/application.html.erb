@@ -98,9 +98,10 @@
           <% if flash[:badge] %>
             <div class = "large-4 large-centered columns" id ="badgealert">
               <div data-alert class = "panel callout radius">
-                <h2>New Badges!</h2>
+                <h2>New Badge!</h2>
                 <p class="lead"><%= Badge.find(flash[:badge]).name %></p>
                 <%= image_tag BadgeAsset.find_by(badge_id: flash[:badge]).url %>
+                <p class="lead"><%= BadgeAsset.find_by(badge_id: flash[:badge]).description %></p>
                 <a href="#" class="close">&times;</a>
               </div>
             </div>
@@ -111,7 +112,6 @@
                 <h2><%= flash[:badges].count %> New Badges!</h2>
                 <% flash[:badges].each do |new_badge_id| %>
                 <p class="lead"><%= Badge.find(new_badge_id).name %></p>
-                <%= image_tag BadgeAsset.find_by(badge_id: new_badge_id).url %>
                 <% end  %>
                 <a href="#" class="close">&times;</a>
               </div>
