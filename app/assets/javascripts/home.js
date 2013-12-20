@@ -25,9 +25,17 @@ $(function(){ $(document).foundation(); });
       break;
   }
 
+//Badge Alert Click Events
+
 $('.close').click(function() {
 
   $('#badgealert').fadeOut("slow");
+
+});
+
+$('#badgealert').click(function(){ 
+
+  $('.close').click();
 
 });
 
