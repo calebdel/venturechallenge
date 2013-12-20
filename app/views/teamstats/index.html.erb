@@ -1,36 +1,36 @@
 <%= javascript_include_tag "jquery" %>
 <div class="row">
   <div class="large-12 columns">
-    <div class="large-3 small-6 columns">
+    <div class="large-4 small-6 columns">
       <div class="panel">
         <h3><strong>Current Ranking</strong></h3>
         <h4><strong><%= @rank %></strong></h4>
       </div>
     </div>
 
-    <div class="large-3 small-6 columns">
-      <div class="panel">
-        <h3><strong>Current Points</strong></h3>
-         <strong>Total Points:</strong><%= @totalpoints %></br>
-        <strong>Sales Points:</strong> <%= @salespoints %></br>
-        <strong>Customer Points:</strong> <%= @customerpoints %></br>
-      </div>
-    </div>
-
-    <div class="large-3 small-6 columns">
+    <div class="large-4 small-6 columns">
       <div class="panel">
         <h3><strong>Store Stats</strong></h3>
-        <strong>Total Sales: $</strong> <%= @totalsales %>
-        </br>
-        <strong>Total Customers:</strong> <%= @totalcustomers %>
-        </br>
+        <strong>Total Sales: $</strong> <%= @totalsales %></br>
+        <strong>Total Customers:</strong> <%= @totalcustomers %></br>
+        <strong>ARPU:</strong> <%= @arpu %></br>
+        
+
       </div>
     </div>
 
-    <div class="large-3 small-6 columns">
+    <div class="large-4 small-6 columns">
       <div class="panel">
-        <h3><strong>Point Distribution</strong></h3>
-        <canvas id="DonutChart" width="100" height="100"></canvas>
+        <h3><strong>Points</strong></h3>
+        <canvas style="float: right;" id="DonutChart" width="100" height="100"></canvas>
+        <strong>Total Points:</strong><%= @totalpoints %></br>
+        <strong>Sales Points:</strong> <%= @salespoints %></br>
+        <strong>Customer Points:</strong> <%= @customerpoints %></br>
+        <strong>Facebook Points:</strong> <%= @facebookpoints %></br>
+        <strong>Twitter Points:</strong> <%= @twitteroints %></br>
+        <strong>Pinterest Points:</strong> <%= @pinterestpoints %></br>
+        <strong>Instagram Points:</strong> <%= @instagrampoints %></br>
+        
       </div>
     </div>
 

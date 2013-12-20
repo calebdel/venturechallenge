@@ -30,3 +30,5 @@ var donutData = [
 ];
 
 var myNewChart = new Chart(ctx).Doughnut(donutData);
+
+

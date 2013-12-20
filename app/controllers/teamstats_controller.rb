@@ -3,6 +3,7 @@ class TeamstatsController < ApplicationController
   	redirect_to leagues_path unless current_store.league_id
     @store = Store.find_by_user_id(current_user.id)
     social_challenge
+    store_stats
     rankings
     current_points
     
@@ -66,11 +67,19 @@ class TeamstatsController < ApplicationController
     end
   end
 
-  def current_points
-    @totalpoints = Point.where("store_id = #{@store.id}").pluck(:value).sum(:value)
+  def store_stats
     @totalsales = Order.where("store_id = #{@store.id}").pluck(:subtotal_price).sum(:value)
     @totalcustomers = Customer.where("store_id = #{@store.id}").count
+      if @totalcustomers == 0 
+        @arpu = 0
+      else
+        @arpu = (@totalsales / @totalcustomers)
+      end
 
+  end
+
+  def current_points
+    @totalpoints = Point.where("store_id = #{@store.id}").pluck(:value).sum(:value)
     @salespoints = Point.where("store_id = #{@store.id} AND kind_id = 2").sum(:value)
     @customerpoints = Point.where("store_id = #{@store.id} AND kind_id = 1").sum(:value)
     @facebookpoints = Point.where("store_id = #{@store.id} AND kind_id = 3").sum(:value)
@@ -87,4 +96,6 @@ class TeamstatsController < ApplicationController
 
 
   end
+
+
 end
