@@ -25,6 +25,12 @@ $(function(){ $(document).foundation(); });
       break;
   }
 
+$('.close').click(function() {
+
+  $('#badgealert').fadeOut("slow");
+
+});
+
 var ctx = document.getElementById("LineChart").getContext("2d");
 
 // push each store's data (as an array) into the data array for all stores.

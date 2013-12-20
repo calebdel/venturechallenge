@@ -95,18 +95,9 @@ body {
   opacity: 0.5;
 }
 
-
 #hamburger {
   z-index: 9999;
 }
-
-#badgealert{
-  margin: 300px auto;
-  z-index : 9;
-  position: fixed;
-  text-align:center;
-}
-
 
 #message_area {
   min-height: 500px;
