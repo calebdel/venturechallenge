@@ -107,7 +107,12 @@ GEM
     omniauth-shopify-oauth2 (1.1.2)
       omniauth-oauth2 (~> 1.1.1)
     pg (0.15.1)
+    pg_array_parser (0.0.9)
     polyglot (0.3.3)
+    postgres_ext (2.1.3)
+      activerecord (~> 4.0.0)
+      arel (~> 4.0.1)
+      pg_array_parser (~> 0.0.9)
     pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -207,6 +212,7 @@ DEPENDENCIES
   jquery-rails (= 3.0.4)
   omniauth-linkedin
   pg (= 0.15.1)
+  postgres_ext
   pry
   rails (= 4.0.1)
   rails_12factor (= 0.0.2)
