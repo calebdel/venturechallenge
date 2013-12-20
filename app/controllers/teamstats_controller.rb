@@ -61,7 +61,6 @@ class TeamstatsController < ApplicationController
    
     r = Hash[array.map.with_index.to_a]
     @rank = "#{r[p]} out of #{Store.count}"
-    binding.pry
     end
   end
 

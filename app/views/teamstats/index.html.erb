@@ -2,50 +2,46 @@
   <div class="large-6 columns">
     <div class="panel">
       <ul class="small-block-grid-3" style="text-align:center">
-      <h3><strong>Trophy Case</strong></h3>
+        <h3><strong>Trophy Case</strong></h3>
+        </br>
+        </br>
 
-    </br>
-    </br>
         <% @store.badges.each do |b| %>
-        <li><%= image_tag(BadgeAsset.where("badge_id = #{b.id}").pluck(:url).join) %><h6><%=b.name %></br><%=b.points %> Points</h6></li>
+          <li>
+            <%= image_tag(BadgeAsset.where("badge_id = #{b.id}").pluck(:url).join) %>
+            <h6><%=b.name %></br><%=b.points %> Points</h6>
+          </li>
         <% end %>
+
       </ul>
     </div>  
   </div>
-<div class="large-4 columns">
-  <div class="panel">
-    <h3><strong>Current Ranking</strong></h3>
-     <h2><strong><%= @rank %></strong></h2>
-   </div>
 
-  <div class="panel">
-    <h3><strong>Current Points</strong></h3>
-     <strong>Total Points:</strong><%= Point.where("store_id = #{@store.id}").pluck(:value).sum(:value) %></br>
-    <strong>Sales Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 2").sum(:value) %></br>
-    <strong>Customer Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 1").sum(:value) %></br>
-    
+  <div class="large-4 columns">
+    <div class="panel">
+      <h3><strong>Current Ranking</strong></h3>
+      <h2><strong><%= @rank %></strong></h2>
+     </div>
+    <div class="panel">
+      <h3><strong>Current Points</strong></h3>
+       <strong>Total Points:</strong><%= Point.where("store_id = #{@store.id}").pluck(:value).sum(:value) %></br>
+      <strong>Sales Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 2").sum(:value) %></br>
+      <strong>Customer Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 1").sum(:value) %></br>
+    </div>
 
-  </div>
+    <div class="panel">
+      <h3><strong>Store Stats</strong></h3>
+      <strong>Total Sales: $</strong> <%= Order.where("store_id = #{@store.id}").pluck(:subtotal_price).sum(:value) %>
+      </br>
+      <strong>Total Customers:</strong> <%= Customer.where("store_id = #{@store.id}").count %>
+      </br>
+    </div>
 
-  <div class="panel">
-    <h3><strong>Store Stats</strong></h3>
-    <strong>Total Sales: $</strong> <%= Order.where("store_id = #{@store.id}").pluck(:subtotal_price).sum(:value) %></br>
-    <strong>Total Customers:</strong> <%= Customer.where("store_id = #{@store.id}").count %></br>
-
-  </div>
-
-  <div class="panel">
-    <h3><strong>Challenges</strong></h3>
-    <strong>Facebook Referrals: </strong><%= @facebook %></br>
-    <strong>Twitter Referrals: </strong><%= @twitter %></br>
-    <strong>Pinterest Referrals: </strong><%= @twitter %>
-  </div>
-</div>
-      
+    <div class="panel">
+      <h3><strong>Challenges</strong></h3>
+      <strong>Facebook Referrals: </strong><%= @facebook %></br>
+      <strong>Twitter Referrals: </strong><%= @twitter %></br>
+      <strong>Pinterest Referrals: </strong><%= @twitter %>
     </div>
   </div>
 </div>
-
-
-
-
