@@ -13,7 +13,7 @@
             <% end %>
 
             <h2> Current Standings </h2>
-            <table width="1200">
+            <table width="1200px">
               <tr>
                 <th>Color</th>
                 <th>Store</th>
@@ -42,13 +42,38 @@
             </table>
         </div>
     </div>
-    <div class = "large-12 large-centered columns">
+</div>
+<div class = "row">
+    <div class = "large-6 columns">
         <div class="leaguestats">
-            <h2><%= @league.name %> Information</h2>
-            <%= @countdown %> Remaining.</br>
-            Start: <%= @league.start_date.to_s(:long) %></br>
-            End: <%= @league.end_date.to_s(:long) %></br>
-            <%= link_to "Leave league", quit_league_path %>
+            <h2><%= @league.name %> VChallenge League</h2>
+            <h6><%= @countdown %> Remaining.</h6>
+            <h6>Start: <%= @league.start_date.to_s(:long) %></h6>
+            <h6>End: <%= @league.end_date.to_s(:long) %></h6>
+            <h6><%= link_to "Leave league", quit_league_path %></h6>
+        </div>
+    </div>
+    <div class = "large-6 columns">
+        <div class="leaguestats">
+            <table width = "530px" >
+                <tr>
+                    <td>
+                        <h1><%= @pointsyesterday %></h1>
+                    </td>
+                    <td>
+                        <h1>3,875</h1>
+                    </td>
+                </tr>
+                    <td>
+                        <h4><%= @yesterdaypointswinner %></h4>
+                        Most Points Yesterday
+                    </td>
+                    <td>
+                        <h5>Tipsy McStagger's Good-Time Emporium</h5>
+                        Most Points This week
+                    </td>
+                </tr>
+            </table>            
         </div>
     </div>
 </div>
@@ -58,7 +83,7 @@
 <% if @orders.count > 0  %>
     <div class = "large-12 large-centered columns">
         <div class = "linechart">
-            <h2> Points Over Time</h2>
+            <h5> Points o </h5>
             <canvas id="LineChart" width="1100" height="400"></canvas>
         </div>
     </div>

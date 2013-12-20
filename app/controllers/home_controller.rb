@@ -29,7 +29,19 @@ class HomeController < ApplicationController
     @stores.sort!{ |a,b| Point.where("store_id = #{a.id}").sum(:value) <=> Point.where("store_id = #{b.id}").sum(:value) }.reverse!
     
     @orders = @league.orders
-    @points = Point.all
+
+    #figure out daily and weekly winners, this should probably be a delay job
+    @pointsyesterday = 0
+    @pointsthisweek = 0
+    @stores.each do |store|
+      ptsystrdy = store.points.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight).map(&:value).sum
+      if ptsystrdy > @pointsyesterday
+        @pointsyesterday = ptsystrdy
+        @yesterdaypointswinner = store.name
+      end
+      
+    end
+
 
     gon.numberofTeams = @stores.count
 
