@@ -16,9 +16,9 @@
   <%= f.label :school %>
   <%= f.text_field :school %>
   <%= f.label :start_date_and_time %>
-  <%= f.datetime_local_field :start_date %>
+  <%= f.datetime_local_field :start_date, {value: (Time.now.midnight + 1.day).strftime("%FT%T")} %>
   <%= f.label :end_date_and_time %>
-  <%= f.datetime_local_field :end_date %>
+  <%= f.datetime_local_field :end_date, {value: (Time.now.midnight + 1.month + 1.day).strftime("%FT%T")} %>
   <%= f.label "PIN Code (4 Digits)" %>
   <div class = "large-7 large-centered columns">
     <div class = "row collapse">
@@ -36,5 +36,5 @@
         </div>
       </div>
     </div>
-  <%= f.submit "Create League", {class: "button"} %>
+  <%= f.submit "Submit", {class: "button"} %>
 <% end %>

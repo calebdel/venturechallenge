@@ -100,7 +100,7 @@ class HomeController < ApplicationController
   #used for testing badge alerts
 
   def fakebadges
-    flash[:badges] = [1,2,3,4,5,6,7,8,10,11]
+    flash[:badges] = [1,2,3,4,5,6,7,8,10,11,12,13,14,15]
     redirect_to leaderboards_path
   end
 
