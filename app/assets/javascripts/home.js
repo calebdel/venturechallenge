@@ -1,33 +1,41 @@
 $(function(){ $(document).foundation(); });
 
-  switch(document.URL) {
-    case "http://localhost:3000/leaderboards":
+  switch(window.location.pathname) {
+    case "/leaderboards":
       $('.active').removeClass('active');
       $("#1").addClass('active');
       $("#6").addClass('active');
       break;
-    case "http://localhost:3000/teamstats":
+    case "/teamstats":
       $('.active').removeClass('active');
       $("#2").addClass('active');
       break;
-    case "http://localhost:3000/adminpanel":
+    case "/adminpanel":
       $('.active').removeClass('active');
       $("#5").addClass('active');
       break;
-    case "http://localhost:3000/posts":
+    case "/posts":
       $('.active').removeClass('active');
       $("#4").addClass('active');
       $("#8").addClass('active');
       break;
-    case "http://localhost:3000/posts/new":
+    case "/posts/new":
       $('.active').removeClass('active');
       $("#9").addClass('active');
       break;
   }
 
+//Badge Alert Click Events
+
 $('.close').click(function() {
 
   $('#badgealert').fadeOut("slow");
+
+});
+
+$('#badgealert').click(function(){ 
+
+  $('.close').click();
 
 });
 
