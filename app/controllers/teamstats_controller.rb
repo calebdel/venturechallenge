@@ -43,24 +43,27 @@ class TeamstatsController < ApplicationController
   end
 
   def rankings
-     
+    league = League.find(current_store.league_id)
+    stores = Store.where("league_id = #{league.id}")
+
     if Point.pluck(:value) == []
       @rank === 0
     else
-    p = Point.where("store_id = #{@store.id}").pluck(:value).sum(:value)
+    p = Point.where("store_id = #{@store.id}" ).pluck(:value).sum(:value)
      # setup alert
  
     array = []
-      Store.all.each do |s|
+      stores.all.each do |s|
         points = Point.where("store_id = #{s.id}").pluck(:value).sum(:value)
         if points == :value
           points = 0
         end
         array << points
       end
-   
-    r = Hash[array.map.with_index.to_a]
-    @rank = "#{r[p]} out of #{Store.count}"
+    array.sort! { |x,y| y <=> x }
+    r = Hash[array.each_with_index.map { |value, index| [index, value] }]
+    @rank = "#{r.index(p) + 1} out of #{Store.count}"
+    binding.pry
     end
   end
 
