@@ -5,7 +5,7 @@ class LeaguesController < ApplicationController
   end
 
   def show
-     @league = League.find(params[:id])
+     redirect_to leaderboards_path
   end
 
   def new
@@ -14,6 +14,7 @@ class LeaguesController < ApplicationController
 
   def create
     @league = League.new(league_params)
+    @league.pin = (params[:pin1]+params[:pin2]+params[:pin3]+params[:pin4]).to_i
     @league.admin_id = current_user.id
     if @league.save
       redirect_to adminpanel_path

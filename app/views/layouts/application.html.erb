@@ -29,7 +29,7 @@
 
     <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-        <li class="name"><label> <%= image_tag Badge.find(Random.rand(10)+1).badge_asset.url, size: "80x38" %><%= link_to current_user.name, teamstats_path %></label></li>
+        <li class="name"><label> <%= image_tag Badge.find(Random.rand(10)+1).badge_asset.url, size: "80x38" %><%= link_to current_user.name, root_path %></label></li>
         <li id="logout"><%= link_to "Logout", logout_path, :target => '_self' %></li>
         <% if session[:shopify] %>
         <li><label class="vc-title">Venture Challenge - Student</label></li>
