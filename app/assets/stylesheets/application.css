@@ -74,6 +74,10 @@ body {
   color: #55BD5D ;
 }
 
+.name img {
+  margin-top: 15px;
+}
+
 .left-small {
   font-weight: 100;
 }
@@ -102,3 +106,5 @@ body {
 #message_area {
   min-height: 500px;
 }
+
+
