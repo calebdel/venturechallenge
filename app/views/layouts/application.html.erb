@@ -99,21 +99,27 @@
             <div class = "large-4 large-centered columns" id ="badgealert">
               <div data-alert class = "panel callout radius" id="notif">
                 <a href="#" class="close">&times;</a>
-                <%= image_tag BadgeAsset.find_by(badge_id: flash[:badge]).url %>
-                <h2>New Badge!</h2>
-                <p class="lead"><%= Badge.find(flash[:badge]).name %></p>
-                <p class="lead"><%= BadgeAsset.find_by(badge_id: flash[:badge]).description %></p>
+                  <%= image_tag BadgeAsset.find_by(badge_id: flash[:badge]).url %>
+                  <h2>NEW BADGE!</h2>
+                  <h4><%= Badge.find(flash[:badge]).name %></h4>
+                  <h5><%= BadgeAsset.find_by(badge_id: flash[:badge]).description %></h5>
               </div>
             </div>
           <% end %>
           <% if flash[:badges] %>
             <div class = "large-4 large-centered columns" id ="badgealert">
               <div data-alert class = "panel callout radius" id="notif">
-                <h2><%= flash[:badges].count %> New Badges!</h2>
-                <% flash[:badges].each do |new_badge_id| %>
-                <p class="lead"><%= Badge.find(new_badge_id).name %></p>
-                <% end  %>
                 <a href="#" class="close">&times;</a>
+                <h2><%= flash[:badges].count %> NEW BADGES!</h2>
+                  <ul class="badges-container" data-orbit> 
+                    <% flash[:badges].each do |new_badge_id| %>
+                      <li>
+                        <h4><%= Badge.find(new_badge_id).name %></h4>
+                        <%= image_tag BadgeAsset.find_by_badge_id(new_badge_id).url %>
+                        <%= BadgeAsset.find_by_badge_id(new_badge_id).description %>
+                      </li>
+                    <% end %>
+                  </ul>
               </div>
             </div>
           <% end %>

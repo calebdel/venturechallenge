@@ -23,11 +23,12 @@ class TeamstatsController < ApplicationController
 
    	# setup alert
 
-  #  	if new_badges.count == 1
-  #  		flash[:badge] = new_badges.first
-        flash[:badge] = 1
-		# elsif new_badges.count > 1
-		# 	flash[:badges] = new_badges
-		# end
+   	if new_badges.count == 1
+   		flash[:badge] = new_badges.first
+      # flash[:badge] = 1
+		elsif new_badges.count > 1
+			flash[:badges] = new_badges
+      # flash[:badges] = [1,7,10,11,12]
+		end
   end
 end

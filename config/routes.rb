@@ -14,8 +14,6 @@ Venturechallenge::Application.routes.draw do
   post 'webhooks/orders/create' => 'webhooks#order_new'
   post 'webhooks/customers/create' => 'webhooks#customers_new'
 
-
-
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

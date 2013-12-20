@@ -1,4 +1,3 @@
-
 <div class = "leaderboard">
     <% if session[:linkedin] %>
         <% if @admin_leagues.count > 1 %>
@@ -48,19 +47,19 @@
     <%= link_to "Leave league", quit_league_path %>
 </div>
 <% if @orders.count > 0  %>
-<div class = "linechart">
-    <h4> Points Over Time</h4>
-    <canvas id="LineChart" width="800" height="300"></canvas>
-</div>
+    <div class = "linechart">
+        <h4> Points Over Time</h4>
+        <canvas id="LineChart" width="800" height="300"></canvas>
+    </div>
 
-<div class = "barchart">
-    <h4> Total Points Per Store </h4>
-    <canvas id="BarChart" width="800" height="600"></canvas>
-</div>
+    <div class = "barchart">
+        <h4> Total Points Per Store </h4>
+        <canvas id="BarChart" width="800" height="600"></canvas>
+    </div>
 <% else %>
-<br/>
-<br/>
-<br/>
-<h4>Not enough data for Charting</h4>
+    <br/>
+    <br/>
+    <br/>
+    <h4>Not enough data for Charting</h4>
 <% end %>
 

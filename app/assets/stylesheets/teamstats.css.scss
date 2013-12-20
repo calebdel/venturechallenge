@@ -2,8 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* Single Badge Notification */
+
 #badgealert {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.6);
   min-height: 100%;
   min-width: 100%;
   z-index : 9;
@@ -13,12 +15,13 @@
 
 #notif {
   position: relative;
-  max-width: 20em;
-  margin: 15em auto;
+  max-width: 25em;
+  height: 20em;
+  margin: 10em auto;
   padding: 0;
   background-color: white;
-  border: 5px solid #EB2F13;
-  border-radius: 30px;
+  border: none;
+  border-radius: 0 0 30px 30px;
 }
 
 #notif .close {
@@ -27,18 +30,52 @@
   width: 100%;
   text-align: right;
   font-size: 3em;
-  z-index: 9999;
-  margin-top: -5px;
-  margin-right: 7px;
+  background-color: #EB2F13;
+  padding-right: 10px;
+  margin-bottom: 15px;
 }
 
 #notif img {
-  position: absolute;
-  left: 30%;
-  bottom: 75%;
+ /* left: 30%;
+  bottom: 80%;
+  margin-bottom: 20px;
   display: block;
+*/
+  margin: 10px auto;
+  min-width: 8em;
+
 }
 
-#notif p {
-  margin: 0 0 20px 0;
+#notif h2 {
+  position: absolute;
+  color: #EB2F13;
+  font-weight: 900;
+  font-size: 3em;
+  top: -14%;
+  left: 0%;
+  min-width: 100%;
+}
+
+#notif h4 {
+  margin: 25px 0 10px 0;
+  font-weight: 600;
+}
+
+.orbit-container .orbit-slide-number {
+  color: grey;
+}
+
+.orbit-container .active {
+  background-color: white;
+}
+
+#notif .badgesclose {
+  float: right;
+  color: lightgrey;
+  width: 100%;
+  text-align: right;
+  font-size: 3em;
+  background-color: #EB2F13;
+  padding-right: 10px;
+  margin-bottom: 10px;
 }
