@@ -1,7 +1,42 @@
+<%= javascript_include_tag "jquery" %>
 <div class="row">
-  <div class="large-6 columns">
+  <div class="large-12 columns">
+    <div class="large-3 small-6 columns">
+      <div class="panel">
+        <h3><strong>Current Ranking</strong></h3>
+        <h4><strong><%= @rank %></strong></h4>
+      </div>
+    </div>
+
+    <div class="large-3 small-6 columns">
+      <div class="panel">
+        <h3><strong>Current Points</strong></h3>
+         <strong>Total Points:</strong><%= @totalpoints %></br>
+        <strong>Sales Points:</strong> <%= @salespoints %></br>
+        <strong>Customer Points:</strong> <%= @customerpoints %></br>
+      </div>
+    </div>
+
+    <div class="large-3 small-6 columns">
+      <div class="panel">
+        <h3><strong>Store Stats</strong></h3>
+        <strong>Total Sales: $</strong> <%= @totalsales %>
+        </br>
+        <strong>Total Customers:</strong> <%= @totalcustomers %>
+        </br>
+      </div>
+    </div>
+
+    <div class="large-3 small-6 columns">
+      <div class="panel">
+        <h3><strong>Point Distribution</strong></h3>
+        <canvas id="DonutChart" width="100" height="100"></canvas>
+      </div>
+    </div>
+
+  <div class="large-12 columns">
     <div class="panel">
-      <ul class="small-block-grid-3" style="text-align:center">
+      <ul class="small-block-grid-6" style="text-align:center">
         <h3><strong>Trophy Case</strong></h3>
         </br>
         </br>
@@ -17,31 +52,6 @@
     </div>  
   </div>
 
-  <div class="large-4 columns">
-    <div class="panel">
-      <h3><strong>Current Ranking</strong></h3>
-      <h2><strong><%= @rank %></strong></h2>
-     </div>
-    <div class="panel">
-      <h3><strong>Current Points</strong></h3>
-       <strong>Total Points:</strong><%= Point.where("store_id = #{@store.id}").pluck(:value).sum(:value) %></br>
-      <strong>Sales Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 2").sum(:value) %></br>
-      <strong>Customer Points:</strong> <%= Point.where("store_id = #{@store.id} AND kind_id = 1").sum(:value) %></br>
-    </div>
 
-    <div class="panel">
-      <h3><strong>Store Stats</strong></h3>
-      <strong>Total Sales: $</strong> <%= Order.where("store_id = #{@store.id}").pluck(:subtotal_price).sum(:value) %>
-      </br>
-      <strong>Total Customers:</strong> <%= Customer.where("store_id = #{@store.id}").count %>
-      </br>
-    </div>
 
-    <div class="panel">
-      <h3><strong>Challenges</strong></h3>
-      <strong>Facebook Referrals: </strong><%= @facebook %></br>
-      <strong>Twitter Referrals: </strong><%= @twitter %></br>
-      <strong>Pinterest Referrals: </strong><%= @twitter %>
-    </div>
-  </div>
 </div>

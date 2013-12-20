@@ -4,6 +4,7 @@ class TeamstatsController < ApplicationController
     @store = Store.find_by_user_id(current_user.id)
     social_challenge
     rankings
+    current_points
     
     # if the store already has some badges, cache them
     # if they don't, setup an empty array to compare to
@@ -65,4 +66,25 @@ class TeamstatsController < ApplicationController
     end
   end
 
+  def current_points
+    @totalpoints = Point.where("store_id = #{@store.id}").pluck(:value).sum(:value)
+    @totalsales = Order.where("store_id = #{@store.id}").pluck(:subtotal_price).sum(:value)
+    @totalcustomers = Customer.where("store_id = #{@store.id}").count
+
+    @salespoints = Point.where("store_id = #{@store.id} AND kind_id = 2").sum(:value)
+    @customerpoints = Point.where("store_id = #{@store.id} AND kind_id = 1").sum(:value)
+    @facebookpoints = Point.where("store_id = #{@store.id} AND kind_id = 3").sum(:value)
+    @twitterpoints = Point.where("store_id = #{@store.id} AND kind_id = 4").sum(:value)
+    @pinterestpoints = Point.where("store_id = #{@store.id} AND kind_id = 5").sum(:value)
+    @instagrampoints = Point.where("store_id = #{@store.id} AND kind_id = 6").sum(:value)
+
+    gon.one = @salespoints
+    gon.two = @customerpoints
+    gon.three = @facebookpoints
+    gon.four = @twitterpoints
+    gon.five = @pinterestpoints
+    gon.six = @instagrampoints
+
+
+  end
 end
