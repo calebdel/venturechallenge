@@ -36,6 +36,7 @@ class LeaguesController < ApplicationController
     if params[:pin].to_i == League.find(params[:league_id]).pin
     store = Store.find_by_user_id(current_user.id)
     store.league_id = params[:league_id]
+    store.change_points({ points: 0, kind: 1 })
     store.save
     redirect_to root_path
     else
@@ -65,6 +66,8 @@ class LeaguesController < ApplicationController
   end
 
   private
+
+  
 
    
   def league_params

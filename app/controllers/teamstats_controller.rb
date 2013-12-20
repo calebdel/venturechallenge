@@ -58,7 +58,7 @@ class TeamstatsController < ApplicationController
         end
         array << points
       end
-    array.sort { |x,y| y <=> x }
+   
     r = Hash[array.map.with_index.to_a]
     @rank = "#{r[p]} out of #{Store.count}"
     binding.pry
