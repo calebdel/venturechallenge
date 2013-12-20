@@ -30,17 +30,23 @@ class HomeController < ApplicationController
     
     @orders = @league.orders
 
-    # #figure out daily and weekly winners, this should probably be a delay job
-    # @pointsyesterday = 0
-    # @pointsthisweek = 0
-    # @stores.each do |store|
-    #   ptsystrdy = store.points.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight).map(&:value).sum
-    #   if ptsystrdy > @pointsyesterday
-    #     @pointsyesterday = ptsystrdy
-    #     @yesterdaypointswinner = store.name
-    #   end
+    #figure out daily and weekly winners, this should probably be a delay job
+    @pointsyesterday = 0
+    @pointsthisweek = 0
+    @stores.each do |store|
+      ptsystrdy = store.points.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight).map(&:value).sum
+      if ptsystrdy > @pointsyesterday
+        @pointsyesterday = ptsystrdy
+        @yesterdaypointswinner = User.find(store.user_id).name
+      end
+
+      ptswk = store.points.where(created_at: (Time.now.midnight - 7.day)..Time.now.midnight).map(&:value).sum
+      if ptswk > @pointsthisweek
+        @pointsthisweek = ptswk
+        @thisweekpointswinner = User.find(store.user_id).name
+      end
       
-    # end
+    end
 
 
     gon.numberofTeams = @stores.count
@@ -69,8 +75,13 @@ class HomeController < ApplicationController
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
     @countdown = "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
-  
   end
+
+  def fakebadges
+    flash[:badges] = [1,2,3,4,5,6,7,8,10,11]
+    redirect_to leaderboards_path
+  end
+
   
   private
 
@@ -84,7 +95,7 @@ class HomeController < ApplicationController
     timerange = oldestordertime - @league.start_date
 
     #set number of time chunks
-    if timerange > (864000*13)
+    if timerange > (86400*13)
       timechunks = 13
     else
       timechunks = timerange / 86400
