@@ -1,32 +1,24 @@
 <div class ="row" id="leaderboard">
     <div  class = "large-12 large-centered columns">
         <div class = "leaderboard">
-            <% if session[:linkedin] %>
-                <% if @admin_leagues.count > 1 %>
-                <!-- admin-view league select -->
-                    <%= form_tag do %>
-                    <div class = "row">
-                    <div class = "large-7 large-centered columns">
-                        <div class="row collapse">
-                            <div class="small-10 columns">
-                                <%= select_tag(:league, options_for_select(@admin_leagues.collect {|a| [a.name, a.id]},params[:league])) %>
-                            </div>
-                            <div class="small-2 columns">
-                                <%= submit_tag "Go", {class: "button postfix"} %>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <% end %>
-                <% end  %>
-            <% end %>
             <h1> Leaderboards </h1>
             <hr id="leaderline">
 
 <div class = "row">
     <div class = "large-6 columns">
         <div id="leagueinfo">
-            <h2><%= @league.name %></h2>
+                <% if session[:linkedin] && @admin_leagues.count > 1 %>
+                <!-- admin-view league select -->
+                <a href="#" data-dropdown="drop1"><h2><%= @league.name %> <i class="fa fa-caret-down"></i></h2></a>
+                    <ul id="drop1" class="f-dropdown" data-dropdown-content>
+                      <% @admin_leagues.each do |league| %>  
+                      <li><%= link_to league.name, "/leaderboards?league=#{league.id}" %></li>
+                    <% end %>
+                    </ul>
+                <% else  %>
+                <h2><%= @league.name %></h2>
+                <% end %>
+            
             <h6><%= @countdown %> remaining.</h6>
             <h6>Start: <%= @league.start_date.to_s(:long) %></h6>
             <h6>End: <%= @league.end_date.to_s(:long) %></h6>
