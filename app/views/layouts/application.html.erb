@@ -100,8 +100,9 @@
               <div data-alert class = "panel callout radius" id="notif">
                 <a href="#" class="close">&times;</a>
                 <%= image_tag BadgeAsset.find_by(badge_id: flash[:badge]).url %>
-                <h2>New Badges!</h2>
+                <h2>New Badge!</h2>
                 <p class="lead"><%= Badge.find(flash[:badge]).name %></p>
+                <p class="lead"><%= BadgeAsset.find_by(badge_id: flash[:badge]).description %></p>
               </div>
             </div>
           <% end %>
@@ -111,7 +112,6 @@
                 <h2><%= flash[:badges].count %> New Badges!</h2>
                 <% flash[:badges].each do |new_badge_id| %>
                 <p class="lead"><%= Badge.find(new_badge_id).name %></p>
-                <%= image_tag BadgeAsset.find_by(badge_id: new_badge_id).url %>
                 <% end  %>
                 <a href="#" class="close">&times;</a>
               </div>
