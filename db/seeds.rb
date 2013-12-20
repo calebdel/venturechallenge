@@ -47,3 +47,10 @@ BadgeAsset.create(url: 'tencustomers.png', description: "Skyscraper Time!", badg
 BadgeAsset.create(url: 'fifteencustomers.png', description: "Skyscraper Time!", badge_id:4)
 BadgeAsset.create(url: 'firstcustomer.png', description: "Skyscraper Time!", badge_id:1)
 BadgeAsset.create(url: 'firstsale.png', description: "Skyscraper Time!", badge_id:5)
+BadgeAsset.create(url: 'facebook.png', description: "Skyscraper Time!", badge_id:12)
+BadgeAsset.create(url: 'twitter.png', description: "Skyscraper Time!", badge_id:13)
+BadgeAsset.create(url: 'pinterest.png', description: "Skyscraper Time!", badge_id:14)
+BadgeAsset.create(url: 'instagram.png', description: "Skyscraper Time!", badge_id:15)
+BadgeAsset.create(url: 'nosales.png', description: "Skyscraper Time!", badge_id:14)
+BadgeAsset.create(url: 'nocustomer.png', description: "Skyscraper Time!", badge_id:15)
+

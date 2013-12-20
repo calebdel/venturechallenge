@@ -125,7 +125,6 @@
           <% end %>
           
           <div class = "row">
-            </br>
             <% if flash[:notice] %>
               <p data-alert id="notice" class="alert-box radius">
                 <%= flash[:notice] %>
@@ -138,7 +137,6 @@
                 <a href="#" class="close">&times;</a>
             </p>
             <% end %>
-            </br>
             <%= yield %>
     </section>
 
