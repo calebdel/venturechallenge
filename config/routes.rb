@@ -11,6 +11,8 @@ Venturechallenge::Application.routes.draw do
   post 'assign_league' => 'leagues#assign_league'
   get 'quit_league' => 'leagues#quit_league'
 
+  get 'fakebadge' => 'home#fakebadges'
+
   post 'webhooks/orders/create' => 'webhooks#order_new'
   post 'webhooks/customers/create' => 'webhooks#customers_new'
 

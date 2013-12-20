@@ -16,9 +16,9 @@
               <tr>
                 <th>Color</th>
                 <th>Store</th>
-                <th>Total Orders</th>
-                <th>Number of Orders</th>
-                <th>Number of Customers</th>
+                <th>Total Revenue</th>
+                <th>Orders</th>
+                <th>Customers</th>
                 <th>Points</th>
                 <th>Badges</th>
               </tr>
@@ -57,19 +57,19 @@
             <table width = "530px" >
                 <tr>
                     <td>
-                        <h1><%= @pointsyesterday %></h1>
+                        <h1><%= number_with_delimiter(@pointsyesterday) %></h1>
                     </td>
                     <td>
-                        <h1>3,875</h1>
+                        <h1><%= number_with_delimiter(@pointsthisweek) %></h1>
                     </td>
                 </tr>
                     <td>
-                        <h4><%= @yesterdaypointswinner %></h4>
+                        <h5><%= @yesterdaypointswinner %></h5>
                         Most Points Yesterday
                     </td>
                     <td>
-                        <h5>Tipsy McStagger's Good-Time Emporium</h5>
-                        Most Points This week
+                        <h5><%= @thisweekpointswinner %></h5>
+                        7-Day Points Winner
                     </td>
                 </tr>
             </table>            
@@ -82,7 +82,7 @@
 <% if @orders.count > 0  %>
     <div class = "linechart">
         <h4> Points Over Time</h4>
-        <canvas id="LineChart" width="800" height="300"></canvas>
+        <canvas id="LineChart" width="1150" height="300"></canvas>
     </div>
 
     <div class = "barchart">
@@ -95,3 +95,4 @@
     <br/>
     <h4>Not enough data for Charting</h4>
 <% end %>
+<%= link_to "Have some fake badges", fakebadge_path %>
