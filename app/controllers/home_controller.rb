@@ -84,7 +84,7 @@ class HomeController < ApplicationController
     timerange = oldestordertime - @league.start_date
 
     #set number of time chunks
-    if timerange > (864000*13)
+    if timerange > (86400*13)
       timechunks = 13
     else
       timechunks = timerange / 86400
