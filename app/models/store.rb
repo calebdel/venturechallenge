@@ -1,4 +1,7 @@
 class Store < ActiveRecord::Base
+
+serialize :badge_array
+
 belongs_to :user
 belongs_to :league
 has_many :points  
