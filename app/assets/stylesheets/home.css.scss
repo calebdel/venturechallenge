@@ -4,6 +4,12 @@
 
 .leaderboard td {
 	line-height: 35px; 
+  text-align: center;
+}
+
+.leaderboard td:first-child {
+  line-height: 35px;
+  width: 35px; 
 }
 
 .leaderboard swatch {
