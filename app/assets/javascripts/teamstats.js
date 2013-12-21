@@ -29,6 +29,6 @@ var donutData = [
 
 ];
 
-var myNewChart = new Chart(ctxOne).Doughnut(donutData);
+var donut_chart = new Chart(ctxOne).Doughnut(donutData);
 
 

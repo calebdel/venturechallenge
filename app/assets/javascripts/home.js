@@ -66,7 +66,7 @@ var pointsChart = {
   datasets : lineData
 };
 
-var myNewChart = new Chart(ctx).Line(pointsChart);
+var line_chart = new Chart(ctx).Line(pointsChart);
 
 var ctxTwo = document.getElementById("BarChart").getContext("2d");
 
@@ -105,5 +105,5 @@ var barOptions = {
   scaleStartValue:0
 };
 
-var myNewChart = new Chart(ctxTwo).Bar(barChart);
+var bar_chart = new Chart(ctxTwo).Bar(barChart);
 
