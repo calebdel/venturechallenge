@@ -11,7 +11,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require tinymce-jquery
 //= require Chart
+//= require tinymce-jquery
 //= require foundation
 //= require_tree .
