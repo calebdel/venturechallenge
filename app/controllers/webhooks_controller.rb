@@ -5,7 +5,7 @@ class WebhooksController < ApplicationController
     #new orders
     def order_new
 
-      #f irst, save webhook object as data
+      #if irst, save webhook object as data
       data = ActiveSupport::JSON.decode(request.body.read)
       # check if the order already exists and if it is within time range of league
       unless Order.find_by_shopify_id(data["id"].to_s) || out_of_dates  
@@ -32,7 +32,7 @@ class WebhooksController < ApplicationController
 
         #creates the customer if they are new (for customers without shopify accounts)
         customer = Customer.find_or_create_by_email(data["email"].to_s, league_id: @s.league_id, orders_count: 0, total_spent: 0)
-        
+      
         #increases the total amount and order counters 
         customer.orders_count += 1
         customer.total_spent += neworder.subtotal_price.to_f
@@ -89,12 +89,15 @@ class WebhooksController < ApplicationController
 
     # Adds 2 "Facebook" points to store when new_order referring_site is equal to facebook 
     def referral_challenge
+
       if @order.referring_site.include? "facebook"
       Store.find_by_user_id(@u.id).change_points({points:2, kind:3})
       elsif @order.referring_site.include? "twitter"
         Store.find_by_user_id(@u.id).change_points({points:2, kind:4})
       elsif @order.referring_site.include? "pinterest"
         Store.find_by_user_id(@u.id).change_points({points:2, kind:5})
+      elsif @order.referring_site.include? ""
+        Store.find_by_user_id(@u.id).change_points({points:2, kind:4})
       else
         return nil
       end
