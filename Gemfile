@@ -29,7 +29,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'pry'
 gem 'chart-js-rails'
 gem 'gon'
-gem 'tinymce-rails'
+gem "tinymce-rails", "~> 4.0.12"
 gem 'postgres_ext'
 
 group :doc do
