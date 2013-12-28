@@ -11,7 +11,7 @@
   <%= f.text_area :content, :class => "tinymce", :id => "message_area" %>
   </br>
   <%= f.label "League" %>
-  <%= f.select(:league_id, options_for_select(League.all.map{|f| [f.name, f.id]})) %>
+  <%= f.select(:league_id, options_for_select(League.where("admin_id = #{current_user.id}").map{|f| [f.name, f.id]})) %>
 
   <%= f.submit %>
 <% end %>
