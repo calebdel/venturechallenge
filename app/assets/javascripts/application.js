@@ -9,9 +9,10 @@
 // Love,
 // Shopify
 //
+
+//= require Chart
+//= require tinymce-jquery
 //= require jquery
 //= require jquery_ujs
-//= require Chart
 //= require foundation
-//= require tinymce-jquery
 //= require_tree .
