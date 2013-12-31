@@ -1,28 +1,16 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+http//:www.vchallenge.co
+"Gamifying E-Commerce for Education"
 
 
-Please feel free to use a different markup language if you do not plan to run
+A Shopify app that enables Shopify stores to compete against each other in competitions.
+
+Use Case:
+The "Venture Challenge" is a month long "build a business" competition that teaches students about entrepreneurship through hands on learning.
+
+An entrepreneurship professor creates a competition for their entrepreneurship class on the Venture Challenge app. Students form teams, validate their business idea and create MVP's to sell through Shopify's e-commerce platform. The teams are tracked through the Venture Challenge app that monitors sales revenue, customers, orders and other metrics through the Shopify API.
+
+Gamification elements include badges, points and mini-games to encourage student engagement.
+
 <tt>rake doc:app</tt>.
