@@ -1,5 +1,5 @@
 == README
-Demo: www.salty-anchorage-3333.herokuapp.com
+Demo: salty-anchorage-3333.herokuapp.com
 
 Venture Challenge Shopify App
 "Gamifying E-Commerce for Education"
