@@ -1,6 +1,7 @@
 == README
+Demo: www.salty-anchorage-3333.herokuapp.com
 
-http//:www.vchallenge.co
+Venture Challenge Shopify App
 "Gamifying E-Commerce for Education"
 
 
@@ -13,4 +14,6 @@ An entrepreneurship professor creates a competition for their entrepreneurship c
 
 Gamification elements include badges, points and mini-games to encourage student engagement.
 
-<tt>rake doc:app</tt>.
+Technologies Used:
+Shopify API, Chart.js, Foundation 5, PostgreSQL, Webhooks
+
