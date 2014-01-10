@@ -1,6 +1,6 @@
 == README
-Demo
-====
+-- Demo
+
 http://salty-anchorage-3333.herokuapp.com
 
 Venture Challenge Shopify App
@@ -23,8 +23,6 @@ Technologies Used:
 
 Shopify API, Chart.js, Foundation 5, PostgreSQL, Webhooks
 
-### To Do
-[] Include Google Analytics API https://github.com/google/google-api-ruby-client
-[] Delayed Jobs
+
 
 
