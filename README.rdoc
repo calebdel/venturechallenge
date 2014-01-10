@@ -1,19 +1,24 @@
 == README
-Demo: salty-anchorage-3333.herokuapp.com
+[Demo][http://salty-anchorage-3333.herokuapp.com]
 
-Venture Challenge Shopify App
-"Gamifying E-Commerce for Education"
+### H3 Venture Challenge Shopify App
+*Gamifying E-Commerce for Education*
 
 
 A Shopify app that enables Shopify stores to compete against each other in competitions.
 
-Use Case:
+##### H5 Use Case:
 The "Venture Challenge" is a month long "build a business" competition that teaches students about entrepreneurship through hands on learning.
 
 An entrepreneurship professor creates a competition for their entrepreneurship class on the Venture Challenge app. Students form teams, validate their business idea and create MVP's to sell through Shopify's e-commerce platform. The teams are tracked through the Venture Challenge app that monitors sales revenue, customers, orders and other metrics through the Shopify API.
 
 Gamification elements include badges, points and mini-games to encourage student engagement.
 
-Technologies Used:
+##### H5 Technologies Used:
 Shopify API, Chart.js, Foundation 5, PostgreSQL, Webhooks
+
+### H3 To Do
+[] Include Google Analytics API [https://github.com/google/google-api-ruby-client]
+[] Delayed Jobs
+
 
