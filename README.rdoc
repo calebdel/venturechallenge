@@ -1,5 +1,4 @@
 == README
--- Demo
 
 http://salty-anchorage-3333.herokuapp.com
 
