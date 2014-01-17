@@ -1,6 +1,6 @@
 == README
 
-http://vchallenge.co
+http://www.vchallenge.co
 
 Venture Challenge Shopify App
 -----------------------------
