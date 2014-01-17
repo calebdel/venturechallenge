@@ -1,6 +1,6 @@
 == README
 
-http://salty-anchorage-3333.herokuapp.com
+http://vchallenge.co
 
 Venture Challenge Shopify App
 -----------------------------
