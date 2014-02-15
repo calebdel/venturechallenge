@@ -1,6 +1,7 @@
 class WebhooksController < ApplicationController
   #initialize an API connection before recieving webhook
   before_filter :connect_to_store
+  protect_from_forgery :except => :order_new, :customers_new
 
     #new orders
     def order_new
