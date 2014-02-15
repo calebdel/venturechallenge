@@ -70,6 +70,7 @@ class WebhooksController < ApplicationController
 
 
     def connect_to_store
+      Rails.logger.info(request.env)
       shop_url = request.headers['HTTP_X_SHOPIFY_SHOP_DOMAIN']
       @u = User.find_by_url(shop_url)
       @s = Store.find_by_user_id(@u.id)
