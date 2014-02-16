@@ -45,7 +45,11 @@ Venturechallenge::Application.configure do
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :info
+  # config.log_level = :info
+
+  # Record Rails log messages to STDOUT
+  Rails.logger = Logger.new(STDOUT)
+  Rails.logger.level = Logger::DEBUG
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
