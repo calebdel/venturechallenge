@@ -11,7 +11,6 @@ task :update_stats => :environment do
           @order.referring_site = o.referring_site
           @order.total_discounts = o.total_discounts.to_i
           @order.store_id = s.id
-          @order.league_id = s.league_id
           @order.shopify_id = o.id
           @order.save
         end
