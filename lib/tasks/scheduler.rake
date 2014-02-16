@@ -1,8 +1,8 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :update_stats => :environment do
-      @stores = Store.all
-      @stores.each do |s|
-        session = ShopifyAPI::Session.new(s.myshopify_domain, s.access_token)
+      @users = User.all
+      @users.each do |s|
+        session = ShopifyAPI::Session.new(s.url, s.shopify_token)
         ShopifyAPI::Base.activate_session(session)
         orders = ShopifyAPI::Order.find(:all)
         orders.each do |o|
