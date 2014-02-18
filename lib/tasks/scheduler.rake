@@ -4,8 +4,8 @@ task :update_stats => :environment do
       @users.each do |s|
         session = ShopifyAPI::Session.new(s.url, s.shopify_token)
         ShopifyAPI::Base.activate_session(session)
-        pry
-        orders = ShopifyAPI::Order.find(:all)
+        orders = ShopifyAPI::Order.where("league_id = 5")
+
         orders.each do |o|
           @order = Order.new
           @order.subtotal_price = o.subtotal_price.to_f
