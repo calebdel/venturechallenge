@@ -4,7 +4,7 @@ task :update_stats => :environment do
       @users.each do |s|
         session = ShopifyAPI::Session.new(s.url, s.shopify_token)
         ShopifyAPI::Base.activate_session(session)
-
+        pry
         orders = ShopifyAPI::Order.find(:all)
         orders.each do |o|
           @order = Order.new
