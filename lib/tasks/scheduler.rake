@@ -1,6 +1,6 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :update_stats => :environment do
-      @users = User.includes(:shopify_token).where.not(shopify_token: { id: nil })
+      @users = User.where('shopify_token IS NOT NULL')
       @users.each do |s|
         session = ShopifyAPI::Session.new(s.url, s.shopify_token)
         ShopifyAPI::Base.activate_session(session)
