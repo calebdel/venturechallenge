@@ -27,6 +27,7 @@ gem 'font-awesome-rails'
 gem 'gioco'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'pry'
+gem 'pry-rails'
 gem 'chart-js-rails'
 gem 'gon'
 gem "tinymce-rails", "~> 4.0.12"
