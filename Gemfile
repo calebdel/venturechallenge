@@ -32,6 +32,7 @@ gem 'chart-js-rails'
 gem 'gon'
 gem "tinymce-rails", "~> 4.0.12"
 gem 'postgres_ext'
+gem 'unicorn'
 
 
 group :doc do
