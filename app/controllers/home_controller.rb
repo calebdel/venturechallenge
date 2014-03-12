@@ -20,13 +20,21 @@ class HomeController < ApplicationController
   #leaderboards is the default view for students
   # in admin view, user can select which league to view via dropdown
 
+  def is_student
+    session[:shopify]
+  end
+
+  def is_teacher
+    session[:linkedin]
+  end
+
   def leaderboards
     # first determine if user is admin or student
     # populate @league and @amind_leagues as necessary
-    if session[:shopify]
-      redirect_to leagues_path unless current_store.league_id
+    if is_student
+      redirect_to leagues_path unless current_store.league_id # help me pick a league if I don't have one
       @league = League.find(current_store.league_id)
-    elsif session[:linkedin]
+    elsif is_teacher
       @admin_leagues = League.where("admin_id = #{current_user.id}")
       if params[:league]
         @league = League.find(params[:league])
@@ -35,19 +43,47 @@ class HomeController < ApplicationController
       end
     end
     
-    # populate array of stores(teams) in current league
-
-    @stores = Store.where("league_id = #{@league.id}")
-    @stores.sort!{ |a,b| Point.where("store_id = #{a.id}").sum(:value) <=> Point.where("store_id = #{b.id}").sum(:value) }.reverse!
-    
+    @stores = @league.cached_stores
+    @orders = @league.orders
+    @countdown = league_countdown
 
     # the gon. variables are used to pass data to javascript for charts
     gon.numberofTeams = @stores.count
 
-    # populate array of orders for the current league
+    initialize_point_winners
+    initialize_pointschart unless @orders.count == 0 
+  end
 
-    @orders = @league.orders
 
+
+
+
+
+  private
+
+  #triages users to the appropriate login
+  def after_sign_in_path
+     if session[:shopify]
+       return leagues_path unless current_store.league_id
+       return leaderboards_path
+     elsif session[:linkedin]
+       return adminpanel_path
+     end
+  end
+
+  #creates a string with the time remainnig in the league, or returns game over
+  def league_countdown
+    return "Game Over!" if Time.now > @league.end_date
+
+    t = @league.end_date - Time.now
+
+    mm, ss = t.divmod(60)
+    hh, mm = mm.divmod(60)
+    dd, hh = hh.divmod(24)
+    "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
+  end
+  
+  def initialize_point_winners
     #figure out daily and weekly winners, [this should probably be a delay job]
     @pointsyesterday = 0
     @pointsthisweek = 0
@@ -64,51 +100,9 @@ class HomeController < ApplicationController
         @thisweekpointswinner = User.find(store.user_id).name
       end
     end
-
-    #returns a string with the amount of time remaining in the league
-    league_countdown 
-
-
-    # draws charts as long as there is adequate data to do so
-    initialize_pointschart unless @orders.count == 0 
   end
-
-  #triages users to the appropriate login
-
-  def after_sign_in_path
-     if session[:shopify]
-       return leagues_path unless current_store.league_id
-       return leaderboards_path
-     elsif session[:linkedin]
-       return adminpanel_path
-     end
-  end
-
-  #creates a string with the time remainnig in the league, or returns game over
-
-  def league_countdown
-    return @countdown = "Game Over!" if Time.now > @league.end_date
-
-    t = @league.end_date - Time.now
-
-    mm, ss = t.divmod(60)
-    hh, mm = mm.divmod(60)
-    dd, hh = hh.divmod(24)
-    @countdown = "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
-  end
-
-  #used for testing badge alerts
-
-  def fakebadges
-    flash[:badges] = [1,2,3,4,5,6,7,8,10,11,12,13,14,15]
-    redirect_to leaderboards_path
-  end
-
-  
-  private
 
   # sets up data for charts and assigns .gon variables to be passed to js
-
   def initialize_pointschart
 
     # array for colors

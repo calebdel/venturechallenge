@@ -28,5 +28,11 @@ class League < ActiveRecord::Base
 	 	end
  	end
 
-
+ 	def cached_stores
+ 		Rails.cache.fetch("#{cache_key}/league_stores", expires_in: 10.minute) do
+ 			# should be able to self.stores.order(points: :desc) if Store has a points attr
+	 		stores = Store.where("league_id = #{self.id}")
+	    	stores.sort!{ |a,b| Point.where("store_id = #{a.id}").sum(:value) <=> Point.where("store_id = #{b.id}").sum(:value) }.reverse!
+	    end
+ 	end
 end

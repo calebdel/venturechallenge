@@ -62,7 +62,7 @@
                 <th>Badges</th>
               </tr>
                 <% @stores.each do |store| %>
-                	<tr>
+                    <tr>
                     <td class = "store<%= store.id %>"></td>
                     <td><%= User.find(store.user_id).name %></td>
                     <td><%= number_to_currency(Order.where("store_id = #{store.id}").sum(:subtotal_price)) %></td>
@@ -101,4 +101,3 @@
     <br/>
     <h4>Not enough data for Charting</h4>
 <% end %>
-<%= link_to "Have some fake badges", fakebadge_path %>

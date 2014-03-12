@@ -46,6 +46,7 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     commonjs (0.2.7)
+    dalli (2.7.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -83,6 +84,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.2)
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (4.7.5)
@@ -218,12 +220,14 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.1.2)
   chart-js-rails
   coffee-rails (= 4.0.1)
+  dalli
   font-awesome-rails
   foundation-rails
   gioco
   gon
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
+  memcachier
   newrelic_rpm
   omniauth-linkedin
   pg (= 0.15.1)
