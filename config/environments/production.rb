@@ -59,7 +59,7 @@ Venturechallenge::Application.configure do
 
   # Use a different cache store in production.
   
-  config.cache_store = ActiveSupport::Cache::RailsRedisCache.new(:url => ENV["REDISCLOUD_URL"])
+  #config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
