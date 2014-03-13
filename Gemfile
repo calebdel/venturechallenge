@@ -34,8 +34,8 @@ gem "tinymce-rails", "~> 4.0.12"
 gem 'postgres_ext'
 gem 'unicorn'
 gem "rack-timeout"
-gem 'memcachier'
-gem 'dalli'
+gem 'redis'
+gem 'redis-rails'
 
 
 group :doc do
