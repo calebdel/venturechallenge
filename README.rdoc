@@ -1,6 +1,6 @@
 == README
-
-http://www.vchallenge.co
+http://www.onlineventurechallenge.com
+login: http://www.vchallenge.co
 
 Venture Challenge Shopify App
 -----------------------------
@@ -20,7 +20,7 @@ Gamification elements include badges, points and mini-games to encourage student
 Technologies Used:
 ------------------
 
-Shopify API, Chart.js, Foundation 5, PostgreSQL, Webhooks
+Shopify API, Chart.js, Foundation 5, PostgreSQL, Redis, Webhooks
 
 
 
