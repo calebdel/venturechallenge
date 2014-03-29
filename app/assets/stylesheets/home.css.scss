@@ -1,7 +1,6 @@
 /* Global Leaderboard Page Styling */
 
 .row {
-  padding: 20px;
 }
 
 .row .row {
@@ -27,11 +26,41 @@
 }
 
 #leaderboard {
-  margin-top: -20px;
+  margin-top: 20px;
 }
 
 #leaderboard h1 {
   margin-bottom: -20px;
+}
+
+.points-yesterday {
+  background-color: #1ABC9C;
+  padding: 15px 15px 50px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+
+}
+
+.points-yesterday h1 {
+  color: #fff;
+  font-weight: 600;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+
+}
+
+.points-week {
+  background-color: #E67E22;
+  padding: 15px 15px 50px;
+  color: #fff;
+  text-align: center;
+}
+
+.points-week h1 {
+  color: #fff;
+  font-weight: 600;
+  padding-bottom: 8px;
 }
 
 /* Standings Table */
@@ -47,9 +76,11 @@
 }
 
 #standings {
-  border: 3px solid #C3453C;
+  border: 3px solid #34495E;
   border-top: none;
   margin: 0 auto;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .leaguestats {
@@ -59,9 +90,8 @@
 #table_title {
   margin: 0 auto;
   padding: 2px 0 2px 0;
-  width: 1150px;
   color: white;
-  background-color: lighten(#C3453C, 10%);
+  background-color: #34495E;
   text-align: center;
   font-weight: 600;
 }
@@ -80,15 +110,15 @@
 .linetitle {
   margin: 0 auto;
   padding: 2px 0 2px 0;
-  width: 1150px;
   color: white;
-  background-color: lighten(#555, 10%);
+  background-color: #2ECC71;
   text-align: center;
   font-weight: 600;
+  width: 590px;
 }
 
 #LineChart {
-  border: 2px solid #555;
+  border: 3px solid #2ECC71;
   border-top: none;
   padding: 5px;
 }
@@ -96,15 +126,15 @@
 .bartitle {
   margin: 0 auto;
   padding: 2px 0 2px 0;
-  width: 800px;
   color: white;
-  background-color: lighten(#EFA029, 10%);
+  background-color: #C0392B;
   text-align: center;
   font-weight: 600;
+  width: 590px;
 }
 
 #BarChart {
-  border: 2px solid #EFA029;
+  border: 3px solid #C0392B;
   border-top: none;
 }
 
@@ -112,9 +142,8 @@
 
 #leagueinfo {
   position: relative;
-  background-color: lighten(#2298DA, 20%);
+  background-color: #3498DB;
   margin-bottom: 10px;
-  border: 3px solid #2298DA;
 }
 
 #leagueinfo h2, h6 {
@@ -134,11 +163,14 @@
 #infobutton {
   margin: 10px 0 0 0;
   padding: 10px 0 10px 0;
+  background-color: #2980B9;
+
 }
 
 #infobutton a {
   font-weight: 100;
   -webkit-transition: background-color 300ms ease-out;
+  background-color: #2980B9;
 }
 
 #infobutton:hover {
@@ -148,7 +180,6 @@
 
 #leagueinfo a {
   min-width: 100%;
-  background-color: #2298DA;
   color: white;
   font-weight: 300;
 }
