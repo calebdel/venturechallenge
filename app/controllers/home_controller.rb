@@ -44,7 +44,7 @@ class HomeController < ApplicationController
     end
     
     @stores = @league.cached_stores
-    @orders = @league.orders
+    @orders = @league.cached_orders
     @countdown = league_countdown
 
     # the gon. variables are used to pass data to javascript for charts
@@ -55,11 +55,20 @@ class HomeController < ApplicationController
   end
 
 
-
-
-
-
   private
+
+  @stores.each do |store|
+    User.find(store.user_id).name 
+    number_to_currency(Order.where("store_id = #{store.id}").sum(:subtotal_price)) 
+    Order.where("store_id = #{store.id}").count 
+    Customer.where("store_id = #{store.id}").count 
+    Point.where("store_id = #{store.id}").sum(:value) 
+      store.badges.reverse[0..4].each do |badge| 
+        if badge.badge_asset 
+            image_tag badge.badge_asset.url, size: "30x30" 
+        end
+      end
+  end
 
   #triages users to the appropriate login
   def after_sign_in_path
