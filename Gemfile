@@ -11,7 +11,6 @@ group :development do
 end
 
 # ONLY USE THIS BIT FOR FOUNDATION
-gem 'sass-rails'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
