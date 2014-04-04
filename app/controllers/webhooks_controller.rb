@@ -56,7 +56,7 @@ class WebhooksController < ApplicationController
           @customer.customer_id = newcustomer.id
           @customer.store_id = @s.id
           @customer.save
-          customer_points(10)
+          customer_points(1)
         end
       head :ok
     end
@@ -93,11 +93,11 @@ class WebhooksController < ApplicationController
     def referral_challenge
 
       if @order.referring_site.include? "facebook"
-      Store.find_by_user_id(@u.id).change_points({points:10, kind:3})
+      Store.find_by_user_id(@u.id).change_points({points:5, kind:3})
       elsif @order.referring_site.include? "twitter"
-        Store.find_by_user_id(@u.id).change_points({points:10, kind:4})
+        Store.find_by_user_id(@u.id).change_points({points:5, kind:4})
       elsif @order.referring_site.include? "pinterest"
-        Store.find_by_user_id(@u.id).change_points({points:10, kind:5})
+        Store.find_by_user_id(@u.id).change_points({points:5, kind:5})
       else
         return nil
       end
