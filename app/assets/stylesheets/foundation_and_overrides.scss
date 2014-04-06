@@ -990,4 +990,12 @@ $menu-slide: "transform 300ms ease";
 // Sticky Class
 // $topbar-sticky-class: ".sticky";
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0rem!important;
+}
+
+.main-section {
+  background-color: #F7FAFF;
+}
 @import 'foundation';

@@ -82,98 +82,32 @@
 
 /* Team Stats Page */
 
-#teamstats .panel { 
-  position: relative;
-  min-height: 250px;
-}
-
-#teamstats .panel p {
-  color: white;
-  font-weight: 200;
-  padding-left: 30px;
-  margin-right: -60px;
-}
-
-#teamstats .panel h4 {
-  color: white;
-  font-weight: 600;
+.ranking {
+  background-color: #34495E;
+  padding: 25px;
+  color:  rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding-top: 30px;
-  font-size: 3em;
 }
 
-#teamstats canvas {
-  position: absolute;
-  padding-left: -30px;
-  right: 7%;
-  bottom: 10%;
-}
-
-#ranking {
-  background-color: lighten(#2298DA, 20%);
-  margin-bottom: 10px;
-  padding: 0;
-  border: 3px solid #2298DA;
-}
-
-#ranking h3 {
-  background-color: #2298DA;
-  color: white;
-  font-weight: 600;
+.points-breakdown {
+  background-color: #9B59B6;
+  padding: 25px;
+  color:  rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding-left: -30px;
-  font-size: 2em;
-  padding: 5px 0 5px 0;
 }
 
-#storestat {
-  background-color: lighten(#34AB30, 20%);
-  margin-bottom: 10px;
-  padding: 0;
-  border: 3px solid #34AB30;
-}
-
-#storestat p {
-  font-size: 1.5em;
-}
-
-#storestat h3 {
-  background-color: #34AB30;
-  color: white;
-  font-weight: 600;
+.trophies {
+  background-color: #E67E22;
+  padding: 25px;
+  color:  rgba(255, 255, 255, 0.8);
   text-align: center;
-  font-size: 2em;
-  padding: 5px 0 5px 0;
 }
 
-#pointspanel {
-  background-color: lighten(#C4524E, 20%);
-  margin-bottom: 10px;
-  padding: 0;
-  border: 3px solid #C4524E;
-}
 
-#pointspanel h3 {
-  background-color: #C4524E;
-  color: white;
-  font-weight: 600;
-  text-align: center;
-  font-size: 2em;
-  padding: 5px 0 5px 0;
-}
-
-.panelicon {
-  position: absolute;
-  bottom: -2%;
-  right: 10%;
-  color: white;
-  opacity: 0.7
-}
 
 #trophy {
-  padding: 0;
-  margin: 0;
-  border: 3px solid grey;
+padding-left: 15px;
+padding-right: 15px;
 }
 
 #trophy h3 {
@@ -183,4 +117,8 @@
   text-align: center;
   font-size: 2em;
   padding: 5px 0 5px 0;
+}
+
+#stats {
+  padding: 20px
 }
