@@ -161,3 +161,35 @@
   color: #0E77AD;
   font-weight: 500;
 }
+
+.btn1 {
+  border: none;
+  font-family: inherit;
+  font-size: 18px;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 20px 35px;
+  margin: 0 auto;
+  display: block;  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn1:hover {
+  background:#EEB011;
+  color:#fff;
+}
+
+.btn-7 {
+background: #F7E948;
+color: #504F4F;
+border-radius: 7px;
+box-shadow: 0 5px #BD8B0A;
+}
+
